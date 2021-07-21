@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="referrer" content="no-referrer" />
+  
+  <title>晾衣架学习笔记 | quest233的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="quest_2" />
+  
+  <meta name="description" content="这个东西不和那些紫题算法放在一起，因为生成函数好多都是黑题。 这篇文章的风格大概是 『题目+ 口胡 解法+启发』 ，在阅读这些乱七八糟的东西之前，可能需要一点点的 $door$ 项式基础（大概学到 $\exp$ 就够了？）。 伟大的 $\mathbf{Pólya}$ 生前曾经说过： 『生成函数就像装东西的袋子，我们如果拿着一个个东西会很尴尬，（有了生成函数）我们就只需要拿一个东西——袋子』 生成函">
+<meta property="og:type" content="article">
+<meta property="og:title" content="晾衣架学习笔记">
+<meta property="og:url" content="https://quest233.github.io/2021/04/17/%E6%99%BE%E8%A1%A3%E6%9E%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="quest233的博客">
+<meta property="og:description" content="这个东西不和那些紫题算法放在一起，因为生成函数好多都是黑题。 这篇文章的风格大概是 『题目+ 口胡 解法+启发』 ，在阅读这些乱七八糟的东西之前，可能需要一点点的 $door$ 项式基础（大概学到 $\exp$ 就够了？）。 伟大的 $\mathbf{Pólya}$ 生前曾经说过： 『生成函数就像装东西的袋子，我们如果拿着一个个东西会很尴尬，（有了生成函数）我们就只需要拿一个东西——袋子』 生成函">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-17T07:05:41.000Z">
+<meta property="article:modified_time" content="2021-04-17T08:14:16.357Z">
+<meta property="article:author" content="quest_2">
+<meta property="article:tag" content="“知识”决定命运">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="images/62224.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">quest_2&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/2021/04/17/About/#more">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/150879.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        quest_2&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        “知识”决定命运
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-晾衣架学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      晾衣架学习笔记
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-04-17
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>这个东西不和那些紫题算法放在一起，因为生成函数好多都是黑题。</p>
+<p>这篇文章的风格大概是 『题目+ <del>口胡</del> 解法+启发』 ，在阅读这些乱七八糟的东西之前，可能需要一点点的 $door$ 项式基础（大概学到 $\exp$ 就够了？）。</p>
+<p>伟大的 $\mathbf{Pólya}$ 生前曾经说过：</p>
+<p>『生成函数就像装东西的袋子，我们如果拿着一个个东西会很尴尬，（有了生成函数）我们就只需要拿一个东西——袋子』</p>
+<p>生成函数如同晾衣架，他把一个个数晾在系数上，我们需要的不是晾衣架本身，而是晾着的衣服们。</p>
+<p>那么我们可以随便开一道题来爽一爽。</p>
+<hr>
+<hr>
+<h4 id="集训队作业2013-城市规划"><a href="#集训队作业2013-城市规划" class="headerlink" title="[集训队作业2013]城市规划"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4841">[集训队作业2013]城市规划</a></h4><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/58567">x义x</a> 神仙名著《生成函数再入门》的第一题。</p>
+<p>题目大E是有标号无向连通图计数。</p>
+<p>我们开两个数组 $f[n]$ 表示 $n$ 个点的有标号无向 <strong>联通</strong> 图的个数， $g[n]$ 表示 $n$ 个点的有标号无向 <strong>不管联不联通</strong> 图。</p>
+<p>很显然， $f[n]$ 就是我们想要的答案。</p>
+<p>而 $g[n]$ 是很好求的，考虑任意两点间的边 <strong>连或不连</strong> 即可，有 $g[n]=2^{\binom{n}{2}}$ 。</p>
+<p>$f$ 和 $g$ 之间有什么微妙关系呢？</p>
+<hr>
+<p>接下来的操作有两条路可走，但它们是殊途同归的，建议两个都看一看。</p>
+<h5 id="暴推式子出口方向："><a href="#暴推式子出口方向：" class="headerlink" title="暴推式子出口方向："></a>暴推式子出口方向：</h5><p>一个 $n$ 个点的 <strong>不管联不联通</strong> 图一定是 【$1$ 号点所在的大小为 $k$ 个点的 <strong>联通</strong> 图】和【剩余 $n-k$ 个点的 <strong>不管联不联通</strong> 图】合起来得到的。</p>
+<p>我们称 $1$ 号点所在的大小为 $k$ 个点的 <strong>联通</strong> 图为 【 $1$ 号联通图 】。</p>
+<p>而那些在【 $1$ 号联通图】里的（除 $1$ 号点外）其它 $k-1$ 个点则也需在所有 $n-1$ 个点中进行一番选择，需要多乘一个 $\tbinom{n-1}{k-1}$。</p>
+<p>也就是：</p>
+<script type="math/tex; mode=display">g[n]=\sum_{k=0}^{n} \tbinom{n-1}{k-1}\cdot f[k]\cdot g[n-k]</script><p>组合数暴拆之：</p>
+<script type="math/tex; mode=display">\frac{g[n]}{(n-1)!}=\sum_{k=0}^n \frac{f[k]}{(k-1)!}\cdot \frac{g[n-k]}{(n-k)!}</script><p>活得像个 $\text{EGF}$ 。设：</p>
+<script type="math/tex; mode=display">H=\sum_{i=1}^{n}\frac{g[i]}{(i-1)!}x^i</script><script type="math/tex; mode=display">F=\sum_{i=0}^{n}\frac{f[i]}{(i-1)!}x^i</script><script type="math/tex; mode=display">G=\sum_{i=0}^{n}\frac{g[i]}{i!}x^i</script><p>结合上式，有 $H=F <em> G$ ，即 $F=H </em> G^{-1}$ ，那么只要会求逆即可。</p>
+<hr>
+<h5 id="exp-组合意义出口方向："><a href="#exp-组合意义出口方向：" class="headerlink" title="$\exp$ 组合意义出口方向："></a>$\exp$ 组合意义出口方向：</h5><p>很显然，一个 <strong>不管联不联通</strong> 图是由若干个 <strong>联通图</strong> 组成的，也就是把 $n$ 个点划分到几个集合中，每个集合是一个 <strong>联通图</strong> 。</p>
+<p>那么就是【集合划分计数】了，这是 $\exp$ 的组合意义。</p>
+<p>即可科技。</p>
+<p>设 $F$ 是 $f[i]$ 的 $\text{EGF}$ ，$G$ 是 $g[i]$ 的 $\text{EGF}$ ，也就有！</p>
+<script type="math/tex; mode=display">G=e^F</script><script type="math/tex; mode=display">F=\ln G</script><p>那么只要会多项式劳茵即可。</p>
+<hr>
+<h4 id="先辈在召唤："><a href="#先辈在召唤：" class="headerlink" title="先辈在召唤："></a>先辈在召唤：</h4><ul>
+<li><p>数东西普遍可以开两个数组，一个数组和答案 <strong>直接相关</strong> ，一个数组 <strong>极为易求</strong> ，两数组之间又有可行的 <strong>转移</strong> 即可。</p>
+</li>
+<li><p><strong>拆组合数</strong> 可以把卷积中看上去很烦的系数溶进 $\text{EGF}$ 里</p>
+</li>
+<li><p>$\text{exp}$ 的组合意义是把 <strong>有标号</strong> 小球划分到几个箱子里，<strong>不能空箱</strong></p>
+</li>
+</ul>
+<hr>
+<hr>
+<h4 id="The-Child-and-Binary-Tree"><a href="#The-Child-and-Binary-Tree" class="headerlink" title="The Child and Binary Tree"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF438E">The Child and Binary Tree</a></h4><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/58567">x义x</a> 神仙名著《生成函数再入门》的第二题。</p>
+<p>这道题的通过人数就比上一题明显少了，或许是上一题露出了数数深渊的冰山一角。</p>
+<p>大E是<strong>给</strong>定可选权值的集合，求构造一棵 <strong>点有点权</strong> ， <strong>权值和为</strong> $S$ 的二叉树的方案数。</p>
+<hr>
+<p>首先，思尻一下，若可选的权值不限，求 $K$ 个元素总权值为 $S$ 的方案数，怎么搞？</p>
+<p>这是母函数板子。参考配硬币。</p>
+<p>我们设 $f[i]$ 表示权值和为 $i$ 的方案数，有：</p>
+<script type="math/tex; mode=display">f[S]=\sum_{i=0}^S f[i]* f[S-i]</script><p>加了可选的权值限制呢？</p>
+<p>多加了一个 $g[i]$ ，表示权值 $i$ 是否（1/0）可选。</p>
+<p>那么有：</p>
+<script type="math/tex; mode=display">f[S]=\sum_{i=1}^{S}g[i]\sum_{j=0}^{S-i}f[j]* f[S-i-j]</script><p>即先查 $S-i$ 这个权值是否合法，再配硬币配出 $S-i$ 。</p>
+<p>那么把这个问题上树呢？</p>
+<p>事实是式子也是一样的，考虑配金币的过程。$f[j]* f[S-i-j]$ 其实就是在尝试“一棵子树权值和为 $j$ ，另一棵子树权值和为 $S-i-j$ ”的造树方法。</p>
+<p>那么随手改写成卷积：</p>
+<script type="math/tex; mode=display">F=G* F^2+1</script><p>_（因为$G[0]=0$ ，导致常数项 $(G*F)[0]=1$ 在 $G$ 和 $F$ 的卷积中丢掉了，所以补一个 $1$）_</p>
+<p>在这里有的题解是直接一元二次求根公式的，但您应该注意，$G[0]=0$ ，也就是说 $G$ 是不可求逆的。以下应该才是正确的推倒方式。</p>
+<hr>
+<p>先小力配方：</p>
+<script type="math/tex; mode=display">G^2F^2-GF+G=0</script><script type="math/tex; mode=display">(GF+\frac{1}{2})^2=\frac{1}{4}-G</script><p>再小力分讨：</p>
+<ul>
+<li>当 $GF+\dfrac{1}{2}=\sqrt{\dfrac{1}{4}-G}$</li>
+</ul>
+<script type="math/tex; mode=display">GF=\frac{\sqrt{1-4G}+1}{2}</script><p>注意到这个右式的零次项是 $\dfrac{\sqrt{1-0}+1}{2}=1$ ，然而 $GF$ 一卷零次项应该是 $0$ ，所以舍正。</p>
+<ul>
+<li>当 $GF+\dfrac{1}{2}=-\sqrt{\dfrac{1}{4}-G}$</li>
+</ul>
+<script type="math/tex; mode=display">GF=\frac{-\sqrt{1-4G}+1}{2}</script><p>这个右式的零次项是 $\dfrac{-\sqrt{1-0}+1}{2}=0$ ，符合条件，故取负。</p>
+<p>最后小力化式子：</p>
+<script type="math/tex; mode=display">F=\frac{-\sqrt{1-4G}+1}{2G}</script><script type="math/tex; mode=display">F=\frac{2}{1+\sqrt{1+4G}}</script><p>只要会零次项为 $1$ 的多项式开方和多项式求逆即可。</p>
+<hr>
+<h4 id="先辈在召唤：-1"><a href="#先辈在召唤：-1" class="headerlink" title="先辈在召唤："></a>先辈在召唤：</h4><ul>
+<li><p>当我们有某个权值是否可选的限制时，可以开一个装 $0/1$ ，表示权值 <strong>是否可用</strong> 的 $G$ 数组去和正经的 $F$ 卷一卷。</p>
+</li>
+<li><p>一个多项式 $F$ 可以求逆的前提是 $F[0]\neq0$ ，可以开方的前提是 $F[0]\geq 0$ （有时 $F[0]=0$ 时不可开方，那是特例）。</p>
+</li>
+<li><p>注意观察零次项，零次项有时需要在推式子过程中 <strong>补全</strong> ，常数项的存在有无有时可以帮助我们 <strong>舍掉一些情况</strong> 。</p>
+</li>
+</ul>
+<hr>
+<hr>
+<h4 id="国家集训队-整数的lqp拆分"><a href="#国家集训队-整数的lqp拆分" class="headerlink" title="[国家集训队]整数的lqp拆分"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4451">[国家集训队]整数的lqp拆分</a></h4><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/58567">x义x</a> 神仙名著《生成函数再入门》的第三题。</p>
+<p>事实上笔者学数数的最初一段时间就是对着x义x神仙的文章摸♂索与练♂习的，这里表示感谢与膜拜。</p>
+<p>大E是正整数拆分，拆分出的数装在 $a$ 里，定义一个方案的贡献是 $\prod fib[a[i]]$ ，求总贡献。</p>
+<p>设 $f[i]$ 表示和为 $i$ 的拆分的总贡献，显然我们的答案是 $f[n]$ 。</p>
+<p>有一个极其一眼的递推式：</p>
+<script type="math/tex; mode=display">f[0]=1</script><script type="math/tex; mode=display">f[k]=\sum_{i=1}^{k}f[k-i] * fib[i]</script><p>即，假设目前是第一次拆分，枚举这次将被拆分出的数，把 <strong>剩余部分</strong> 的总贡献乘以 <strong>拆分出这个数时</strong> 所得的贡献</p>
+<p>其实就是把配硬币的新方案贡献换成了 $fib[k-i]$ 。</p>
+<p>随手写成卷积，设 $F$ 是 $f$ 的 $\text{OGF}$ ，$G$ 是 $fib$ 的 $\text{OGF}$ 。</p>
+<p>有：</p>
+<script type="math/tex; mode=display">F=F* G+1</script><script type="math/tex; mode=display">F=\dfrac{1}{1-G}</script><p>（依然需要 $0$ 次项补全）</p>
+<hr>
+<p>如果您有初中水平，那么您应该知道 $G(x)=\dfrac{1}{1-x-x^2}$ ，下面是推倒：</p>
+<script type="math/tex; mode=display">\begin{aligned}G=fib[0]+fib[1]x+&fib[2]x^2+fib[3]x^3\cdots\\xG=\qquad\quad\;\  fib[0]x+&fib[1]x^2+fib[2]x^3+fib[3]x^4\cdots\\x^2G=\qquad\quad\;\;\qquad\quad\;\;&fib[0]x^2+fib[1]x^3+fib[2]x^4+fib[3]x^5\cdots\end{aligned}</script><p>把一个多项式乘 $x$ 相当于是把其系数 <strong>向右平移</strong> 的过程。</p>
+<p>我们发现如果把 <strong>同次项对齐</strong>，我们惊奇地发现在非零次项上，都有 $G[i]-(xG)[i]-(x^2G)[i]=0$ ；而在零次项上 $G[0]-(xG)[0]-(x^2G)[0]=1$ 。</p>
+<p>也就是说 $G-xG-x^2G=1$ ，那么 $G(x)=\dfrac{1}{1-x-x^2}$ ！</p>
+<p>$\Box$</p>
+<hr>
+<p>回到我们卷出来的式子：</p>
+<script type="math/tex; mode=display">F=\dfrac{1}{1-G}</script><p>也就有了：</p>
+<script type="math/tex; mode=display">F(x)=\dfrac{1}{1-\dfrac{1}{1-x-x^2}}</script><p>一通操作化得：</p>
+<script type="math/tex; mode=display">F(x)=1+\dfrac{x}{-x^2-2x+1}</script><p>我们说过，生成函数是晾衣架，我们要的是 $x$ 的系数，从这个分式里显然看不出，我们得把它化成 $\text{OGF}$。</p>
+<p>想到 $\dfrac{1}{1-cx}=\sum_{i=0}^{\infty} c^ix^i$ ，我们尝试把右边那个鬼化成 $\dfrac{x}{(1-ax)(1-bx)}$ 这种形式。</p>
+<p>实数域上因式分解分母有，注意到两因式差为 $2\sqrt{2}$ ，裂项即可：</p>
+<script type="math/tex; mode=display">\begin{aligned}\dfrac{x}{-x^2-2x+1}&=\dfrac{x}{[1-(1+\sqrt{2})x][1-(1-\sqrt{2})x]}\\&=\dfrac{\sqrt{2}}{4}(\dfrac{1}{1-(1+\sqrt{2})x}-\dfrac{1}{1-(1-\sqrt{2})x})\end{aligned}</script><p>非常惭愧，只做了一些微小的工作。</p>
+<hr>
+<p>这样我们就有 $\text{OGF}$ 的曙光了。</p>
+<p>时刻牢记 $F(x)$ 代表的是关于 $x$ 的多项式，而 $F[x]$ 代表的是多项式第 $x$ 项的系数。</p>
+<script type="math/tex; mode=display">F(x)=1+\dfrac{\sqrt{2}}{4}(\dfrac{1}{1-(1+\sqrt{2})x}-\dfrac{1}{1-(1-\sqrt{2})x})</script><script type="math/tex; mode=display">F[k]=1+\dfrac{\sqrt{2}}{4}((1+\sqrt{2})^k-(1-\sqrt{2})^k)</script><p>因为常数项 $1$ 是为了使 $f[0]=1$ ，之后就不再管了。</p>
+<script type="math/tex; mode=display">f[k]=\dfrac{\sqrt{2}}{4}((1+\sqrt{2})^k-(1-\sqrt{2})^k)\qquad (k>0)</script><p>枚举可得 $\sqrt{2}$ 在膜 998 意义下为 $59713600$ ，爆算即可，不需要多项式科技。</p>
+<hr>
+<h4 id="先辈在召唤：-2"><a href="#先辈在召唤：-2" class="headerlink" title="先辈在召唤："></a>先辈在召唤：</h4><ul>
+<li><p>斐波那契数列的生成函数是 $\dfrac{1}{1-x-x^2}$ ，可以采取 <strong>平移+对齐同次项观察系数</strong> 的方式得出（这种方法可以沿用到其它数列的推导）</p>
+</li>
+<li><p>时刻分清 <strong>晾衣架（生成函数本体）和晾着的衣服（系数）</strong> 之间的差异，必要时在草稿上用不同变量名。</p>
+</li>
+<li><p>面对要用 <strong>“大”分式生成函数</strong> 想求它的系数时，可以拆成若干个 $\dfrac{1}{1-cx}$ 相加减，然后改写为 $c^i$ 即得系数的通项公式。</p>
+</li>
+</ul>
+<hr>
+<hr>
+<h4 id="差分与前缀和"><a href="#差分与前缀和" class="headerlink" title="差分与前缀和"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5488">差分与前缀和</a></h4><p>大E是求一个数列的 $k$ 阶差分或前缀和。</p>
+<h3 id="水平不够，没什么时间写了"><a href="#水平不够，没什么时间写了" class="headerlink" title="水平不够，没什么时间写了"></a>水平不够，没什么时间写了</h3>
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年04月17日 16:14</p>
+        <p>原始链接： <a class="post-url" href="/2021/04/17/%E6%99%BE%E8%A1%A3%E6%9E%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="晾衣架学习笔记">https://quest233.github.io/2021/04/17/%E6%99%BE%E8%A1%A3%E6%9E%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></p>
+        <footer>
+            <a href="https://quest233.github.io">
+                <img src="/images/150879.png" alt="quest_2">
+                quest_2
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://quest233.github.io/2021/04/17/%E6%99%BE%E8%A1%A3%E6%9E%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《晾衣架学习笔记》 — quest233的博客&pic=https://quest233.github.ioimages/150879.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://quest233.github.io/2021/04/17/%E6%99%BE%E8%A1%A3%E6%9E%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《晾衣架学习笔记》 — quest233的博客&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://quest233.github.io/2021/04/17/%E6%99%BE%E8%A1%A3%E6%9E%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《晾衣架学习笔记》 — quest233的博客&url=https://quest233.github.io/2021/04/17/%E6%99%BE%E8%A1%A3%E6%9E%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&via=https://quest233.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://quest233.github.io/2021/04/17/%E6%99%BE%E8%A1%A3%E6%9E%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://quest233.github.io/2021/04/17/%E6%99%BE%E8%A1%A3%E6%9E%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/“知识”决定命运/" class="color4">“知识”决定命运</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E9%9B%86%E8%AE%AD%E9%98%9F%E4%BD%9C%E4%B8%9A2013-%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92"><span class="post-toc-text">[集训队作业2013]城市规划</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#%E6%9A%B4%E6%8E%A8%E5%BC%8F%E5%AD%90%E5%87%BA%E5%8F%A3%E6%96%B9%E5%90%91%EF%BC%9A"><span class="post-toc-text">暴推式子出口方向：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#exp-%E7%BB%84%E5%90%88%E6%84%8F%E4%B9%89%E5%87%BA%E5%8F%A3%E6%96%B9%E5%90%91%EF%BC%9A"><span class="post-toc-text">$\exp$ 组合意义出口方向：</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%85%88%E8%BE%88%E5%9C%A8%E5%8F%AC%E5%94%A4%EF%BC%9A"><span class="post-toc-text">先辈在召唤：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#The-Child-and-Binary-Tree"><span class="post-toc-text">The Child and Binary Tree</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%85%88%E8%BE%88%E5%9C%A8%E5%8F%AC%E5%94%A4%EF%BC%9A-1"><span class="post-toc-text">先辈在召唤：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-%E6%95%B4%E6%95%B0%E7%9A%84lqp%E6%8B%86%E5%88%86"><span class="post-toc-text">[国家集训队]整数的lqp拆分</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%85%88%E8%BE%88%E5%9C%A8%E5%8F%AC%E5%94%A4%EF%BC%9A-2"><span class="post-toc-text">先辈在召唤：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%B7%AE%E5%88%86%E4%B8%8E%E5%89%8D%E7%BC%80%E5%92%8C"><span class="post-toc-text">差分与前缀和</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%B0%B4%E5%B9%B3%E4%B8%8D%E5%A4%9F%EF%BC%8C%E6%B2%A1%E4%BB%80%E4%B9%88%E6%97%B6%E9%97%B4%E5%86%99%E4%BA%86"><span class="post-toc-text">水平不够，没什么时间写了</span></a>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/04/17/%E7%B4%AB%E9%A2%98%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E5%AE%9E%E5%86%B5/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          紫题算法学习实况
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/04/17/%E6%89%8D%E9%AB%98%E4%B8%80%EF%BC%8C%E5%B0%B1%E5%B7%B2%E7%BB%8F%E8%8E%B7%E5%BE%97%E5%9B%BE%E7%81%B5%E5%A5%96%EF%BC%8C%E4%BB%96%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E5%88%B0%E7%9A%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">才高一，就已经获得图灵奖，他是怎么做到的</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+          <div id="uyan_frame"></div>
+  <script src="http://v2.uyan.cc/code/uyan.js?uid=true"></script>
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2021 quest_2<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://quest233.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/solutions/" style="font-size: 20px;">solutions</a> <a href="/tags/water/" style="font-size: 10px;">water</a> <a href="/tags/%E2%80%9C%E7%9F%A5%E8%AF%86%E2%80%9D%E5%86%B3%E5%AE%9A%E5%91%BD%E8%BF%90/" style="font-size: 15px;">“知识”决定命运</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/2021/04/17/About/#more">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/solutions/" style="font-size: 20px;">solutions</a> <a href="/tags/water/" style="font-size: 10px;">water</a> <a href="/tags/%E2%80%9C%E7%9F%A5%E8%AF%86%E2%80%9D%E5%86%B3%E5%AE%9A%E5%91%BD%E8%BF%90/" style="font-size: 15px;">“知识”决定命运</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="referrer" content="no-referrer" />
+  
+  <title>浅谈一类暴力过题——[BalticOI 2012 Day1] 括号 题解 | quest233的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="quest_2" />
+  
+  <meta name="description" content="写在最前：推一下蒟蒻 $\color{limegreen}{blog}$  原题链接~  首先，膜拜搬题人 $\color{black}\texttt{s}\color{red}\texttt{henmadongdong}$ ，他是我们的红太阳！ 其次，强烈谴责出题人自己卡常的恶劣行径。 本文阐（fan）述（yi）官方 std 做法，你会发现它的复杂度是假的，具体一会再说。  题意不用表述了，很清">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈一类暴力过题——[BalticOI 2012 Day1] 括号 题解">
+<meta property="og:url" content="https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E6%9A%B4%E5%8A%9B%E8%BF%87%E9%A2%98%E2%80%94%E2%80%94-BalticOI-2012-Day1-%E6%8B%AC%E5%8F%B7-%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:site_name" content="quest233的博客">
+<meta property="og:description" content="写在最前：推一下蒟蒻 $\color{limegreen}{blog}$  原题链接~  首先，膜拜搬题人 $\color{black}\texttt{s}\color{red}\texttt{henmadongdong}$ ，他是我们的红太阳！ 其次，强烈谴责出题人自己卡常的恶劣行径。 本文阐（fan）述（yi）官方 std 做法，你会发现它的复杂度是假的，具体一会再说。  题意不用表述了，很清">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-16T21:24:07.000Z">
+<meta property="article:modified_time" content="2021-04-19T03:27:44.562Z">
+<meta property="article:author" content="quest_2">
+<meta property="article:tag" content="solutions">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="images/62224.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">quest_2&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/2021/04/17/About/#more">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/150879.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        quest_2&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        “知识”决定命运
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-浅谈一类暴力过题——-BalticOI-2012-Day1-括号-题解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      浅谈一类暴力过题——[BalticOI 2012 Day1] 括号 题解
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-04-17
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>写在最前：推一下蒟蒻 <a href="https://quest233.github.io/">$\color{limegreen}{blog}$</a> </p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7248">原题链接~</a></p>
+<hr>
+<p>首先，膜拜搬题人 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/71491">$\color{black}\texttt{s}\color{red}\texttt{henmadongdong}$</a> ，他是我们的红太阳！</p>
+<p>其次，强烈谴责出题人自己卡常的恶劣行径。</p>
+<p>本文阐（fan）述（yi）官方 std 做法，你会发现它的复杂度是假的，具体一会再说。</p>
+<hr>
+<p>题意不用表述了，很清楚。</p>
+<p>以下论述中，我们把不合法括号串归为一类，即 <strong>左括号数目多于右括号</strong> 的括号串。</p>
+<p>（若在某一时刻，右括号多于左括号，那么之后无论怎么加括号，这整个串都 <strong>救不回来</strong> 了，没有统计意义）</p>
+<p>接下来，我们需要证明一个氡西：</p>
+<p>『所有 <strong>夹杂着方括号</strong>（至少有一对）的合法括号串与 <strong>纯圆括号</strong> 的合法括号串一一对应』</p>
+<p>尝试胡乱证明：</p>
+<ul>
+<li>对于一个 <strong>夹杂着方括号</strong> 的合法括号串 $s$ ，我们将里面所有左方括号换成左圆括号，所有右方括号换成右圆括号，最终的结果一定是一个 <strong>纯圆括号</strong> 的合法括号串。我们设这个新串为 $t$ 。目前只是单向的对应，我们需要建立 <strong>双向</strong> 。</li>
+</ul>
+<script type="math/tex; mode=display">\texttt{s:(()\red{[]})}\Rightarrow\texttt{t:(()\red{()})}</script><ul>
+<li>对于这个 <strong>纯圆括号</strong> 的合法括号串 $t$ 。 我们将 $s$ 里，所有匹配上的 <strong>圆括号</strong> ，在 $t$ 中相应位置标记出来。</li>
+</ul>
+<script type="math/tex; mode=display">\begin{matrix}\texttt{s:\blue{(()}[]\blue{)}}\\\texttt{t:\blue{(()}()\blue{)}}\end{matrix}</script><ul>
+<li>在 $t$ 的其它部分中，所有左圆括号换成左方括号，所有右圆括号换成右方括号。最终我们又得到了一个 <strong>夹杂着方括号</strong> 的合法括号串，显然这个新串就是 $s$ 。</li>
+</ul>
+<script type="math/tex; mode=display">\texttt{t:(()\red{()})}\Rightarrow\texttt{s:(()\red{[]})}</script><p>$Q.E.D.$ （这个证明看上去稀奇古怪的）</p>
+<p>题目要求我们求 <strong>夹杂着方括号</strong> 的合法括号串，我们欣欣然把它转化成了 <strong>纯圆括号</strong> 的合法括号串计数。</p>
+<p>之后就是普及- $dp$ 了，根据括号串dp的基本套路（<del>基本法</del>），我们设 $dp _ {i,j}$ 表示：决策到第 $i$ 个位置，当前左括号比右括号 <strong>多</strong>  $j$ 个的 <strong>括号串数目</strong> 。（为什么只考虑 $j$ 为正数在文章开头有说）</p>
+<p>那么我们就有简单转移柿子（设给定串为 $s$ ）：</p>
+<script type="math/tex; mode=display">\begin{cases}dp _ {i,j}=dp _ {i-1,j+1}\qquad(s[i]=')')\\dp _ {i,j}=dp _ {i-1,j+1}+dp _ {i-1,j-1}\qquad(s[i]='(')\end{cases}</script><p>结合状态定义很好理解（或许？）。</p>
+<p>初始化是 $dp _ {0,0}=0$ （显然） 。</p>
+<p>但是我们意识到这样空间开不下，所以可以 <strong>滚一滚</strong> 。</p>
+<p>这样我们就获得了 $\mathcal{O}(n^2)$ 时间复杂度的优秀做法。按理说应该是过不了题的，而要优化起码得从 <strong>状态定义</strong> 上开刀。</p>
+<p>写到这里我横竖想不到更好方法，在极度愤怒的情况下去看了官方题解，结果：</p>
+<blockquote>
+<p>The  correct  solution  is  still  O(N^2),  but  we  should  speed  it  up  by  some  constant factor.</p>
+</blockquote>
+<p>你在教我做事？</p>
+<p>于是打了个 $n$ 方，果然过了，需要手动卡常，不需要吸氧。</p>
+<p>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX = <span class="number">3e5</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MOD = <span class="number">1e9</span> + <span class="number">9</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lst (i + 1) &amp; 1<span class="comment">//用以滚动数组</span></span></span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">2</span>][MAX], N, p;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">ios::sync _ with _ <span class="title">stdio</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line">	cin &gt;&gt; N;</span><br><span class="line">	dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">char</span> c;</span><br><span class="line">		cin &gt;&gt; c;</span><br><span class="line">		<span class="keyword">int</span> M = <span class="built_in">min</span>(i, N - i);</span><br><span class="line">		<span class="comment">//上界，对答案有贡献的 j 需要小于 N-i ，而考虑合理性，j 还需要小于 i </span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">register</span> <span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= M; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">//转移</span></span><br><span class="line">			<span class="keyword">if</span> (!j || c == <span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				dp[i &amp; <span class="number">1</span>][j] = dp[lst][j + <span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				dp[i &amp; <span class="number">1</span>][j] = (dp[lst][j + <span class="number">1</span>] + dp[lst][j - <span class="number">1</span>]) % MOD;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; dp[N &amp; <span class="number">1</span>][<span class="number">0</span>] &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年04月19日 11:27</p>
+        <p>原始链接： <a class="post-url" href="/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E6%9A%B4%E5%8A%9B%E8%BF%87%E9%A2%98%E2%80%94%E2%80%94-BalticOI-2012-Day1-%E6%8B%AC%E5%8F%B7-%E9%A2%98%E8%A7%A3/" title="浅谈一类暴力过题——[BalticOI 2012 Day1] 括号 题解">https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E6%9A%B4%E5%8A%9B%E8%BF%87%E9%A2%98%E2%80%94%E2%80%94-BalticOI-2012-Day1-%E6%8B%AC%E5%8F%B7-%E9%A2%98%E8%A7%A3/</a></p>
+        <footer>
+            <a href="https://quest233.github.io">
+                <img src="/images/150879.png" alt="quest_2">
+                quest_2
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E6%9A%B4%E5%8A%9B%E8%BF%87%E9%A2%98%E2%80%94%E2%80%94-BalticOI-2012-Day1-%E6%8B%AC%E5%8F%B7-%E9%A2%98%E8%A7%A3/&title=《浅谈一类暴力过题——[BalticOI 2012 Day1] 括号 题解》 — quest233的博客&pic=https://quest233.github.ioimages/150879.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E6%9A%B4%E5%8A%9B%E8%BF%87%E9%A2%98%E2%80%94%E2%80%94-BalticOI-2012-Day1-%E6%8B%AC%E5%8F%B7-%E9%A2%98%E8%A7%A3/&title=《浅谈一类暴力过题——[BalticOI 2012 Day1] 括号 题解》 — quest233的博客&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E6%9A%B4%E5%8A%9B%E8%BF%87%E9%A2%98%E2%80%94%E2%80%94-BalticOI-2012-Day1-%E6%8B%AC%E5%8F%B7-%E9%A2%98%E8%A7%A3/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《浅谈一类暴力过题——[BalticOI 2012 Day1] 括号 题解》 — quest233的博客&url=https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E6%9A%B4%E5%8A%9B%E8%BF%87%E9%A2%98%E2%80%94%E2%80%94-BalticOI-2012-Day1-%E6%8B%AC%E5%8F%B7-%E9%A2%98%E8%A7%A3/&via=https://quest233.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E6%9A%B4%E5%8A%9B%E8%BF%87%E9%A2%98%E2%80%94%E2%80%94-BalticOI-2012-Day1-%E6%8B%AC%E5%8F%B7-%E9%A2%98%E8%A7%A3/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E6%9A%B4%E5%8A%9B%E8%BF%87%E9%A2%98%E2%80%94%E2%80%94-BalticOI-2012-Day1-%E6%8B%AC%E5%8F%B7-%E9%A2%98%E8%A7%A3/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/solutions/" class="color5">solutions</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2021/04/17/%E6%B5%85%E8%B0%88%E9%92%AC%E9%92%8A%E9%92%B6%E9%95%AD%E5%90%8E%E7%BC%80%E5%92%8C%E2%80%94%E2%80%94%E3%80%8CMCOI-02%E3%80%8DConvex-Hull-%E5%87%B8%E5%8C%85-%E9%A2%98%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          浅谈钬钊钶镭后缀和——「MCOI-02」Convex Hull 凸包 题解
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%AE%80%E5%8D%95%E6%99%AE%E9%80%9A%E8%8E%AB%E9%98%9F%E2%80%94%E2%80%94-CF617E-XOR-and-Favorite-Number-%E9%A2%98%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">浅谈一类简单普通莫队—— CF617E XOR and Favorite Number 题解</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+          <div id="uyan_frame"></div>
+  <script src="http://v2.uyan.cc/code/uyan.js?uid=true"></script>
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2021 quest_2<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://quest233.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/solutions/" style="font-size: 20px;">solutions</a> <a href="/tags/water/" style="font-size: 10px;">water</a> <a href="/tags/%E2%80%9C%E7%9F%A5%E8%AF%86%E2%80%9D%E5%86%B3%E5%AE%9A%E5%91%BD%E8%BF%90/" style="font-size: 15px;">“知识”决定命运</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/2021/04/17/About/#more">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/solutions/" style="font-size: 20px;">solutions</a> <a href="/tags/water/" style="font-size: 10px;">water</a> <a href="/tags/%E2%80%9C%E7%9F%A5%E8%AF%86%E2%80%9D%E5%86%B3%E5%AE%9A%E5%91%BD%E8%BF%90/" style="font-size: 15px;">“知识”决定命运</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

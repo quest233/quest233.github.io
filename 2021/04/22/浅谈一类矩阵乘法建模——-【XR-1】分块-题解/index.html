@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="referrer" content="no-referrer" />
+  
+  <title>浅谈一类矩阵乘法建模—— 【XR-1】分块 题解 | quest233的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="quest_2" />
+  
+  <meta name="description" content="推蒟蒻 $\color{limegreen}{blog}$ ！ 原题链接~ 题是简单题，重在想到矩乘后怎么往下写。 题意不须讲了，很清楚而且很有意思。  转移方程稍微给一下，推导可以阅读别的题解。 设置状态 $dp_{\ i}$ 指的是：长度为 $i$ 时可行的分块方案。 我们有: （ $x$ 指的是的可能的块长（即两人公认的其中一种块长）） dp_{\ i}&#x3D; \sum dp_{\ i-x}我们">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈一类矩阵乘法建模—— 【XR-1】分块 题解">
+<meta property="og:url" content="https://quest233.github.io/2021/04/22/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E5%BB%BA%E6%A8%A1%E2%80%94%E2%80%94-%E3%80%90XR-1%E3%80%91%E5%88%86%E5%9D%97-%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:site_name" content="quest233的博客">
+<meta property="og:description" content="推蒟蒻 $\color{limegreen}{blog}$ ！ 原题链接~ 题是简单题，重在想到矩乘后怎么往下写。 题意不须讲了，很清楚而且很有意思。  转移方程稍微给一下，推导可以阅读别的题解。 设置状态 $dp_{\ i}$ 指的是：长度为 $i$ 时可行的分块方案。 我们有: （ $x$ 指的是的可能的块长（即两人公认的其中一种块长）） dp_{\ i}&#x3D; \sum dp_{\ i-x}我们">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-22T01:02:28.000Z">
+<meta property="article:modified_time" content="2021-04-22T01:23:37.781Z">
+<meta property="article:author" content="quest_2">
+<meta property="article:tag" content="solutions">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="images/62224.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">quest_2&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/2021/04/17/About/#more">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/150879.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        quest_2&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        “知识”决定命运
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-浅谈一类矩阵乘法建模——-【XR-1】分块-题解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      浅谈一类矩阵乘法建模—— 【XR-1】分块 题解
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-04-22
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>推蒟蒻 <a href="https://quest233.github.io/">$\color{limegreen}{blog}$</a> ！</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5343">原题链接~</a></p>
+<p>题是简单题，重在想到矩乘后怎么往下写。</p>
+<p>题意不须讲了，很清楚而且很有意思。</p>
+<hr>
+<p>转移方程稍微给一下，推导可以阅读别的题解。</p>
+<p>设置状态 $dp_{\ i}$ 指的是：长度为 $i$ 时可行的分块方案。</p>
+<p>我们有: （ $x$ 指的是的可能的块长（即<strong>两人公认的其中一种块长</strong>））</p>
+<script type="math/tex; mode=display">dp_{\ i}= \sum dp_{\ i-x}</script><p>我们看到块总长是 $\leq 1e18$ 的，连 $N$ 的空间都开不下，就别提更高维的数组了。</p>
+<p>因为开不下，所以 $O(N)$ 递推难矣。</p>
+<hr>
+<h4 id="『递推的优化，显然矩乘。』"><a href="#『递推的优化，显然矩乘。』" class="headerlink" title="『递推的优化，显然矩乘。』"></a>『递推的优化，显然矩乘。』</h4><p>我们尽量少算值，整出个<strong>初始状态</strong>就差不多可以了。</p>
+<p>要推第 $i$ 项，要保证在所有可能的块长 $x$ 下，第 $i-x$ 项都<strong>已知</strong>。</p>
+<p>因为块长不会大于 $100$ ，故我们可以先<strong>预处理到 $dp_{\ 100}$</strong> 。</p>
+<p>开 $100 * 100$ 的矩阵，至少可以保证递推时每一项都能推得出来。</p>
+<hr>
+<h4 id="现在就到了矩阵乘法最重要的一部分————初始化矩阵。"><a href="#现在就到了矩阵乘法最重要的一部分————初始化矩阵。" class="headerlink" title="现在就到了矩阵乘法最重要的一部分————初始化矩阵。"></a>现在就到了矩阵乘法最重要的一部分————初始化矩阵。</h4><p>目前这一步的状态需要前面哪几步的状态推出？</p>
+<p>我们通过递推式知道了，与 <strong>$x$ 步前的状态</strong>有关系（以下的 $x$ 指代每一种可能的块长）。</p>
+<p>我们把 $dp_{\ i}$ 放在原始矩阵的第 $(1,1)$ 位置，那就把 $dp_{\ i-k}$ 放在 $(k,1)$ 位置。</p>
+<p>也就是说新的矩阵的 $(1,1)$ 位置，要由<strong>所有的 $(x,1)$ 的总和</strong>转移而来。</p>
+<p>那转移矩阵的第一行里必然有：对于每一个可行的 $x$ ， $(1,x)$ 处为 $1$ ，其余位置为 $0$ 。</p>
+<p>比如对于样例1， $1$ 和 $2$ 都是可行的 $x$ ，转移矩阵的第一行必如下图：</p>
+<script type="math/tex; mode=display">\begin{bmatrix}1&1&0&0&\cdots &0\end{bmatrix}</script><hr>
+<h4 id="我们解决了第一行，那其他行如何处理？"><a href="#我们解决了第一行，那其他行如何处理？" class="headerlink" title="我们解决了第一行，那其他行如何处理？"></a>我们解决了第一行，那其他行如何处理？</h4><p>我们此刻的 $dp_{\ i}$ ，在下一次（第 $i-1$ 次）转移后就将成为 $dp_{\ (i+1)-1}$ ，所以应<strong>向后推一位</strong>，从原来的 $(1,1)$ 位置后推到 $(2,1)$ 位置。</p>
+<p>这一过程在做其他矩乘题里必然也经常用到，对于第 $i(i\neq 1)$ 行，我们在 $(i,i-1)$ 位置设为 $1$ ，其余位置设为 $0$ 。</p>
+<p>这样可以做到原来在 $(1,1)$ 的第 $dp_{\ i}$ 位在转移后移至 $(1,2)$ 。</p>
+<p>对于后面几位亦如此。</p>
+<p>最终成品转移矩阵如下（中间省略了一部分数值）：</p>
+<script type="math/tex; mode=display">\begin{bmatrix}1&1&\cdots&0&0\\1&0&\cdots&0&0\\0&1&\cdots&0&0\\\vdots&\vdots&\ddots&\vdots&\vdots\\0&0&\cdots&1&0\end{bmatrix}</script><hr>
+<h4 id="所以-AC-此题，流程如下："><a href="#所以-AC-此题，流程如下：" class="headerlink" title="所以 $AC$ 此题，流程如下："></a>所以 $AC$ 此题，流程如下：</h4><ol>
+<li>预处理 $dp_{\ 100} $ ，填入原始矩阵。</li>
+<li>初始化转移矩阵。</li>
+<li>矩阵快速幂。</li>
+<li>输出最终答案矩阵的 $(1,1)$ 。</li>
+</ol>
+<hr>
+<p><strong>以下是代码～</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MOD = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> LEN, PR, NF;</span><br><span class="line">map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; m1, m2;</span><br><span class="line"><span class="keyword">int</span> N;</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">107</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/*矩阵组件*/</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">matrix</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> num[<span class="number">107</span>][<span class="number">107</span>];</span><br><span class="line">	matrix <span class="keyword">operator</span>*(<span class="keyword">const</span> matrix a) <span class="keyword">const</span></span><br><span class="line">	&#123;</span><br><span class="line">		matrix c;</span><br><span class="line">		<span class="built_in">memset</span>(c.num, <span class="number">0</span>, <span class="built_in"><span class="keyword">sizeof</span></span>(c.num));</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= N; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= N; k++)</span><br><span class="line">				&#123;</span><br><span class="line">					c.num[i][j] = (c.num[i][j] + (num[i][k] * a.num[k][j]) % MOD) % MOD;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> c;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; ORZ, RBQ;<span class="comment">//ORZ----原始矩阵 RBQ----转移矩阵</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*快速幂组件*/</span></span><br><span class="line"><span class="function">matrix <span class="title">quick_pow</span><span class="params">(matrix a, <span class="keyword">int</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (p == <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> a;</span><br><span class="line">	&#125;</span><br><span class="line">	matrix tmp = <span class="built_in">quick_pow</span>(a, p / <span class="number">2</span>);</span><br><span class="line">	<span class="keyword">if</span> (p % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> tmp * tmp;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> tmp * tmp * a;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(ORZ.num, <span class="number">0</span>, <span class="built_in"><span class="keyword">sizeof</span></span>(ORZ.num));</span><br><span class="line">	<span class="built_in">memset</span>(RBQ.num, <span class="number">0</span>, <span class="built_in"><span class="keyword">sizeof</span></span>(RBQ.num));</span><br><span class="line">	cin &gt;&gt; LEN;</span><br><span class="line">	cin &gt;&gt; PR;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= PR; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> num;</span><br><span class="line">		cin &gt;&gt; num;</span><br><span class="line">		m1[num] = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cin &gt;&gt; NF;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= NF; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> num;</span><br><span class="line">		cin &gt;&gt; num;</span><br><span class="line">		<span class="keyword">if</span> (m1[num])</span><br><span class="line">		&#123;</span><br><span class="line">			m2[num] = <span class="number">1</span>;<span class="comment">//指这个块长两人是否都公认</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*初始化转移矩阵*/</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">100</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (m2[i] == <span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			RBQ.num[<span class="number">1</span>][i] = <span class="number">1</span>;</span><br><span class="line">			N = i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		RBQ.num[i + <span class="number">1</span>][i] = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*预处理dp[100]*/</span></span><br><span class="line">	dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (m2[j] == <span class="number">1</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				dp[i] = (dp[i] + dp[i - j]) % MOD;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		ORZ.num[N - i][<span class="number">1</span>] = dp[i];</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">	ORZ.num[N][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	matrix ans = <span class="built_in">quick_pow</span>(RBQ, LEN - N + <span class="number">1</span>) * ORZ;</span><br><span class="line">	cout &lt;&lt; ans.num[<span class="number">1</span>][<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年04月22日 09:23</p>
+        <p>原始链接： <a class="post-url" href="/2021/04/22/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E5%BB%BA%E6%A8%A1%E2%80%94%E2%80%94-%E3%80%90XR-1%E3%80%91%E5%88%86%E5%9D%97-%E9%A2%98%E8%A7%A3/" title="浅谈一类矩阵乘法建模—— 【XR-1】分块 题解">https://quest233.github.io/2021/04/22/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E5%BB%BA%E6%A8%A1%E2%80%94%E2%80%94-%E3%80%90XR-1%E3%80%91%E5%88%86%E5%9D%97-%E9%A2%98%E8%A7%A3/</a></p>
+        <footer>
+            <a href="https://quest233.github.io">
+                <img src="/images/150879.png" alt="quest_2">
+                quest_2
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://quest233.github.io/2021/04/22/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E5%BB%BA%E6%A8%A1%E2%80%94%E2%80%94-%E3%80%90XR-1%E3%80%91%E5%88%86%E5%9D%97-%E9%A2%98%E8%A7%A3/&title=《浅谈一类矩阵乘法建模—— 【XR-1】分块 题解》 — quest233的博客&pic=https://quest233.github.ioimages/150879.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://quest233.github.io/2021/04/22/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E5%BB%BA%E6%A8%A1%E2%80%94%E2%80%94-%E3%80%90XR-1%E3%80%91%E5%88%86%E5%9D%97-%E9%A2%98%E8%A7%A3/&title=《浅谈一类矩阵乘法建模—— 【XR-1】分块 题解》 — quest233的博客&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://quest233.github.io/2021/04/22/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E5%BB%BA%E6%A8%A1%E2%80%94%E2%80%94-%E3%80%90XR-1%E3%80%91%E5%88%86%E5%9D%97-%E9%A2%98%E8%A7%A3/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《浅谈一类矩阵乘法建模—— 【XR-1】分块 题解》 — quest233的博客&url=https://quest233.github.io/2021/04/22/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E5%BB%BA%E6%A8%A1%E2%80%94%E2%80%94-%E3%80%90XR-1%E3%80%91%E5%88%86%E5%9D%97-%E9%A2%98%E8%A7%A3/&via=https://quest233.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://quest233.github.io/2021/04/22/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E5%BB%BA%E6%A8%A1%E2%80%94%E2%80%94-%E3%80%90XR-1%E3%80%91%E5%88%86%E5%9D%97-%E9%A2%98%E8%A7%A3/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://quest233.github.io/2021/04/22/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E5%BB%BA%E6%A8%A1%E2%80%94%E2%80%94-%E3%80%90XR-1%E3%80%91%E5%88%86%E5%9D%97-%E9%A2%98%E8%A7%A3/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/solutions/" class="color5">solutions</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E3%80%8E%E9%80%92%E6%8E%A8%E7%9A%84%E4%BC%98%E5%8C%96%EF%BC%8C%E6%98%BE%E7%84%B6%E7%9F%A9%E4%B9%98%E3%80%82%E3%80%8F"><span class="post-toc-text">『递推的优化，显然矩乘。』</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E7%8E%B0%E5%9C%A8%E5%B0%B1%E5%88%B0%E4%BA%86%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9F%A9%E9%98%B5%E3%80%82"><span class="post-toc-text">现在就到了矩阵乘法最重要的一部分————初始化矩阵。</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E6%88%91%E4%BB%AC%E8%A7%A3%E5%86%B3%E4%BA%86%E7%AC%AC%E4%B8%80%E8%A1%8C%EF%BC%8C%E9%82%A3%E5%85%B6%E4%BB%96%E8%A1%8C%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%EF%BC%9F"><span class="post-toc-text">我们解决了第一行，那其他行如何处理？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E6%89%80%E4%BB%A5-AC-%E6%AD%A4%E9%A2%98%EF%BC%8C%E6%B5%81%E7%A8%8B%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="post-toc-text">所以 $AC$ 此题，流程如下：</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/05/04/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E4%BC%98%E5%8C%96%E5%90%8E%E7%9A%84%E6%9A%B4%E5%8A%9B%E2%80%94%E2%80%94%E3%80%8CMCOI-05%E3%80%8D%E8%BF%BD%E6%9D%80-%E9%A2%98%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          浅谈一类优化后的暴力——「MCOI-05」追杀 题解
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/04/20/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E8%A7%A3%E5%BC%82%E6%88%96%E6%96%B9%E7%A8%8B%E7%BB%84%E2%80%94%E2%80%94-JSOI2012-%E5%A7%8B%E7%A5%96%E9%B8%9F-%E9%A2%98%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">浅谈一类高斯消元解异或方程组——[JSOI2012]始祖鸟 题解</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+          <div id="uyan_frame"></div>
+  <script src="http://v2.uyan.cc/code/uyan.js?uid=true"></script>
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2021 quest_2<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://quest233.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/solutions/" style="font-size: 20px;">solutions</a> <a href="/tags/water/" style="font-size: 10px;">water</a> <a href="/tags/%E2%80%9C%E7%9F%A5%E8%AF%86%E2%80%9D%E5%86%B3%E5%AE%9A%E5%91%BD%E8%BF%90/" style="font-size: 15px;">“知识”决定命运</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/2021/04/17/About/#more">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/solutions/" style="font-size: 20px;">solutions</a> <a href="/tags/water/" style="font-size: 10px;">water</a> <a href="/tags/%E2%80%9C%E7%9F%A5%E8%AF%86%E2%80%9D%E5%86%B3%E5%AE%9A%E5%91%BD%E8%BF%90/" style="font-size: 15px;">“知识”决定命运</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

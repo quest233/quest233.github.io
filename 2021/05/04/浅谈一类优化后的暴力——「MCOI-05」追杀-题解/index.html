@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="referrer" content="no-referrer" />
+  
+  <title>浅谈一类优化后的暴力——「MCOI-05」追杀 题解 | quest233的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="quest_2" />
+  
+  <meta name="description" content="推蒟蒻 $\color{green}{blog}$  原题链接qaq~  原题大 E 是有 $n$ 条大新闻，每条大新闻形如 $u$ 扣了 $v$ 一滴血，每个人有 3 滴血，如果一个人的血量为 $0$， 那么之后所有有关他的大新闻都失效。 这时候出了一个外挂er，他可以在某一时刻开挂，突然扣一个人一滴血（这个人可以是死人）。定义 $f[k]$ 为“在某一位置突然扣了某个人一滴血后，导致最后有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈一类优化后的暴力——「MCOI-05」追杀 题解">
+<meta property="og:url" content="https://quest233.github.io/2021/05/04/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E4%BC%98%E5%8C%96%E5%90%8E%E7%9A%84%E6%9A%B4%E5%8A%9B%E2%80%94%E2%80%94%E3%80%8CMCOI-05%E3%80%8D%E8%BF%BD%E6%9D%80-%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:site_name" content="quest233的博客">
+<meta property="og:description" content="推蒟蒻 $\color{green}{blog}$  原题链接qaq~  原题大 E 是有 $n$ 条大新闻，每条大新闻形如 $u$ 扣了 $v$ 一滴血，每个人有 3 滴血，如果一个人的血量为 $0$， 那么之后所有有关他的大新闻都失效。 这时候出了一个外挂er，他可以在某一时刻开挂，突然扣一个人一滴血（这个人可以是死人）。定义 $f[k]$ 为“在某一位置突然扣了某个人一滴血后，导致最后有">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-04T06:23:57.000Z">
+<meta property="article:modified_time" content="2021-05-04T10:46:30.680Z">
+<meta property="article:author" content="quest_2">
+<meta property="article:tag" content="solutions">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="images/62224.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">quest_2&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/2021/04/17/About/#more">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/150879.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        quest_2&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        “知识”决定命运
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-浅谈一类优化后的暴力——「MCOI-05」追杀-题解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      浅谈一类优化后的暴力——「MCOI-05」追杀 题解
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-05-04
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <hr>
+<hr>
+<p>推蒟蒻 <a href="https://quest233.github.io">$\color{green}{blog}$</a> </p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7568">原题链接qaq~</a></p>
+<hr>
+<p>原题大 E 是有 $n$ 条大新闻，每条大新闻形如 $u$ 扣了 $v$ 一滴血，每个人有 3 滴血，如果一个人的血量为 $0$， 那么之后所有有关他的大新闻都失效。</p>
+<p>这时候出了一个外挂er，他可以在某一时刻开挂，突然扣一个人一滴血（这个人可以是死人）。定义 $f[k]$ 为“在某一位置突然扣了某个人一滴血后，导致最后有 $k$ 人存活的方案数”，求 $f[0…m]$  的异或和。</p>
+<hr>
+<h4 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h4><p>首先我们有一个非常显然的结论：对于一个人来说，如果某一段时间他既没有去砍别人也没有被别人砍，那么他在这段时间里的任何时刻，被砍一刀导致的结果都是 <strong>等价的</strong> 。</p>
+<p>然后我们继续分析，一个人在 3 滴血时被砍和在 2 滴血时被砍，导致的结果也是一样的——他们都会在本应还有 1 滴血的时候暴毙。</p>
+<p>这样一来，其实我们可以把任何一个人的存活时间分成 <strong>几个区间</strong> ，每个区间内被砍导致的结果都等价。我们整区间整区间地统计，这会使我们的代码优化很多。</p>
+<p>先放预处理部分的瑇码~</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">N = <span class="built_in">read</span>();</span><br><span class="line">M = <span class="built_in">read</span>();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= M; i++)</span><br><span class="line">	HP[i] = <span class="number">3</span>;<span class="comment">//HP 数组存血量</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> x, y;</span><br><span class="line">	x = <span class="built_in">read</span>();</span><br><span class="line">	y = <span class="built_in">read</span>();</span><br><span class="line">	q[i].u = x;</span><br><span class="line">	q[i].v = y;<span class="comment">//q 数组用来存每条大新闻</span></span><br><span class="line">	<span class="keyword">if</span> (HP[x] &amp;&amp; HP[y])<span class="comment">//如果这条新闻是有效的</span></span><br><span class="line">	&#123;</span><br><span class="line">		HP[y]--;</span><br><span class="line">		<span class="keyword">if</span> (HP[y] == <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			die[y] = i;<span class="comment">//die 数组存每个人是什么时候死的</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (HP[x] == <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		v[x].<span class="built_in">push_back</span>(<span class="built_in">MP</span>(lst[x], i - <span class="number">1</span>));<span class="comment">//v 存每个人的等价区间们</span></span><br><span class="line">		<span class="comment">//lst 存每个人的上一步行动是在什么时候</span></span><br><span class="line">		v[x].<span class="built_in">push_back</span>(<span class="built_in">MP</span>(i, i));</span><br><span class="line">		lst[x] = i + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> remain = <span class="number">0</span>;<span class="comment">//如果没有开挂，本应有 remain 人存活</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= M; i++)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (HP[i])</span><br><span class="line">		remain++;</span><br><span class="line">	<span class="keyword">if</span> (lst[i] != N + <span class="number">1</span>)<span class="comment">//处理一些还未封闭的等价区间</span></span><br><span class="line">		v[i].<span class="built_in">push_back</span>(<span class="built_in">MP</span>(lst[i], N));</span><br><span class="line">	<span class="keyword">if</span> (die[i] == <span class="number">0</span>)</span><br><span class="line">		die[i] = N + <span class="number">5</span>;<span class="comment">//如果一直不死，就给他赋一个无限晚的死亡时间</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="获取答案"><a href="#获取答案" class="headerlink" title="获取答案"></a>获取答案</h4><p>然后我们要做的就是枚举每一个人，枚举他的每个等价区间，再把答案累计上去。</p>
+<p>你会想，可这 $n^2$ 难道不会 T 飞🐎？</p>
+<p>事实证明是不会的，由于每人的区间个数之和是一个定值，这个 $n^2$ 必然是跑不满的水 $n^2$ 。</p>
+<p>如果在某个等价区间里，这个人已经死了，那么鞭一刀尸体不会影响答案，$f[remain]+=\texttt{区间长度}$ 。</p>
+<p>否则，专门写一个函数 <code>check</code> 判断会留下几个人，函数里可以直接暴力一个一个大新闻地跑。然后 $f[check()]+=\texttt{区间长度}$ 。</p>
+<p>然后我们就有一份 AC 瑇码辣！!1</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> endl <span class="meta-string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX = <span class="number">1e5</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MOD = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">bool</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout &lt;&lt; (a ? <span class="string">&quot;YES&quot;</span> : <span class="string">&quot;NO&quot;</span>) &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">atk</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> u, v;</span><br><span class="line">&#125; q[MAX];</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PII pair<span class="meta-string">&lt;int, int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MP make_pair</span></span><br><span class="line">vector&lt;PII&gt; v[MAX];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">0</span>, bj = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">char</span> ch = <span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (ch == <span class="string">&#x27;-&#x27;</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			bj = <span class="number">-1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		ch = <span class="built_in">getchar</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch))</span><br><span class="line">	&#123;</span><br><span class="line">		num = num * <span class="number">10</span> + ch - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">		ch = <span class="built_in">getchar</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> bj * num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> lst[MAX];</span><br><span class="line"><span class="keyword">int</span> die[MAX], HP[MAX];</span><br><span class="line"><span class="keyword">int</span> ans[MAX];</span><br><span class="line"><span class="keyword">int</span> N, M;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> pos, <span class="keyword">int</span> v)</span><span class="comment">//在 pos 号大新闻后，v 被砍了一刀</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= M; i++)</span><br><span class="line">		HP[i] = <span class="number">3</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= pos; i++)</span><br><span class="line">		<span class="keyword">if</span> (HP[q[i].u] &amp;&amp; HP[q[i].v])</span><br><span class="line">			HP[q[i].v]--;</span><br><span class="line">	<span class="keyword">if</span> (HP[v])<span class="comment">//开挂砍一刀</span></span><br><span class="line">		HP[v]--;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">register</span> <span class="keyword">int</span> i = pos + <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">		(HP[q[i].u] &amp;&amp; HP[q[i].v])</span><br><span class="line">			HP[q[i].v]--;</span><br><span class="line">	<span class="keyword">int</span> tmp = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= M; i++)</span><br><span class="line">		tmp += (HP[i] &gt; <span class="number">0</span>);<span class="comment">//统计存活人数</span></span><br><span class="line">	<span class="keyword">return</span> tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	...<span class="comment">//预处理部分，在此不再重复</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= M; i++)<span class="comment">//枚举人</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> u : v[i])<span class="comment">//枚举等价区间</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (u.first &gt; u.second)</span><br><span class="line">			<span class="comment">//若区间不合法则跳过（推测应该是在造区间的时候造了一些没用的区间）</span></span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">if</span> (die[i] &lt;= u.first)<span class="comment">//若是鞭尸</span></span><br><span class="line">				ans[remain] += u.second - u.first + <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				ans[<span class="built_in">check</span>(u.second, i)] += u.second - u.first + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= M; i++)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, ans[i]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年05月04日 18:46</p>
+        <p>原始链接： <a class="post-url" href="/2021/05/04/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E4%BC%98%E5%8C%96%E5%90%8E%E7%9A%84%E6%9A%B4%E5%8A%9B%E2%80%94%E2%80%94%E3%80%8CMCOI-05%E3%80%8D%E8%BF%BD%E6%9D%80-%E9%A2%98%E8%A7%A3/" title="浅谈一类优化后的暴力——「MCOI-05」追杀 题解">https://quest233.github.io/2021/05/04/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E4%BC%98%E5%8C%96%E5%90%8E%E7%9A%84%E6%9A%B4%E5%8A%9B%E2%80%94%E2%80%94%E3%80%8CMCOI-05%E3%80%8D%E8%BF%BD%E6%9D%80-%E9%A2%98%E8%A7%A3/</a></p>
+        <footer>
+            <a href="https://quest233.github.io">
+                <img src="/images/150879.png" alt="quest_2">
+                quest_2
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://quest233.github.io/2021/05/04/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E4%BC%98%E5%8C%96%E5%90%8E%E7%9A%84%E6%9A%B4%E5%8A%9B%E2%80%94%E2%80%94%E3%80%8CMCOI-05%E3%80%8D%E8%BF%BD%E6%9D%80-%E9%A2%98%E8%A7%A3/&title=《浅谈一类优化后的暴力——「MCOI-05」追杀 题解》 — quest233的博客&pic=https://quest233.github.ioimages/150879.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://quest233.github.io/2021/05/04/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E4%BC%98%E5%8C%96%E5%90%8E%E7%9A%84%E6%9A%B4%E5%8A%9B%E2%80%94%E2%80%94%E3%80%8CMCOI-05%E3%80%8D%E8%BF%BD%E6%9D%80-%E9%A2%98%E8%A7%A3/&title=《浅谈一类优化后的暴力——「MCOI-05」追杀 题解》 — quest233的博客&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://quest233.github.io/2021/05/04/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E4%BC%98%E5%8C%96%E5%90%8E%E7%9A%84%E6%9A%B4%E5%8A%9B%E2%80%94%E2%80%94%E3%80%8CMCOI-05%E3%80%8D%E8%BF%BD%E6%9D%80-%E9%A2%98%E8%A7%A3/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《浅谈一类优化后的暴力——「MCOI-05」追杀 题解》 — quest233的博客&url=https://quest233.github.io/2021/05/04/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E4%BC%98%E5%8C%96%E5%90%8E%E7%9A%84%E6%9A%B4%E5%8A%9B%E2%80%94%E2%80%94%E3%80%8CMCOI-05%E3%80%8D%E8%BF%BD%E6%9D%80-%E9%A2%98%E8%A7%A3/&via=https://quest233.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://quest233.github.io/2021/05/04/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E4%BC%98%E5%8C%96%E5%90%8E%E7%9A%84%E6%9A%B4%E5%8A%9B%E2%80%94%E2%80%94%E3%80%8CMCOI-05%E3%80%8D%E8%BF%BD%E6%9D%80-%E9%A2%98%E8%A7%A3/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://quest233.github.io/2021/05/04/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E4%BC%98%E5%8C%96%E5%90%8E%E7%9A%84%E6%9A%B4%E5%8A%9B%E2%80%94%E2%80%94%E3%80%8CMCOI-05%E3%80%8D%E8%BF%BD%E6%9D%80-%E9%A2%98%E8%A7%A3/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/solutions/" class="color5">solutions</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86"><span class="post-toc-text">预处理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E8%8E%B7%E5%8F%96%E7%AD%94%E6%A1%88"><span class="post-toc-text">获取答案</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2077/07/07/%E3%80%90%E5%8F%AF%E8%83%BD%E6%98%AF%E7%BD%AE%E9%A1%B6%E3%80%91Friends/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          【可能是置顶】Friends~
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/04/22/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E5%BB%BA%E6%A8%A1%E2%80%94%E2%80%94-%E3%80%90XR-1%E3%80%91%E5%88%86%E5%9D%97-%E9%A2%98%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">浅谈一类矩阵乘法建模—— 【XR-1】分块 题解</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+          <div id="uyan_frame"></div>
+  <script src="http://v2.uyan.cc/code/uyan.js?uid=true"></script>
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2021 quest_2<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://quest233.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/solutions/" style="font-size: 20px;">solutions</a> <a href="/tags/water/" style="font-size: 10px;">water</a> <a href="/tags/%E2%80%9C%E7%9F%A5%E8%AF%86%E2%80%9D%E5%86%B3%E5%AE%9A%E5%91%BD%E8%BF%90/" style="font-size: 15px;">“知识”决定命运</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/2021/04/17/About/#more">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/solutions/" style="font-size: 20px;">solutions</a> <a href="/tags/water/" style="font-size: 10px;">water</a> <a href="/tags/%E2%80%9C%E7%9F%A5%E8%AF%86%E2%80%9D%E5%86%B3%E5%AE%9A%E5%91%BD%E8%BF%90/" style="font-size: 15px;">“知识”决定命运</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

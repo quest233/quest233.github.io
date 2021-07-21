@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="referrer" content="no-referrer" />
+  
+  <title>浅谈一类简单普通莫队—— CF617E XOR and Favorite Number 题解 | quest233的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="quest_2" />
+  
+  <meta name="description" content="推一手蒟蒻 $\color{limegreen}{\texttt {博客}}$ ～  抓住CF爆炸的间隙乘机AC的水题。（滑稽 做这道题只需要知道两个点：  异或前缀性 和 普通莫队算法 。  不妨分开讲。  $\large\color{salmon}{\texttt {异或前缀性：}}$ 前缀和可以 $O(1)$ 求解区间和。 前缀积可以 $O(1)$ 求解区间积。 那前缀异或能否 $O(1)$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈一类简单普通莫队—— CF617E XOR and Favorite Number 题解">
+<meta property="og:url" content="https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%AE%80%E5%8D%95%E6%99%AE%E9%80%9A%E8%8E%AB%E9%98%9F%E2%80%94%E2%80%94-CF617E-XOR-and-Favorite-Number-%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:site_name" content="quest233的博客">
+<meta property="og:description" content="推一手蒟蒻 $\color{limegreen}{\texttt {博客}}$ ～  抓住CF爆炸的间隙乘机AC的水题。（滑稽 做这道题只需要知道两个点：  异或前缀性 和 普通莫队算法 。  不妨分开讲。  $\large\color{salmon}{\texttt {异或前缀性：}}$ 前缀和可以 $O(1)$ 求解区间和。 前缀积可以 $O(1)$ 求解区间积。 那前缀异或能否 $O(1)$">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-16T20:48:07.000Z">
+<meta property="article:modified_time" content="2021-04-19T03:48:30.839Z">
+<meta property="article:author" content="quest_2">
+<meta property="article:tag" content="solutions">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="images/62224.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">quest_2&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/2021/04/17/About/#more">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/150879.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        quest_2&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        “知识”决定命运
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-浅谈一类简单普通莫队——-CF617E-XOR-and-Favorite-Number-题解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      浅谈一类简单普通莫队—— CF617E XOR and Favorite Number 题解
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-04-17
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>推一手蒟蒻 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/quest233/#">$\color{limegreen}{\texttt {博客}}$</a> ～</p>
+<hr>
+<p>抓住CF爆炸的间隙乘机AC的水题。（滑稽</p>
+<p>做这道题只需要知道两个点：</p>
+<p> <strong>异或前缀性</strong> 和 <strong>普通莫队算法</strong> 。</p>
+<p> 不妨分开讲。</p>
+<hr>
+<p>$\large\color{salmon}{\texttt {异或前缀性：}}$</p>
+<p>前缀和可以 $O(1)$ 求解区间和。</p>
+<p>前缀积可以 $O(1)$ 求解区间积。</p>
+<p>那前缀异或能否 $O(1)$ 求解区间异或呢？</p>
+<p>答案是可以的。</p>
+<p>$\color{violet}{\texttt {尝试证明：}}$</p>
+<p>我们设 $num$ 为一段序列， $xornum_{\small\ l,r}$ 表示这段序列里第 $l$ 到第 $r$ 个元素异或的结果。</p>
+<p>手模可知，异或操作满足 <strong>结合律</strong> 。</p>
+<script type="math/tex; mode=display">a\;\oplus\; b\;\oplus\; c=a\;\oplus\; (b\;\oplus\; c)</script><p>把 $xornum_{\small\ 1,l}$ 看成 $a$ ， $xornum_{\small\ l,r}$ 看成 $b$ 和 $c$ 异或的结果，那我们也就有了：</p>
+<script type="math/tex; mode=display">xornum_{\small\ 1,r}=xornum_{\small\ 1,l}\;\oplus\; xornum_{\small\ l,r}</script><p>我们又知道异或有以下两个性质：</p>
+<script type="math/tex; mode=display">a\;\oplus\;0=a</script><script type="math/tex; mode=display">a\;\oplus\;a=0</script><p>那么我们可以经历一番移位得出：</p>
+<script type="math/tex; mode=display">xornum_{\small\ l,r}\;\oplus\; xornum_{\small\ 1,l}=xornum_{\small\ 1,r}</script><p>佐佑同时异或上一个 $xornum_{\small\ 1,l}$ ，再套用一个结合律得：</p>
+<script type="math/tex; mode=display">xornum_{\small\ l,r}\;\oplus\;(xornum_{\small\ 1,l}\;\oplus\;xornum_{\small\ 1,l})=xornum_{\small\ 1,r}\;\oplus\;xornum_{\small\ 1,l}</script><p>用上面两个性质一通转换：</p>
+<script type="math/tex; mode=display">xornum_{\small\ l,r}\;\oplus\;0=xornum_{\small\ 1,r}\;\oplus\;xornum_{\small\ 1,l}</script><script type="math/tex; mode=display">xornum_{\small\ l,r}=xornum_{\small\ 1,r}\;\oplus\;xornum_{\small\ 1,l}</script><p>这样，我们就可以 <strong>预处理</strong> 异或前缀，来 $O(1)$ 求出区间异或的结果～</p>
+<hr>
+<p>$\large\color{salmon}{\texttt {普通莫队算法：}}$</p>
+<p>定一道莫队题需要看三眼。</p>
+<ul>
+<li><p>第一眼，奇怪的区间查询。</p>
+</li>
+<li><p>第二眼，可以离线。</p>
+</li>
+<li><p>第三眼，$N\sqrt{N}$ 能过。</p>
+</li>
+</ul>
+<p>完全符合条件，那就先把莫队的板子敲好。</p>
+<p>（这里默认读者一定是会打莫队的QwQ。）</p>
+<p>思维难度在 $ins/add$ 和 $del$ 两个函数上。（即 <strong>区间扩张/收缩</strong> 时的 <strong>添/删元素</strong> ）</p>
+<hr>
+<p>$\color{violet}{\texttt {如何定制这两个函数？}}$</p>
+<p>这里要查的是异或值 $=k$ 的元素对数。</p>
+<p>两个数 $a,b$ 做异或，知道其中的一个数 $a$ ，知道异或的结果 $c$ ，则运算的另一个数也是 <strong>确定的</strong> ，即 $a\oplus b=c\Leftrightarrow b=a\oplus c$ 。（这也可以用于理解异或的前缀性）</p>
+<p>我们增添一个元素 $p$ 进入区间时，它带有一个异或前缀 $xornum_{\small\ 1,p}$ ，查一下区间里 <strong>和 $xornum_{\small\ 1,p}$ 异或结果</strong> 为 $k$ 的异或前缀的出现次数。</p>
+<p>也就是说，我们需要开一个  $cnt$ 数组，维护每个 <strong>异或前缀值</strong> 当前出现的次数。</p>
+<p>参考之前得到的式子，可以推出和 $xornum_{\small\ 1,p}$ 异或得 $k$ 的数，即为 $xornum_{\small\ 1,p}\oplus k$ 。</p>
+<p>那么添加一个元素 $p$ 时就应在答案上加上 $cnt[xornum_{\small\ 1,p}\oplus k]$ 。</p>
+<p>同理，删除一个元素 $p$ 就应减去 $cnt[xornum_{\small\ 1,p}\oplus k]$ 。</p>
+<hr>
+<p>$\color{violet}{\texttt {为什么能保证不重不漏？}}$</p>
+<p>因为 $a\oplus b$ 等于 $b\oplus a$ ，可以保证区间中任取两个数，他们之间只计算了一次。</p>
+<hr>
+<p>$\color{salmon}{\texttt {实现注意：}}$</p>
+<ul>
+<li><p>$cnt$ 数组的大小应为 <strong>异或前缀的值域</strong> 大小，而非序列中元素个数，这里应为 $2\times 10^6$ 。</p>
+</li>
+<li><p>正如我们做闭区间和时的 $sum[r]-sum[l-1]$ 一样，这里的闭区间异或也应为 $xornum[r]\oplus xornum[l-1]$ ，一种省力的方法是在输入的时候就把 <strong>所有的 $l$ 都减去 $1$</strong> 。</p>
+</li>
+</ul>
+<hr>
+<p>$\color{salmon}{\texttt {Code:}}$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX = <span class="number">1e6</span> + <span class="number">7</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">int</span> cnt[MAX &lt;&lt; <span class="number">1</span>], num[MAX]; <span class="comment">//注意cnt应开2e6</span></span><br><span class="line"><span class="keyword">int</span> block[MAX];</span><br><span class="line"><span class="keyword">int</span> N, M, K;</span><br><span class="line"><span class="keyword">int</span> sum;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">query</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> L, R;</span><br><span class="line">	<span class="keyword">int</span> id;</span><br><span class="line">&#125; q[MAX];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(query a, query b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (block[a.L] != block[b.L])</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> a.L &lt; b.L;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> (block[a.L] &amp; <span class="number">1</span> ? a.R &lt; b.R : a.R &gt; b.R);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> xornum[MAX &lt;&lt; <span class="number">1</span>], ans[MAX &lt;&lt; <span class="number">1</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ins</span><span class="params">(<span class="keyword">int</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	sum += cnt[xornum[p] ^ K]; <span class="comment">//查对应的异或值</span></span><br><span class="line">	cnt[xornum[p]]++;		  <span class="comment">///更新出现次数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">del</span><span class="params">(<span class="keyword">int</span> p)</span> <span class="comment">//同上</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cnt[xornum[p]]--;</span><br><span class="line">	sum -= cnt[xornum[p] ^ K];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cin &gt;&gt; N &gt;&gt; M &gt;&gt; K;</span><br><span class="line">	<span class="keyword">int</span> lenb = <span class="built_in">sqrt</span>(N);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin &gt;&gt; num[i];</span><br><span class="line">		block[i] = (i - <span class="number">1</span>) / lenb + <span class="number">1</span>;</span><br><span class="line">		xornum[i] = xornum[i - <span class="number">1</span>] ^ num[i]; <span class="comment">//预处理异或前缀</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= M; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin &gt;&gt; q[i].L &gt;&gt; q[i].R;</span><br><span class="line">		q[i].L--; <span class="comment">//像做前缀和一样-1</span></span><br><span class="line">		q[i].id = i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">sort</span>(q + <span class="number">1</span>, q + <span class="number">1</span> + M, cmp);</span><br><span class="line">	<span class="keyword">int</span> L = <span class="number">1</span>, R = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= M; i++) <span class="comment">//普通莫队</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span> (q[i].L &lt; L)</span><br><span class="line">		&#123;</span><br><span class="line">			L--;</span><br><span class="line">			<span class="built_in">ins</span>(L);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span> (q[i].R &gt; R)</span><br><span class="line">		&#123;</span><br><span class="line">			R++;</span><br><span class="line">			<span class="built_in">ins</span>(R);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span> (q[i].L &gt; L)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">del</span>(L);</span><br><span class="line">			L++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span> (q[i].R &lt; R)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">del</span>(R);</span><br><span class="line">			R--;</span><br><span class="line">		&#125;</span><br><span class="line">		ans[q[i].id] = sum;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= M; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; ans[i] &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年04月19日 11:48</p>
+        <p>原始链接： <a class="post-url" href="/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%AE%80%E5%8D%95%E6%99%AE%E9%80%9A%E8%8E%AB%E9%98%9F%E2%80%94%E2%80%94-CF617E-XOR-and-Favorite-Number-%E9%A2%98%E8%A7%A3/" title="浅谈一类简单普通莫队—— CF617E XOR and Favorite Number 题解">https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%AE%80%E5%8D%95%E6%99%AE%E9%80%9A%E8%8E%AB%E9%98%9F%E2%80%94%E2%80%94-CF617E-XOR-and-Favorite-Number-%E9%A2%98%E8%A7%A3/</a></p>
+        <footer>
+            <a href="https://quest233.github.io">
+                <img src="/images/150879.png" alt="quest_2">
+                quest_2
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%AE%80%E5%8D%95%E6%99%AE%E9%80%9A%E8%8E%AB%E9%98%9F%E2%80%94%E2%80%94-CF617E-XOR-and-Favorite-Number-%E9%A2%98%E8%A7%A3/&title=《浅谈一类简单普通莫队—— CF617E XOR and Favorite Number 题解》 — quest233的博客&pic=https://quest233.github.ioimages/150879.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%AE%80%E5%8D%95%E6%99%AE%E9%80%9A%E8%8E%AB%E9%98%9F%E2%80%94%E2%80%94-CF617E-XOR-and-Favorite-Number-%E9%A2%98%E8%A7%A3/&title=《浅谈一类简单普通莫队—— CF617E XOR and Favorite Number 题解》 — quest233的博客&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%AE%80%E5%8D%95%E6%99%AE%E9%80%9A%E8%8E%AB%E9%98%9F%E2%80%94%E2%80%94-CF617E-XOR-and-Favorite-Number-%E9%A2%98%E8%A7%A3/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《浅谈一类简单普通莫队—— CF617E XOR and Favorite Number 题解》 — quest233的博客&url=https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%AE%80%E5%8D%95%E6%99%AE%E9%80%9A%E8%8E%AB%E9%98%9F%E2%80%94%E2%80%94-CF617E-XOR-and-Favorite-Number-%E9%A2%98%E8%A7%A3/&via=https://quest233.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%AE%80%E5%8D%95%E6%99%AE%E9%80%9A%E8%8E%AB%E9%98%9F%E2%80%94%E2%80%94-CF617E-XOR-and-Favorite-Number-%E9%A2%98%E8%A7%A3/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%AE%80%E5%8D%95%E6%99%AE%E9%80%9A%E8%8E%AB%E9%98%9F%E2%80%94%E2%80%94-CF617E-XOR-and-Favorite-Number-%E9%A2%98%E8%A7%A3/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/solutions/" class="color5">solutions</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E6%9A%B4%E5%8A%9B%E8%BF%87%E9%A2%98%E2%80%94%E2%80%94-BalticOI-2012-Day1-%E6%8B%AC%E5%8F%B7-%E9%A2%98%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          浅谈一类暴力过题——[BalticOI 2012 Day1] 括号 题解
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/04/16/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title"></span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+          <div id="uyan_frame"></div>
+  <script src="http://v2.uyan.cc/code/uyan.js?uid=true"></script>
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2021 quest_2<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://quest233.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/solutions/" style="font-size: 20px;">solutions</a> <a href="/tags/water/" style="font-size: 10px;">water</a> <a href="/tags/%E2%80%9C%E7%9F%A5%E8%AF%86%E2%80%9D%E5%86%B3%E5%AE%9A%E5%91%BD%E8%BF%90/" style="font-size: 15px;">“知识”决定命运</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/2021/04/17/About/#more">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/solutions/" style="font-size: 20px;">solutions</a> <a href="/tags/water/" style="font-size: 10px;">water</a> <a href="/tags/%E2%80%9C%E7%9F%A5%E8%AF%86%E2%80%9D%E5%86%B3%E5%AE%9A%E5%91%BD%E8%BF%90/" style="font-size: 15px;">“知识”决定命运</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

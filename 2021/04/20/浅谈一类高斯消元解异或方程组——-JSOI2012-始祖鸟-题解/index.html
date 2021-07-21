@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="referrer" content="no-referrer" />
+  
+  <title>浅谈一类高斯消元解异或方程组——[JSOI2012]始祖鸟 题解 | quest233的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="quest_2" />
+  
+  <meta name="description" content="推蒟蒻 $\color{salmon}{blog}$ ！ 原题链接~  有趣的高斯消元解异或方程组题，难点在建模。 这里默认读者都会高消（（（ 题意稍加转化：每只鸟取值 0&#x2F;1 ，需要有偶数个朋友和他取值相同。 偶数且01，这不由得转化到异或的方向。 这样我们就有了一个森破的想法：（设 $pos[i]$ 为 $i$ 号鸟的取值，上游为 1 ，下游为 0；设 $A[i][j]$ 代表 $j$ 是否">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈一类高斯消元解异或方程组——[JSOI2012]始祖鸟 题解">
+<meta property="og:url" content="https://quest233.github.io/2021/04/20/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E8%A7%A3%E5%BC%82%E6%88%96%E6%96%B9%E7%A8%8B%E7%BB%84%E2%80%94%E2%80%94-JSOI2012-%E5%A7%8B%E7%A5%96%E9%B8%9F-%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:site_name" content="quest233的博客">
+<meta property="og:description" content="推蒟蒻 $\color{salmon}{blog}$ ！ 原题链接~  有趣的高斯消元解异或方程组题，难点在建模。 这里默认读者都会高消（（（ 题意稍加转化：每只鸟取值 0&#x2F;1 ，需要有偶数个朋友和他取值相同。 偶数且01，这不由得转化到异或的方向。 这样我们就有了一个森破的想法：（设 $pos[i]$ 为 $i$ 号鸟的取值，上游为 1 ，下游为 0；设 $A[i][j]$ 代表 $j$ 是否">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-20T13:03:51.000Z">
+<meta property="article:modified_time" content="2021-04-21T01:14:47.918Z">
+<meta property="article:author" content="quest_2">
+<meta property="article:tag" content="solutions">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="images/62224.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">quest_2&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/2021/04/17/About/#more">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/150879.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        quest_2&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        “知识”决定命运
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-浅谈一类高斯消元解异或方程组——-JSOI2012-始祖鸟-题解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      浅谈一类高斯消元解异或方程组——[JSOI2012]始祖鸟 题解
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-04-20
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <hr>
+<p>推蒟蒻 <a href="https://quest233.github.io/">$\color{salmon}{blog}$</a> ！</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6126">原题链接~</a></p>
+<hr>
+<p>有趣的高斯消元解异或方程组题，难点在建模。</p>
+<p>这里默认读者都会高消（（（</p>
+<p>题意稍加转化：每只鸟取值 0/1 ，需要有偶数个朋友和他取值相同。</p>
+<p>偶数且01，这不由得转化到异或的方向。</p>
+<p>这样我们就有了一个森破的想法：（设 $pos[i]$ 为 $i$ 号鸟的取值，上游为 1 ，下游为 0；设 $A[i][j]$ 代表 $j$ 是否（0/1）是 $i$ 的朋友）</p>
+<script type="math/tex; mode=display">
+(A[i][1]\cdot pos[1])\oplus (A[i][2]\cdot pos[2])\oplus \cdots\oplus (A[i][n]\cdot pos[n])=0</script><p>但是很显然这是错的，因为我们其实只是做到了让上游有偶数个朋友，要是这只鸟本身就在下游呢？</p>
+<p>我们改一改思路：</p>
+<ul>
+<li>如果一只鸟有偶数个朋友，则只需满足上游有偶数个，下游必然也会有偶数个。</li>
+<li>如果一只鸟有奇数个朋友，若当前为上游，则需要偶数个在上游；若当前为下游，则需要奇数个在上游，这样一来下游就有偶数个。</li>
+</ul>
+<p>然后把每只鸟对应的方程都列出来，高消解异或方程组即可。</p>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> endl <span class="meta-string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX = <span class="number">2e3</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MOD = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">bool</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout &lt;&lt; (a ? <span class="string">&quot;YES&quot;</span> : <span class="string">&quot;NO&quot;</span>) &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> N;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">matrix</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	bitset&lt;MAX&gt; num[MAX];</span><br><span class="line">	bitset&lt;MAX&gt; &amp;<span class="keyword">operator</span>[](<span class="keyword">int</span> id)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> num[id];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">SWAP</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">swap</span>(num[x], num[y]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">XOR</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> <span class="comment">//xor y to x</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		num[x] = num[x] ^ num[y];</span><br><span class="line">	&#125;</span><br><span class="line">&#125; ORZ, RBQ;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">gauss</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> k = i;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt;= N; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (ORZ[j][i])</span><br><span class="line">			&#123;</span><br><span class="line">				k = j;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (ORZ[k][i] == <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		ORZ.<span class="built_in">SWAP</span>(k, i);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= N; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (ORZ[j][i] &amp;&amp; j != i)</span><br><span class="line">			&#123;</span><br><span class="line">				ORZ.<span class="built_in">XOR</span>(j, i);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; v;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cin &gt;&gt; N;</span><br><span class="line">	n = N;</span><br><span class="line">	<span class="built_in">memset</span>(ORZ.num, <span class="number">0</span>, <span class="built_in"><span class="keyword">sizeof</span></span>(ORZ.num));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> tot = <span class="number">0</span>;</span><br><span class="line">		cin &gt;&gt; tot;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= tot; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> k;</span><br><span class="line">			cin &gt;&gt; k;</span><br><span class="line">			ORZ[i][k] = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (tot &amp; <span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			ORZ[i][i] = <span class="number">1</span>;</span><br><span class="line">			ORZ[i][N + <span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">gauss</span>();</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = N; i &gt;= <span class="number">1</span>; i--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (ORZ[i][i])</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (ORZ[i][N + <span class="number">1</span>])</span><br><span class="line">				v.<span class="built_in">push_back</span>(i);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (ORZ[i][N + <span class="number">1</span>])</span><br><span class="line">		&#123;</span><br><span class="line">			cout &lt;&lt; <span class="string">&quot;Impossible\n&quot;</span>;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; v.<span class="built_in">size</span>();</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i : v)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; i &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年04月21日 09:14</p>
+        <p>原始链接： <a class="post-url" href="/2021/04/20/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E8%A7%A3%E5%BC%82%E6%88%96%E6%96%B9%E7%A8%8B%E7%BB%84%E2%80%94%E2%80%94-JSOI2012-%E5%A7%8B%E7%A5%96%E9%B8%9F-%E9%A2%98%E8%A7%A3/" title="浅谈一类高斯消元解异或方程组——[JSOI2012]始祖鸟 题解">https://quest233.github.io/2021/04/20/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E8%A7%A3%E5%BC%82%E6%88%96%E6%96%B9%E7%A8%8B%E7%BB%84%E2%80%94%E2%80%94-JSOI2012-%E5%A7%8B%E7%A5%96%E9%B8%9F-%E9%A2%98%E8%A7%A3/</a></p>
+        <footer>
+            <a href="https://quest233.github.io">
+                <img src="/images/150879.png" alt="quest_2">
+                quest_2
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://quest233.github.io/2021/04/20/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E8%A7%A3%E5%BC%82%E6%88%96%E6%96%B9%E7%A8%8B%E7%BB%84%E2%80%94%E2%80%94-JSOI2012-%E5%A7%8B%E7%A5%96%E9%B8%9F-%E9%A2%98%E8%A7%A3/&title=《浅谈一类高斯消元解异或方程组——[JSOI2012]始祖鸟 题解》 — quest233的博客&pic=https://quest233.github.ioimages/150879.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://quest233.github.io/2021/04/20/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E8%A7%A3%E5%BC%82%E6%88%96%E6%96%B9%E7%A8%8B%E7%BB%84%E2%80%94%E2%80%94-JSOI2012-%E5%A7%8B%E7%A5%96%E9%B8%9F-%E9%A2%98%E8%A7%A3/&title=《浅谈一类高斯消元解异或方程组——[JSOI2012]始祖鸟 题解》 — quest233的博客&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://quest233.github.io/2021/04/20/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E8%A7%A3%E5%BC%82%E6%88%96%E6%96%B9%E7%A8%8B%E7%BB%84%E2%80%94%E2%80%94-JSOI2012-%E5%A7%8B%E7%A5%96%E9%B8%9F-%E9%A2%98%E8%A7%A3/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《浅谈一类高斯消元解异或方程组——[JSOI2012]始祖鸟 题解》 — quest233的博客&url=https://quest233.github.io/2021/04/20/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E8%A7%A3%E5%BC%82%E6%88%96%E6%96%B9%E7%A8%8B%E7%BB%84%E2%80%94%E2%80%94-JSOI2012-%E5%A7%8B%E7%A5%96%E9%B8%9F-%E9%A2%98%E8%A7%A3/&via=https://quest233.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://quest233.github.io/2021/04/20/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E8%A7%A3%E5%BC%82%E6%88%96%E6%96%B9%E7%A8%8B%E7%BB%84%E2%80%94%E2%80%94-JSOI2012-%E5%A7%8B%E7%A5%96%E9%B8%9F-%E9%A2%98%E8%A7%A3/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://quest233.github.io/2021/04/20/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E8%A7%A3%E5%BC%82%E6%88%96%E6%96%B9%E7%A8%8B%E7%BB%84%E2%80%94%E2%80%94-JSOI2012-%E5%A7%8B%E7%A5%96%E9%B8%9F-%E9%A2%98%E8%A7%A3/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/solutions/" class="color5">solutions</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2021/04/22/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E5%BB%BA%E6%A8%A1%E2%80%94%E2%80%94-%E3%80%90XR-1%E3%80%91%E5%88%86%E5%9D%97-%E9%A2%98%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          浅谈一类矩阵乘法建模—— 【XR-1】分块 题解
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/04/17/%E8%81%94%E5%90%88%E7%9C%81%E9%80%89%E5%88%92%E6%B0%B4%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">联合省选划水记</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+          <div id="uyan_frame"></div>
+  <script src="http://v2.uyan.cc/code/uyan.js?uid=true"></script>
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2021 quest_2<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://quest233.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/solutions/" style="font-size: 20px;">solutions</a> <a href="/tags/water/" style="font-size: 10px;">water</a> <a href="/tags/%E2%80%9C%E7%9F%A5%E8%AF%86%E2%80%9D%E5%86%B3%E5%AE%9A%E5%91%BD%E8%BF%90/" style="font-size: 15px;">“知识”决定命运</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/2021/04/17/About/#more">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/solutions/" style="font-size: 20px;">solutions</a> <a href="/tags/water/" style="font-size: 10px;">water</a> <a href="/tags/%E2%80%9C%E7%9F%A5%E8%AF%86%E2%80%9D%E5%86%B3%E5%AE%9A%E5%91%BD%E8%BF%90/" style="font-size: 15px;">“知识”决定命运</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

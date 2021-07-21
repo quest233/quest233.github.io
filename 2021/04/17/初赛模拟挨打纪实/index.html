@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="referrer" content="no-referrer" />
+  
+  <title>初赛模拟挨打纪实 | quest233的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="quest_2" />
+  
+  <meta name="description" content="$\color{salmon}{\texttt {放小球：}}$$n$ 球， $m$ 盒     小球是否不同 盒子是否不同 是否允许空盒 相应做法     $\surd$ $\surd$ $\surd$ $m^n$   $\surd$ $\surd$ $\times$ $m!\cdot {\small\texttt{斯二林}}(n,m)$   $\surd$ $\times$ $\surd$ $">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初赛模拟挨打纪实">
+<meta property="og:url" content="https://quest233.github.io/2021/04/17/%E5%88%9D%E8%B5%9B%E6%A8%A1%E6%8B%9F%E6%8C%A8%E6%89%93%E7%BA%AA%E5%AE%9E/index.html">
+<meta property="og:site_name" content="quest233的博客">
+<meta property="og:description" content="$\color{salmon}{\texttt {放小球：}}$$n$ 球， $m$ 盒     小球是否不同 盒子是否不同 是否允许空盒 相应做法     $\surd$ $\surd$ $\surd$ $m^n$   $\surd$ $\surd$ $\times$ $m!\cdot {\small\texttt{斯二林}}(n,m)$   $\surd$ $\times$ $\surd$ $">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/8xjy37hp.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/1y85q9qp.png">
+<meta property="article:published_time" content="2021-04-17T05:29:00.000Z">
+<meta property="article:modified_time" content="2021-04-17T08:11:04.648Z">
+<meta property="article:author" content="quest_2">
+<meta property="article:tag" content="“知识”决定命运">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/8xjy37hp.png">
+  
+  
+    <link rel="icon" href="images/62224.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">quest_2&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/2021/04/17/About/#more">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/150879.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        quest_2&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        “知识”决定命运
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-初赛模拟挨打纪实" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      初赛模拟挨打纪实
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-04-17
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="color-salmon-texttt-放小球："><a href="#color-salmon-texttt-放小球：" class="headerlink" title="$\color{salmon}{\texttt {放小球：}}$"></a>$\color{salmon}{\texttt {放小球：}}$</h3><p>$n$ 球， $m$ 盒</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">小球是否不同</th>
+<th style="text-align:center">盒子是否不同</th>
+<th style="text-align:center">是否允许空盒</th>
+<th style="text-align:center">相应做法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$\surd$</td>
+<td style="text-align:center">$\surd$</td>
+<td style="text-align:center">$\surd$</td>
+<td style="text-align:center">$m^n$</td>
+</tr>
+<tr>
+<td style="text-align:center">$\surd$</td>
+<td style="text-align:center">$\surd$</td>
+<td style="text-align:center">$\times$</td>
+<td style="text-align:center">$m!\cdot {\small\texttt{斯二林}}(n,m)$</td>
+</tr>
+<tr>
+<td style="text-align:center">$\surd$</td>
+<td style="text-align:center">$\times$</td>
+<td style="text-align:center">$\surd$</td>
+<td style="text-align:center">$\sum_{i=1}^{m} {\small\texttt{斯二林}}(n,i)$</td>
+</tr>
+<tr>
+<td style="text-align:center">$\surd$</td>
+<td style="text-align:center">$\times$</td>
+<td style="text-align:center">$\times$</td>
+<td style="text-align:center">$\small\texttt{斯二林}(n,m)$</td>
+</tr>
+<tr>
+<td style="text-align:center">$\times$</td>
+<td style="text-align:center">$\surd$</td>
+<td style="text-align:center">$\surd$</td>
+<td style="text-align:center">$C_{m+n-1}^{n}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>$\times$|$\surd$|$\times$| $C_{n-1}^{m-1} $</p>
+<hr>
+<h4 id="有关斯二林："><a href="#有关斯二林：" class="headerlink" title="有关斯二林："></a>有关斯二林：</h4><p>$S(N,M)=M\cdot S(N-1,M)+S(N-1,M-1)$</p>
+<hr>
+<h4 id="对于该式理解："><a href="#对于该式理解：" class="headerlink" title="对于该式理解："></a>对于该式理解：</h4><p>有如今已有 $N$ 个球，放置在 $M$ 个盒中。我们是通过放置第 $N$ 球来达成的这一状态。</p>
+<p>能转移到这里的有两种情况。</p>
+<p>其一：放这个球是在已经放有球的盒子里，这样的话，盒子数没变过，有 $M$ 个。也就是由 $S(N-1,M)$ 转移来，又考虑到第 $N$ 球有 $M$ 个盒子可以放，故需乘上 $M$ 。</p>
+<p>其二：放这个球的时候是新开了一个盒子，这样新盒子数是加 $1$ 得来。也就是由 $S(N-1,M-1)$ 得来。</p>
+<p>二者结合即有上式。</p>
+<hr>
+<h4 id="对第五行的理解："><a href="#对第五行的理解：" class="headerlink" title="对第五行的理解："></a>对第五行的理解：</h4><p>设第 $i$ 个盒子内球数为 $a_i(a_i\geq 0)$  可看作是求 $a_1+a_2+\cdots +a_m=n$ 的非负整数解的组数。</p>
+<p>求这样的方程的<strong>非负整数解的组数</strong>的算式为： $num=C^{n}_{m+n+1}$ ，故可将该方法迁移到此处。</p>
+<hr>
+<h4 id="对第六行的理解："><a href="#对第六行的理解：" class="headerlink" title="对第六行的理解："></a>对第六行的理解：</h4><p>插板法天下第一！</p>
+<p>看作是 $n$ 个球，现要插板将其分成 $m$ 块即可。</p>
+<p>那就有 $n-1$ 个间隙，需插 $m-1$ 块板。 $n-1$ 选 $m-1$ ，有 $C^{m-1}_{n-1}$ 种方法。</p>
+<hr>
+<h3 id="color-salmon-texttt-期望次数："><a href="#color-salmon-texttt-期望次数：" class="headerlink" title="$\color{salmon}{\texttt {期望次数：}}$"></a>$\color{salmon}{\texttt {期望次数：}}$</h3><h4 id="格式："><a href="#格式：" class="headerlink" title="格式："></a>格式：</h4><p>对XXX（哈希表/有序数组/链表）进行XXX（二分查找/线性探测），等概率情况下，（成功/失败）的（平均查找长度/平均比较次数）为<strong>___</strong><br>。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">这是什么</th>
+<th style="text-align:center">要求什么</th>
+<th style="text-align:center">怎么做</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">哈希表</td>
+<td style="text-align:center">线性探测的平均探测次数</td>
+<td style="text-align:center">$1+\dfrac{\small\texttt{出现冲突的次数之和}}{\small\texttt{元素个数}}$</td>
+</tr>
+<tr>
+<td style="text-align:center">哈希表</td>
+<td style="text-align:center">查找成功的平均次数</td>
+<td style="text-align:center">同上</td>
+</tr>
+<tr>
+<td style="text-align:center">哈希表</td>
+<td style="text-align:center">查找失败的平均次数</td>
+<td style="text-align:center">（下方特讲）</td>
+</tr>
+<tr>
+<td style="text-align:center">有序数组</td>
+<td style="text-align:center">二分查找的平均次数</td>
+<td style="text-align:center">分数形式：分子的递推式为 $D_i=D_{i-1}+\lfloor\log_{2} i\rfloor+1$ ，其中 $D_1$ 为 $1$ 。分母为元素个数。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h4 id="哈希表查找失败的平均次数："><a href="#哈希表查找失败的平均次数：" class="headerlink" title="哈希表查找失败的平均次数："></a>哈希表查找失败的平均次数：</h4><p>这里有一种非常易于实现的方法，先把线性探测完了以后的哈希表写下来如这样。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+<th style="text-align:center">6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">14</td>
+<td style="text-align:center">空</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">空</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">30</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>我们要查一个元素，会先看看它本该对应的位置是否有它。</p>
+<p>倘若没有，我们会怀疑它是不是因为冲突而顺延了，于是到下一个位置找它。</p>
+<p>一直找到一个空位置，我们就可以宣告查找失败了。</p>
+<p>可见，查找失败的平均次数和我们 <strong>怀疑顺延</strong> 的次数有关。</p>
+<p>于是，我们可以把一个位置 <strong>直到下一个空位的距离</strong> 先直接一眼看出，写在数组下方。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+<th style="text-align:center">6 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">14</td>
+<td style="text-align:center">空</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">空</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">30 </td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>但是这只是我们怀疑的次数，我们一开始查它 <strong>本该对应的位置</strong> 的时候其实也应该算一次查找。所以每一位加一：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+<th style="text-align:center">6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">14</td>
+<td style="text-align:center">空</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">空</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">30</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>再把下面这些加起来，除上元素个数即可。</p>
+<hr>
+<h4 id="为什么查找成功的次数和平均探测次数是一样的："><a href="#为什么查找成功的次数和平均探测次数是一样的：" class="headerlink" title="为什么查找成功的次数和平均探测次数是一样的："></a>为什么查找成功的次数和平均探测次数是一样的：</h4><p>其实两者中我们的动作可以看作是一样的，都是先查本位，往下找直到一个可以还没有被占用的位置。</p>
+<hr>
+<h4 id="有关二分查找的次数："><a href="#有关二分查找的次数：" class="headerlink" title="有关二分查找的次数："></a>有关二分查找的次数：</h4><p>这个递推式是刚刚花 $5min$ 推出来的，不好证明。</p>
+<hr>
+<h6 id="直接定址法是完美哈希"><a href="#直接定址法是完美哈希" class="headerlink" title="直接定址法是完美哈希"></a>直接定址法是完美哈希</h6><hr>
+<h3 id="color-salmon-texttt-进制相关："><a href="#color-salmon-texttt-进制相关：" class="headerlink" title="$\color{salmon}{\texttt {进制相关：}}$"></a>$\color{salmon}{\texttt {进制相关：}}$</h3><h4 id="X进制转十进制——加权法："><a href="#X进制转十进制——加权法：" class="headerlink" title="X进制转十进制——加权法："></a>X进制转十进制——加权法：</h4><script type="math/tex; mode=display">114514_{(6)}----1\times 6^5+1\times 6^4+4\times 6^3+5\times 6^2+1\times 6^1+4\times 6^0</script><hr>
+<h4 id="十进制转X进制——短除法："><a href="#十进制转X进制——短除法：" class="headerlink" title="十进制转X进制——短除法："></a>十进制转X进制——短除法：</h4><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/8xjy37hp.png" alt=""></p>
+<p>除以 $base$ 取模，倒序拼接成一个数。</p>
+<hr>
+<h4 id="X进制小数转十进制："><a href="#X进制小数转十进制：" class="headerlink" title="X进制小数转十进制："></a>X进制小数转十进制：</h4><script type="math/tex; mode=display">0.114514_{(6)}--1\times 6^{-1}+1\times 6^{-2}+4\times 6^{-3}+5\times 6^{-4}+1\times 6^{-5}+4\times 6^{-6}</script><hr>
+<h4 id="十进制小数转X进制："><a href="#十进制小数转X进制：" class="headerlink" title="十进制小数转X进制："></a>十进制小数转X进制：</h4><p>短乘法，乘 $base$ 取整数部分，正序拼接成一个数。</p>
+<hr>
+<h5 id="任意的十进制有限小数，未必也是八进制有限小数。"><a href="#任意的十进制有限小数，未必也是八进制有限小数。" class="headerlink" title="任意的十进制有限小数，未必也是八进制有限小数。"></a>任意的十进制有限小数，未必也是八进制有限小数。</h5><hr>
+<h3 id="color-salmon-texttt-ccf-color-salmon-texttt-赞歌："><a href="#color-salmon-texttt-ccf-color-salmon-texttt-赞歌：" class="headerlink" title="$\color{salmon}{\texttt{ccf}}\color{salmon}{\texttt{赞歌：}}$"></a>$\color{salmon}{\texttt{ccf}}\color{salmon}{\texttt{赞歌：}}$</h3><ul>
+<li><p>NOI全称：<strong>全国青少年信息学奥林匹克竞赛。</strong></p>
+</li>
+<li><p>今年是第 <strong>32</strong> 届IOI，中国队获得了 <strong>4</strong> 金。</p>
+</li>
+<li><p>1984年，<strong>邓小平</strong> 指出：“计算机的普及要从娃娃做起。” CCF 于 <strong>1984</strong> 年创办全国青少年计算机程序设计竞赛（简称：NOI）。故今年是第 <strong>37</strong> 届，在 <strong>长沙</strong> 举行。</p>
+</li>
+<li><p>NOIP的创办时间：<strong>1995</strong> 年，故今年是第 <strong>26</strong> 届。</p>
+</li>
+<li><p><strong>2020年</strong> 开始， <strong>除NOIP以外</strong> 的NOI系列其他赛事（包括冬令营、CTSC、APIO、NOI）将不再支持 <strong>Pascal语言和C语言</strong>；</p>
+</li>
+<li><p>从 <strong>2022年</strong> 开始，NOIP竞赛也将不再支持 <strong>Pascal语言</strong> 。即以后只有 C++ 一个了。</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="http://www.ccf.org.cn/"> <img src="https://cdn.luogu.com.cn/upload/image_hosting/1y85q9qp.png" alt=""> </a></p>
+<ul>
+<li><p>竞赛费：<strong>0元</strong> 。但本着 <strong>谁受益谁承担成本</strong> 原则，参加竞赛所需的餐饮、住宿、交通、保险等费用由参加者自行承担。</p>
+</li>
+<li><p><strong>2011年</strong> 起，复赛提高组由 <strong>一试改为两试</strong> ，分由两天进行。每天竞赛试题由原来的 <strong>4题改为3题</strong> 。</p>
+</li>
+<li><p>第一届 APIO 于 <strong>2007</strong> 年在 <strong>澳大利亚</strong> 举办。中国第一次承办是在 <strong>2010</strong> 年。</p>
+</li>
+<li><p>第一届 NOI 网络同步赛于 <strong>1999</strong> 年举办。</p>
+</li>
+</ul>
+<hr>
+<h3 id="color-salmon-texttt-图论相关："><a href="#color-salmon-texttt-图论相关：" class="headerlink" title="$\color{salmon}{\texttt{图论相关：}}$"></a>$\color{salmon}{\texttt{图论相关：}}$</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">概念</th>
+<th style="text-align:center">定义</th>
+<th style="text-align:center">判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">欧拉通路</td>
+<td style="text-align:center">过图中所有边 <strong>恰好一次</strong> 且 <strong>行遍所有顶点</strong> 的通路</td>
+<td style="text-align:center">1.连通 2.恰有 <strong>0个或2个</strong> 奇度顶点</td>
+</tr>
+<tr>
+<td style="text-align:center">欧拉回路（欧拉闭迹）</td>
+<td style="text-align:center">过图中所有边 <strong>恰好一次</strong> 且 <strong>行遍所有顶点</strong> 的回路</td>
+<td style="text-align:center">1.连通 2. <strong>无</strong> 奇度顶点</td>
+</tr>
+<tr>
+<td style="text-align:center">哈密顿通路</td>
+<td style="text-align:center">过图中所有顶点 <strong>恰好一次</strong> 的通路</td>
+<td style="text-align:center">对于每对不相邻点，$d(u)+d(v)\geq N-1$ （$N$ 为顶点数， $d$ 为度数）</td>
+</tr>
+<tr>
+<td style="text-align:center">哈密顿回路</td>
+<td style="text-align:center">过图中所有顶点 <strong>恰好一次</strong> 的回路</td>
+<td style="text-align:center">所有顶点的度数大于等于 $\frac{N}{2}$ （$N$ 为顶点数）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>二分图|能把顶点分成两个集合，且两个集合 <strong>内部没有边</strong> 的图|<strong>没有</strong> 奇环的图</p>
+<hr>
+<h4 id="有关欧拉回路和欧拉通路："><a href="#有关欧拉回路和欧拉通路：" class="headerlink" title="有关欧拉回路和欧拉通路："></a>有关欧拉回路和欧拉通路：</h4><p>实则可理解为是 <strong>从任意一点都能一笔画全图</strong> 还是 <strong>得从某个特定的起点开始才能一笔画全图</strong> 。</p>
+<hr>
+<h4 id="有关欧拉回路和哈密顿回路："><a href="#有关欧拉回路和哈密顿回路：" class="headerlink" title="有关欧拉回路和哈密顿回路："></a>有关欧拉回路和哈密顿回路：</h4><p><strong>欧拉回路</strong>：需一笔经过全边。</p>
+<p><strong>哈密顿回路</strong>：只需一笔能串起所有节点即可。</p>
+<hr>
+<h3 id="color-salmon-texttt-存图方式："><a href="#color-salmon-texttt-存图方式：" class="headerlink" title="$\color{salmon}{\texttt{存图方式：}}$"></a>$\color{salmon}{\texttt{存图方式：}}$</h3><p>$N$ 点， $M$ 边， $d$ 为一点出度。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">存图方式</th>
+<th style="text-align:center">遍历一点出边</th>
+<th style="text-align:center">遍历全图</th>
+<th style="text-align:center">查询单边</th>
+<th style="text-align:center">跑拓扑/ $dfs$ 效率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">邻接矩阵</td>
+<td style="text-align:center">$O(N)$</td>
+<td style="text-align:center">$O(N^2)$</td>
+<td style="text-align:center">$O(1)$</td>
+<td style="text-align:center">$O(N^2)$</td>
+</tr>
+<tr>
+<td style="text-align:center">邻接表</td>
+<td style="text-align:center">$O(d(N))$</td>
+<td style="text-align:center">$O(M)$</td>
+<td style="text-align:center">$O(d(N))$</td>
+<td style="text-align:center">$O(N+M)$</td>
+</tr>
+<tr>
+<td style="text-align:center">链式前向星</td>
+<td style="text-align:center">同上</td>
+<td style="text-align:center">同上</td>
+<td style="text-align:center">同上</td>
+<td style="text-align:center">同上</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h4 id="为什么邻接表和前向星一样："><a href="#为什么邻接表和前向星一样：" class="headerlink" title="为什么邻接表和前向星一样："></a>为什么邻接表和前向星一样：</h4><p>因为前向星就是一种邻接表。</p>
+<hr>
+<h6 id="邻接矩阵中的无效元素个数：有向：-N-2-M-无向：-N-2-2M"><a href="#邻接矩阵中的无效元素个数：有向：-N-2-M-无向：-N-2-2M" class="headerlink" title="邻接矩阵中的无效元素个数：有向： $N^2-M\;$ 无向：$N^2-2M$"></a>邻接矩阵中的无效元素个数：有向： $N^2-M\;$ 无向：$N^2-2M$</h6><hr>
+<h3 id="color-salmon-texttt-树相关："><a href="#color-salmon-texttt-树相关：" class="headerlink" title="$\color{salmon}{\texttt{树相关：}}$"></a>$\color{salmon}{\texttt{树相关：}}$</h3><h4 id="题型一："><a href="#题型一：" class="headerlink" title="题型一："></a>题型一：</h4><blockquote>
+<p>在一棵树中，度为 $1$ 的结点数有 $a_1$ 个，度为 $2$ 的结点数有 $a_2$ 个， $\dots\dots$ ，度为 $n$ 的结点数有 $a_n$ 个，则度为 $0$ 的结点数为（）个。</p>
+</blockquote>
+<p>树上的度数指的是其出度。可理解为度为 $K$ 的结点会贡献出 $K$ 个出度。而除根结点外，每个结点都会消耗掉一个出度。要求最后出度消到 $0$ 。则有：</p>
+<p>$a_0\cdot 0+a_1\cdot 1+\cdots +a_n\cdot n-(a_0+a_1+\cdots+a_n-1)=0$</p>
+<p>被减数即贡献出的出度之和，减数即消耗掉的出度之和（这里减 $1$ 是因为根结点不消耗出度）。</p>
+<hr>
+<h4 id="题型二："><a href="#题型二：" class="headerlink" title="题型二："></a>题型二：</h4><blockquote>
+<p>一棵 $K$ 叉树的结点数为 $N$ ，则它的最小高度为（）。（设根结点深度为 $1$)</p>
+</blockquote>
+<p>$K$ 叉树，则第 $x$ 层最多有 $K^{x-1}$ 个结点。</p>
+<p>前 $x$ 层就最多有 $\lfloor\dfrac{K^x}{K-1}\rfloor$ 个结点。</p>
+<p>则在最后一个结点之前高度就有 $\lfloor\log_{K}N(K-1)\rfloor$ 层。</p>
+<p>那他这一层就是第 $\lfloor\log_{K}N(K-1)\rfloor+1$ 层。</p>
+<p>_其他的题型都还简单(bushi)_</p>
+<hr>
+<h6 id="先序序列和中序序列相同的二叉树的特征为：空树-或者-任一结点均无左孩子的非空二叉树"><a href="#先序序列和中序序列相同的二叉树的特征为：空树-或者-任一结点均无左孩子的非空二叉树" class="headerlink" title="先序序列和中序序列相同的二叉树的特征为：空树 或者 任一结点均无左孩子的非空二叉树"></a>先序序列和中序序列相同的二叉树的特征为：空树 或者 任一结点均无左孩子的非空二叉树</h6><h6 id="中序序列和后序序列相同的二叉树的特征为：空树-或者-任一结点均无右孩子的非空二叉树"><a href="#中序序列和后序序列相同的二叉树的特征为：空树-或者-任一结点均无右孩子的非空二叉树" class="headerlink" title="中序序列和后序序列相同的二叉树的特征为：空树 或者 任一结点均无右孩子的非空二叉树"></a>中序序列和后序序列相同的二叉树的特征为：空树 或者 任一结点均无右孩子的非空二叉树</h6><h6 id="先序序列和后序序列相同的二叉树的特征为：空树-或-仅有一个结点的二叉树"><a href="#先序序列和后序序列相同的二叉树的特征为：空树-或-仅有一个结点的二叉树" class="headerlink" title="先序序列和后序序列相同的二叉树的特征为：空树 或 仅有一个结点的二叉树"></a>先序序列和后序序列相同的二叉树的特征为：空树 或 仅有一个结点的二叉树</h6><hr>
+<h3 id="color-salmon-texttt-刚学的几个式子（还不会证）："><a href="#color-salmon-texttt-刚学的几个式子（还不会证）：" class="headerlink" title="$\color{salmon}{\texttt{刚学的几个式子（还不会证）：}}$"></a>$\color{salmon}{\texttt{刚学的几个式子（还不会证）：}}$</h3><p>$\sum_{i=1}^{n} i^3=\dfrac{n^2(n+1)^2}{4}$</p>
+<p>$\sum_{i=1}^{n} i^4=\dfrac{n(n+1)(2n+1)(3n^2+3n-1)}{30}$</p>
+<p>错排：$D(n) = n! [(-1)^2/2! + … + (-1)^{n-1}/(n-1)! + (-1)^n/n!]$</p>
+<hr>
+<h3 id="color-salmon-texttt-计算机知识："><a href="#color-salmon-texttt-计算机知识：" class="headerlink" title="$\color{salmon}{\texttt{计算机知识：}}$"></a>$\color{salmon}{\texttt{计算机知识：}}$</h3><ul>
+<li><p>冯诺伊曼的计算机结构的核心思想：</p>
+<ol>
+<li><p>单处理机结构，机器以运算器为中心；</p>
+</li>
+<li><p>采用程序存储思想；</p>
+</li>
+<li><p>指令和数据一样可以参与运算；</p>
+</li>
+<li><p>数据以二进制表示；</p>
+</li>
+<li><p>将软件和硬件完全分离；</p>
+</li>
+</ol>
+</li>
+<li><p>在微机系统中，最基本的输入输出模块BIOS存放在 <strong>ROM</strong> 里。</p>
+</li>
+<li><p>想不到吧，RAM 和 外存 也是 <strong>输出</strong> 设备！</p>
+</li>
+<li><p>显存断电后是 <strong>不会</strong> 保存的。</p>
+</li>
+<li><p>存储程序工作原理的特点是： <strong>事先编制程序</strong> 和 <strong>从存储器中依次取出程序自动执行</strong></p>
+</li>
+<li><p><strong>Fortran</strong> 是历史上的 <strong>第一种</strong> 高级语言，它面向 <strong>科学计算</strong> </p>
+</li>
+</ul>
+<ul>
+<li><p><strong>Simula 67</strong> 是历史上的第一个支持 <strong>面向对象</strong> 的语言</p>
+</li>
+<li><p><strong>Smalltalk</strong> 是历史上的第一个 <strong>完善的</strong> 支持 <strong>面向对象</strong> 的语言</p>
+</li>
+<li><p>根据汉字国际GB2312-80的规定，一个汉字的内码码长为 <strong>16</strong> bit </p>
+</li>
+<li><p>汉字区位码 $+2020(H)$ 得国标码，国标码 $+8080(H)$ 得机内码。</p>
+</li>
+<li><p>一级汉字以 <strong>拼音</strong> 排序，二级汉字以 <strong>偏旁部首</strong> 排序</p>
+</li>
+<li><p>图像分辨率指图像中存储的 <strong>信息量</strong></p>
+</li>
+<li><p>显示分辨率是显示器在 <strong>显示图像</strong> 时的分辨率</p>
+</li>
+<li><p>调色板中的颜色数依 <strong>颜色深度</strong> 而定</p>
+</li>
+</ul>
+<hr>
+<h3 id="color-salmon-texttt-排序相关："><a href="#color-salmon-texttt-排序相关：" class="headerlink" title="$\color{salmon}{\texttt{排序相关：}}$"></a>$\color{salmon}{\texttt{排序相关：}}$</h3><h4 id="时间复杂度分类："><a href="#时间复杂度分类：" class="headerlink" title="时间复杂度分类："></a>时间复杂度分类：</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$\qquad n^2\qquad $</th>
+<th style="text-align:center">$\qquad n\log n\qquad $</th>
+<th style="text-align:center">$\qquad n\qquad $</th>
+<th style="text-align:center">$\qquad$ 奇怪的复杂度$\;$ </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">冒、插、选</td>
+<td style="text-align:center">归（严格）、堆（严格）、快（最优 $O(n)$ ，最劣 $O(n^2)$ ）</td>
+<td style="text-align:center">桶</td>
+<td style="text-align:center">计 （ $O(n+w)$ ，$w$ 为值域），希尔（最优 $O(n)$ ，最劣 $O(n\log^2 n)$，基 </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p> _注：也有称希尔平均为 $O(n^{1.5}$)的说法_ </p>
+<hr>
+<h4 id="稳定性分类："><a href="#稳定性分类：" class="headerlink" title="稳定性分类："></a>稳定性分类：</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$\qquad$稳定$\qquad$</th>
+<th style="text-align:center">$\qquad$不稳定$\qquad$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">插、冒、计、归、基、桶</td>
+<td style="text-align:center">选、堆、快、希</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>即：</p>
+<p>$n^2$ 除选择都为稳定。</p>
+<p>$n\log n$ 除归并都为不稳定。</p>
+<p>$n$ 都为稳定。</p>
+<hr>
+<h4 id="就地性分类："><a href="#就地性分类：" class="headerlink" title="就地性分类："></a>就地性分类：</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$\qquad$就地$\qquad$</th>
+<th style="text-align:center">$\qquad$不就地$\qquad$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">插、选、冒、希、快、堆</td>
+<td style="text-align:center">归、计、基、桶</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p> _注：有的写法的归并是就地的_ </p>
+<p>即：</p>
+<p>$n^2$ 都为就地。</p>
+<p>$n\log n$ 除归并都为就地</p>
+<p>$n$ 都为不就地。</p>
+<hr>
+<h4 id="其他知识："><a href="#其他知识：" class="headerlink" title="其他知识："></a>其他知识：</h4><ul>
+<li><p>C++ 的 $\operatorname{sort}$ 在数据较小的时候能自动转换为 <strong>堆排</strong> </p>
+</li>
+<li><p>希尔排序的最后一趟是 <strong>插入排序</strong> ，因为希尔本质上就是插入排序的优化算法。</p>
+</li>
+<li><p>数据几乎有序时：插入、希尔、归并、冒泡 <strong>快于</strong> 快排</p>
+</li>
+<li><p>平均 <strong>比较次数最少</strong> 的是快排。</p>
+</li>
+<li><p>求第 $k$ 大最低的算法时间复杂度为 $O(n)$ ，由 <strong>快排</strong> 思想实现。</p>
+</li>
+<li><p><del>堆排天下第一！（bushi</del></p>
+</li>
+</ul>
+<hr>
+<h3 id="优先级："><a href="#优先级：" class="headerlink" title="优先级："></a>优先级：</h3><h4 id="gt-lnot-gt-bigwedge-gt-bigvee"><a href="#gt-lnot-gt-bigwedge-gt-bigvee" class="headerlink" title="$(\; ) &gt; \lnot &gt; \bigwedge &gt; \bigvee$"></a>$(\; ) &gt; \lnot &gt; \bigwedge &gt; \bigvee$</h4>
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年04月17日 16:11</p>
+        <p>原始链接： <a class="post-url" href="/2021/04/17/%E5%88%9D%E8%B5%9B%E6%A8%A1%E6%8B%9F%E6%8C%A8%E6%89%93%E7%BA%AA%E5%AE%9E/" title="初赛模拟挨打纪实">https://quest233.github.io/2021/04/17/%E5%88%9D%E8%B5%9B%E6%A8%A1%E6%8B%9F%E6%8C%A8%E6%89%93%E7%BA%AA%E5%AE%9E/</a></p>
+        <footer>
+            <a href="https://quest233.github.io">
+                <img src="/images/150879.png" alt="quest_2">
+                quest_2
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://quest233.github.io/2021/04/17/%E5%88%9D%E8%B5%9B%E6%A8%A1%E6%8B%9F%E6%8C%A8%E6%89%93%E7%BA%AA%E5%AE%9E/&title=《初赛模拟挨打纪实》 — quest233的博客&pic=https://quest233.github.ioimages/150879.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://quest233.github.io/2021/04/17/%E5%88%9D%E8%B5%9B%E6%A8%A1%E6%8B%9F%E6%8C%A8%E6%89%93%E7%BA%AA%E5%AE%9E/&title=《初赛模拟挨打纪实》 — quest233的博客&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://quest233.github.io/2021/04/17/%E5%88%9D%E8%B5%9B%E6%A8%A1%E6%8B%9F%E6%8C%A8%E6%89%93%E7%BA%AA%E5%AE%9E/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《初赛模拟挨打纪实》 — quest233的博客&url=https://quest233.github.io/2021/04/17/%E5%88%9D%E8%B5%9B%E6%A8%A1%E6%8B%9F%E6%8C%A8%E6%89%93%E7%BA%AA%E5%AE%9E/&via=https://quest233.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://quest233.github.io/2021/04/17/%E5%88%9D%E8%B5%9B%E6%A8%A1%E6%8B%9F%E6%8C%A8%E6%89%93%E7%BA%AA%E5%AE%9E/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://quest233.github.io/2021/04/17/%E5%88%9D%E8%B5%9B%E6%A8%A1%E6%8B%9F%E6%8C%A8%E6%89%93%E7%BA%AA%E5%AE%9E/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/“知识”决定命运/" class="color4">“知识”决定命运</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#color-salmon-texttt-%E6%94%BE%E5%B0%8F%E7%90%83%EF%BC%9A"><span class="post-toc-text">$\color{salmon}{\texttt {放小球：}}$</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E6%9C%89%E5%85%B3%E6%96%AF%E4%BA%8C%E6%9E%97%EF%BC%9A"><span class="post-toc-text">有关斯二林：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%AF%B9%E4%BA%8E%E8%AF%A5%E5%BC%8F%E7%90%86%E8%A7%A3%EF%BC%9A"><span class="post-toc-text">对于该式理解：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%AF%B9%E7%AC%AC%E4%BA%94%E8%A1%8C%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9A"><span class="post-toc-text">对第五行的理解：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%AF%B9%E7%AC%AC%E5%85%AD%E8%A1%8C%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9A"><span class="post-toc-text">对第六行的理解：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#color-salmon-texttt-%E6%9C%9F%E6%9C%9B%E6%AC%A1%E6%95%B0%EF%BC%9A"><span class="post-toc-text">$\color{salmon}{\texttt {期望次数：}}$</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E6%A0%BC%E5%BC%8F%EF%BC%9A"><span class="post-toc-text">格式：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8%E6%9F%A5%E6%89%BE%E5%A4%B1%E8%B4%A5%E7%9A%84%E5%B9%B3%E5%9D%87%E6%AC%A1%E6%95%B0%EF%BC%9A"><span class="post-toc-text">哈希表查找失败的平均次数：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9F%A5%E6%89%BE%E6%88%90%E5%8A%9F%E7%9A%84%E6%AC%A1%E6%95%B0%E5%92%8C%E5%B9%B3%E5%9D%87%E6%8E%A2%E6%B5%8B%E6%AC%A1%E6%95%B0%E6%98%AF%E4%B8%80%E6%A0%B7%E7%9A%84%EF%BC%9A"><span class="post-toc-text">为什么查找成功的次数和平均探测次数是一样的：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E6%9C%89%E5%85%B3%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%9A%84%E6%AC%A1%E6%95%B0%EF%BC%9A"><span class="post-toc-text">有关二分查找的次数：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E7%9B%B4%E6%8E%A5%E5%AE%9A%E5%9D%80%E6%B3%95%E6%98%AF%E5%AE%8C%E7%BE%8E%E5%93%88%E5%B8%8C"><span class="post-toc-text">直接定址法是完美哈希</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#color-salmon-texttt-%E8%BF%9B%E5%88%B6%E7%9B%B8%E5%85%B3%EF%BC%9A"><span class="post-toc-text">$\color{salmon}{\texttt {进制相关：}}$</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#X%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6%E2%80%94%E2%80%94%E5%8A%A0%E6%9D%83%E6%B3%95%EF%BC%9A"><span class="post-toc-text">X进制转十进制——加权法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%ACX%E8%BF%9B%E5%88%B6%E2%80%94%E2%80%94%E7%9F%AD%E9%99%A4%E6%B3%95%EF%BC%9A"><span class="post-toc-text">十进制转X进制——短除法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#X%E8%BF%9B%E5%88%B6%E5%B0%8F%E6%95%B0%E8%BD%AC%E5%8D%81%E8%BF%9B%E5%88%B6%EF%BC%9A"><span class="post-toc-text">X进制小数转十进制：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%8D%81%E8%BF%9B%E5%88%B6%E5%B0%8F%E6%95%B0%E8%BD%ACX%E8%BF%9B%E5%88%B6%EF%BC%9A"><span class="post-toc-text">十进制小数转X进制：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#%E4%BB%BB%E6%84%8F%E7%9A%84%E5%8D%81%E8%BF%9B%E5%88%B6%E6%9C%89%E9%99%90%E5%B0%8F%E6%95%B0%EF%BC%8C%E6%9C%AA%E5%BF%85%E4%B9%9F%E6%98%AF%E5%85%AB%E8%BF%9B%E5%88%B6%E6%9C%89%E9%99%90%E5%B0%8F%E6%95%B0%E3%80%82"><span class="post-toc-text">任意的十进制有限小数，未必也是八进制有限小数。</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#color-salmon-texttt-ccf-color-salmon-texttt-%E8%B5%9E%E6%AD%8C%EF%BC%9A"><span class="post-toc-text">$\color{salmon}{\texttt{ccf}}\color{salmon}{\texttt{赞歌：}}$</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#color-salmon-texttt-%E5%9B%BE%E8%AE%BA%E7%9B%B8%E5%85%B3%EF%BC%9A"><span class="post-toc-text">$\color{salmon}{\texttt{图论相关：}}$</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E6%9C%89%E5%85%B3%E6%AC%A7%E6%8B%89%E5%9B%9E%E8%B7%AF%E5%92%8C%E6%AC%A7%E6%8B%89%E9%80%9A%E8%B7%AF%EF%BC%9A"><span class="post-toc-text">有关欧拉回路和欧拉通路：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E6%9C%89%E5%85%B3%E6%AC%A7%E6%8B%89%E5%9B%9E%E8%B7%AF%E5%92%8C%E5%93%88%E5%AF%86%E9%A1%BF%E5%9B%9E%E8%B7%AF%EF%BC%9A"><span class="post-toc-text">有关欧拉回路和哈密顿回路：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#color-salmon-texttt-%E5%AD%98%E5%9B%BE%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="post-toc-text">$\color{salmon}{\texttt{存图方式：}}$</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%92%8C%E5%89%8D%E5%90%91%E6%98%9F%E4%B8%80%E6%A0%B7%EF%BC%9A"><span class="post-toc-text">为什么邻接表和前向星一样：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E6%97%A0%E6%95%88%E5%85%83%E7%B4%A0%E4%B8%AA%E6%95%B0%EF%BC%9A%E6%9C%89%E5%90%91%EF%BC%9A-N-2-M-%E6%97%A0%E5%90%91%EF%BC%9A-N-2-2M"><span class="post-toc-text">邻接矩阵中的无效元素个数：有向： $N^2-M\;$ 无向：$N^2-2M$</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#color-salmon-texttt-%E6%A0%91%E7%9B%B8%E5%85%B3%EF%BC%9A"><span class="post-toc-text">$\color{salmon}{\texttt{树相关：}}$</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E9%A2%98%E5%9E%8B%E4%B8%80%EF%BC%9A"><span class="post-toc-text">题型一：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E9%A2%98%E5%9E%8B%E4%BA%8C%EF%BC%9A"><span class="post-toc-text">题型二：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E5%85%88%E5%BA%8F%E5%BA%8F%E5%88%97%E5%92%8C%E4%B8%AD%E5%BA%8F%E5%BA%8F%E5%88%97%E7%9B%B8%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%89%B9%E5%BE%81%E4%B8%BA%EF%BC%9A%E7%A9%BA%E6%A0%91-%E6%88%96%E8%80%85-%E4%BB%BB%E4%B8%80%E7%BB%93%E7%82%B9%E5%9D%87%E6%97%A0%E5%B7%A6%E5%AD%A9%E5%AD%90%E7%9A%84%E9%9D%9E%E7%A9%BA%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="post-toc-text">先序序列和中序序列相同的二叉树的特征为：空树 或者 任一结点均无左孩子的非空二叉树</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E4%B8%AD%E5%BA%8F%E5%BA%8F%E5%88%97%E5%92%8C%E5%90%8E%E5%BA%8F%E5%BA%8F%E5%88%97%E7%9B%B8%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%89%B9%E5%BE%81%E4%B8%BA%EF%BC%9A%E7%A9%BA%E6%A0%91-%E6%88%96%E8%80%85-%E4%BB%BB%E4%B8%80%E7%BB%93%E7%82%B9%E5%9D%87%E6%97%A0%E5%8F%B3%E5%AD%A9%E5%AD%90%E7%9A%84%E9%9D%9E%E7%A9%BA%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="post-toc-text">中序序列和后序序列相同的二叉树的特征为：空树 或者 任一结点均无右孩子的非空二叉树</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E5%85%88%E5%BA%8F%E5%BA%8F%E5%88%97%E5%92%8C%E5%90%8E%E5%BA%8F%E5%BA%8F%E5%88%97%E7%9B%B8%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%89%B9%E5%BE%81%E4%B8%BA%EF%BC%9A%E7%A9%BA%E6%A0%91-%E6%88%96-%E4%BB%85%E6%9C%89%E4%B8%80%E4%B8%AA%E7%BB%93%E7%82%B9%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="post-toc-text">先序序列和后序序列相同的二叉树的特征为：空树 或 仅有一个结点的二叉树</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#color-salmon-texttt-%E5%88%9A%E5%AD%A6%E7%9A%84%E5%87%A0%E4%B8%AA%E5%BC%8F%E5%AD%90%EF%BC%88%E8%BF%98%E4%B8%8D%E4%BC%9A%E8%AF%81%EF%BC%89%EF%BC%9A"><span class="post-toc-text">$\color{salmon}{\texttt{刚学的几个式子（还不会证）：}}$</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#color-salmon-texttt-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86%EF%BC%9A"><span class="post-toc-text">$\color{salmon}{\texttt{计算机知识：}}$</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#color-salmon-texttt-%E6%8E%92%E5%BA%8F%E7%9B%B8%E5%85%B3%EF%BC%9A"><span class="post-toc-text">$\color{salmon}{\texttt{排序相关：}}$</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="post-toc-text">时间复杂度分类：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="post-toc-text">稳定性分类：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%B0%B1%E5%9C%B0%E6%80%A7%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="post-toc-text">就地性分类：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%85%B6%E4%BB%96%E7%9F%A5%E8%AF%86%EF%BC%9A"><span class="post-toc-text">其他知识：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7%EF%BC%9A"><span class="post-toc-text">优先级：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#gt-lnot-gt-bigwedge-gt-bigvee"><span class="post-toc-text">$(\; ) &gt; \lnot &gt; \bigwedge &gt; \bigvee$</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/04/17/%E6%B5%85%E8%B0%88%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          浅谈简单数据结构
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/04/17/%E6%B5%85%E8%B0%88%E4%B8%80%E7%B1%BB%E7%AE%80%E5%8D%95%E7%BD%AE%E6%8D%A2%E9%97%AE%E9%A2%98%E2%80%94%E2%80%94SP1843-%E9%A2%98%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">浅谈一类简单置换问题——SP1843 题解</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+          <div id="uyan_frame"></div>
+  <script src="http://v2.uyan.cc/code/uyan.js?uid=true"></script>
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2021 quest_2<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://quest233.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/solutions/" style="font-size: 20px;">solutions</a> <a href="/tags/water/" style="font-size: 10px;">water</a> <a href="/tags/%E2%80%9C%E7%9F%A5%E8%AF%86%E2%80%9D%E5%86%B3%E5%AE%9A%E5%91%BD%E8%BF%90/" style="font-size: 15px;">“知识”决定命运</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/2021/04/17/About/#more">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/solutions/" style="font-size: 20px;">solutions</a> <a href="/tags/water/" style="font-size: 10px;">water</a> <a href="/tags/%E2%80%9C%E7%9F%A5%E8%AF%86%E2%80%9D%E5%86%B3%E5%AE%9A%E5%91%BD%E8%BF%90/" style="font-size: 15px;">“知识”决定命运</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="referrer" content="no-referrer" />
+  
+  <title>NOIP 过往真题泛做 | quest233的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="quest_2" />
+  
+  <meta name="description" content="$\color{orange}{\texttt{佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚。}}$ 因为曾经AFO多年，导致 S组补题计划咕了两年整。 这并不很有趣嘛。 _注：以下只收录难度绿—紫的真题_ _UPD：如你所见，那道黑题它A了。_ 这篇文章主要采用叙述式风格，这会显得极其枯燥，所以看不下去的读者可以看看图找点乐子。 声明：本文中所有引用皆为断章取义，请勿无有端联想！ $">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOIP 过往真题泛做">
+<meta property="og:url" content="https://quest233.github.io/2021/04/17/NOIP-%E8%BF%87%E5%BE%80%E7%9C%9F%E9%A2%98%E6%B3%9B%E5%81%9A/index.html">
+<meta property="og:site_name" content="quest233的博客">
+<meta property="og:description" content="$\color{orange}{\texttt{佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚。}}$ 因为曾经AFO多年，导致 S组补题计划咕了两年整。 这并不很有趣嘛。 _注：以下只收录难度绿—紫的真题_ _UPD：如你所见，那道黑题它A了。_ 这篇文章主要采用叙述式风格，这会显得极其枯燥，所以看不下去的读者可以看看图找点乐子。 声明：本文中所有引用皆为断章取义，请勿无有端联想！ $">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/tn11djcf.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/jbo9sq64.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/xm3ph3y8.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/cvxc41tt.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/cajg7n4k.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/zn7iluth.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/9gtoyn51.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/0k9x78sx.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/l0d1oxwy.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/qrxmbmi6.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/rogurr0w.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/a2db3d9a.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/mbfy9m6o.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/j5etnbu9.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/so6d0k8b.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/8zp6aqzf.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/ukelfd8t.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/8ghbxtkm.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/szzu2ty8.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/0asja1rm.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/49thtyo6.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/o3udfam3.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/2cd66ha7.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/rupkv5ci.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/78m7dw31.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/pomcav7f.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/7wbbxpgv.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/ga82pr1s.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/8p74ckws.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/6le1nlrp.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/wgpsc78y.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/5qvqieqa.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/vplyv08y.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/1ki1uao6.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/a2y95jpc.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/tj1nt6he.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/gvolych0.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/1t80kunm.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/5c989chi.png">
+<meta property="article:published_time" content="2021-04-17T06:59:22.000Z">
+<meta property="article:modified_time" content="2021-04-17T08:07:46.706Z">
+<meta property="article:author" content="quest_2">
+<meta property="article:tag" content="“知识”决定命运">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/tn11djcf.png">
+  
+  
+    <link rel="icon" href="images/62224.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">quest_2&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/2021/04/17/About/#more">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/150879.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        quest_2&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        “知识”决定命运
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-NOIP-过往真题泛做" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      NOIP 过往真题泛做
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-04-17
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>$\color{orange}{\texttt{佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚佛脚。}}$</p>
+<p>因为曾经AFO多年，导致 S组补题计划咕了两年整。</p>
+<p>这并不很有趣嘛。</p>
+<p>_注：以下只收录难度绿—紫的真题_</p>
+<p>_UPD：如你所见，那道黑题它A了。_</p>
+<p>这篇文章主要采用叙述式风格，这会显得极其枯燥，所以看不下去的读者可以看看图找点乐子。</p>
+<h4 id="声明：本文中所有引用皆为断章取义，请勿无有端联想！"><a href="#声明：本文中所有引用皆为断章取义，请勿无有端联想！" class="headerlink" title="声明：本文中所有引用皆为断章取义，请勿无有端联想！"></a>声明：本文中所有引用皆为断章取义，请勿<del>无</del>有端联想！</h4><hr>
+<h3 id="2451545-Julian-前（fixed-again）"><a href="#2451545-Julian-前（fixed-again）" class="headerlink" title="$2451545 (Julian)$ 前（fixed again）"></a>$2451545 (Julian)$ 前（fixed again）</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1016">旅行家的预算</a></li>
+</ul>
+<p>简易的分类讨论 + 困难的贪心。</p>
+<p>每次装到能抵达下一个价格更低的地方为止。然后开过去。</p>
+<p>如果装满了也到不了，就在自己这里先把油加满，再开到价格相对最低的地方。</p>
+<p>实现很烦。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/tn11djcf.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1549">棋盘问题（2）</a></li>
+</ul>
+<p>简易的暴搜 + 改变搜索顺序的 $trick$ 。</p>
+<p>搜索很简单，预处理质数表，随缘跑 $dfs$ 。</p>
+<p>主要是要求首行首列和最小，可以用 $nxt$ 数组控制“下一个搜的位置”以达到这一效果。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/jbo9sq64.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1013">进制位</a></li>
+</ul>
+<p>简单思维 + 高精思想。</p>
+<p>一行里有几个两位数就代表这是几。</p>
+<p>最后需要逐一验证，这里要手打一个高精一样的玩意实现 $K$ 进制。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/xm3ph3y8.png" alt=""></p>
+<hr>
+<hr>
+<h3 id="2452276-Julian-前"><a href="#2452276-Julian-前" class="headerlink" title="$2452276(Julian)$ 前"></a>$2452276(Julian)$ 前</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1018">乘积最大</a></li>
+</ul>
+<p>简单搜索 + 毒瘤高精。</p>
+<p>预处理把某一位 $i$ 后 $j$ 位数单独分出来是多少。</p>
+<p>以搜到第 $pos$ 位，用掉 $k$ 次分割机会为状态，记忆化暴搜。要写高精。表示：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/cvxc41tt.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1004">方格取数</a></li>
+</ul>
+<p>偏板的 $dp$ + 简单的压维优化。</p>
+<p>转化为两个人从左上角走向右下角。</p>
+<p>设计状态：$dp[i][j][k][l]$ 为第一个人走到 $(i,j)$ ，第二个人走到 $(k,l)$ 的最优解。</p>
+<p>转移方程：</p>
+<script type="math/tex; mode=display">f[i][j][k][l]=a[i][j]+a[k][l]+ \max\begin{cases}f[i-1][j][k-1][l]\\f[i-1][j][k][l-1]\\f[i][j-1][k-1][l]\\f[i][j-1][k][l-1]\end{cases}</script><p>因为两人走过的路程必定相等，故可以压掉最后一维。用前三维来算 $l$ 。优化：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/cajg7n4k.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1027">Car的旅行路线</a></li>
+</ul>
+<p>初级的建图 + 最短路。</p>
+<p>城市与城市连边，火车站之间连边，跑最短路即可。</p>
+<p>需要写函数求笛卡尔坐标系上点距。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/zn7iluth.png" alt=""></p>
+<hr>
+<hr>
+<h3 id="2453006-Julian-前"><a href="#2453006-Julian-前" class="headerlink" title="$2453006(Julian)$ 前"></a>$2453006(Julian)$ 前</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1034">矩形覆盖</a></li>
+</ul>
+<p>中等搜索。</p>
+<p>以“搜到第 $pos$ 个点，覆盖这些点用了 $sum$ 个矩形”为状态 $dfs$ 。</p>
+<p>加最优性剪枝，开结构体装矩形，重载运算符，手打函数以实现加点和判交。</p>
+<p>$dfs$ 状态不好想。还是题刷少了。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/9gtoyn51.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1038">神经网络</a></li>
+</ul>
+<p>简单图论。</p>
+<p>把所有初始状态为 $1$ 的结点入队，跑 $bfs$ 即可。读者：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/0k9x78sx.png" alt=""></p>
+<hr>
+<hr>
+<h3 id="2453737-Julian-前"><a href="#2453737-Julian-前" class="headerlink" title="$2453737(Julian)$ 前"></a>$2453737(Julian)$ 前</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1052">过河</a></li>
+</ul>
+<p>中等 $dp$ 。</p>
+<p>设计状态：$dp[i]$ 表示到达 $i$ 点最少需要走几步。</p>
+<p>状态转移：$dp[i]=\min\{dp[i-k]\}+1\;(k\in[L,R])$</p>
+<p>但是需要路径压缩节省空间，若两点之间距离超过 $R*(R+1)$ 则可以压成一个点。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/l0d1oxwy.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1053">篝火晚会</a></li>
+</ul>
+<p>复杂思维题。</p>
+<p>求变动次数，相当于是求不变人数。</p>
+<p>不停的转动目标环和当前环，比较匹配个数。</p>
+<p>提前处理好 $dis$ ，表示当前环上这个数到目标环上需要转动几次：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/qrxmbmi6.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1092">虫食算</a></li>
+</ul>
+<p>困难搜索 + 改变搜索顺序的 $trick$ 。</p>
+<p>依次搜索每个字母分别代表什么。</p>
+<p>写 $judge$ 函数判断当前情况是否合法。</p>
+<p>改变搜索顺序从较低位开搜。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/rogurr0w.png" alt=""></p>
+<hr>
+<hr>
+<h3 id="2454467-Julian-前"><a href="#2454467-Julian-前" class="headerlink" title="$2454467(Julian)$ 前"></a>$2454467(Julian)$ 前</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1065">作业调度方案</a></li>
+</ul>
+<p>简单模拟。</p>
+<p>每次找到第一个空位，向后查能不能安排得下这么多。</p>
+<p>直到第一个能放下的位置放下即可。证明：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/a2db3d9a.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1066">2^k进制数</a></li>
+</ul>
+<p>困难组合数学。</p>
+<p>推式子，若 $k|n$ 且每一位都不填 $0$ ，那么就是在 $2^k-1$ 个数中安排合适的顺序填，有 $C^{n/k}_{2^k-1}$ 。</p>
+<p>若允许填 $0$ ，与上种情况一加，则枚举哪一位开始填的 $0$ ，有 $\sum^{n/k}_{i=2}C^{i}_{2^k-1}$ 。</p>
+<p>若 $k\not|n$ ，若首位为 $0$ ，则后面退化成了上面那种情况。</p>
+<p>若首位不为 $0$ ，后面全部受前面限制。有 $\sum^{2^{n\bmod k}}_{i=1}C^{n/k}_{2^k-i-1}$ 。</p>
+<p>所以总式为：</p>
+<script type="math/tex; mode=display">C^{\lfloor\frac{n}{k}\rfloor}_{2^k-1}+\sum^{2^{n\bmod k}}_{i=1}C^{n/k}_{2^k-i-1}</script><p>主要式子难推。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/mbfy9m6o.png" alt=""></p>
+<hr>
+<hr>
+<h3 id="2455198-Julian-前"><a href="#2455198-Julian-前" class="headerlink" title="$2455198(Julian)$ 前"></a>$2455198(Julian)$ 前</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1072">Hankson 的趣味题</a></li>
+</ul>
+<p>简单数学。</p>
+<p>有 $\gcd(x,a_0)=a_1$ ， $x*b _ 0/\gcd(x,b_0)=b_1$ 。</p>
+<p>故有 $\gcd(x/a_1,a_0/a_1)=1$ ， $\gcd(b_1/x,b_1/b_0)=1$ 。</p>
+<p>那么枚举 $b_1$ 的约数，测试是否满足如上条件即可。感想：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/j5etnbu9.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1073">最优贸易</a></li>
+</ul>
+<p>中等图论 + 简单 $dp$ 。</p>
+<p>两次 $dfs$ 处理出 $1$ 号点可达的点和 $N$ 号点可达的点。</p>
+<p>对于每一个 $1$ 号点可达的点 $u$ ，枚举每一条出边，倘若某出边抵达的点 $v$ 可达 $N$ 点，则在 $val_v$ 和 $val_u$ 之间连边（邻接表）。</p>
+<p>跑 $floyed$ 传闭包。最终找到互相可达的最大差值的 $val$ ，其差值为答案。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/so6d0k8b.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1074">靶形数独</a></li>
+</ul>
+<p>简单暴搜 + 改变搜索顺序的 $trick$ 。</p>
+<p>开 $hang,lie,gong$ 等数组表示各自范围内填数情况。</p>
+<p>将 $0$ 少的行尽量先算以压缩搜索树。</p>
+<p>写函数计算价值。回溯并更新。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/8zp6aqzf.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1155">双栈排序</a></li>
+</ul>
+<p>二分图染色 + 中等贪心。</p>
+<p>用栈的性质推知 $i&lt;j&lt;k$ ， $a_k&lt;a_i&lt;a_j$ 的情况是不可能的，故可因此构建出限制条件连边，二分图染色，分出两个栈来。</p>
+<p>维护指针“现在该弹哪一个”，并选用贪心策略：尽量先走 $1$ 栈，尽量先 $push$ 。</p>
+<p>实现难。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/ukelfd8t.png" alt=""></p>
+<hr>
+<hr>
+<h3 id="2455563-Julian-前"><a href="#2455563-Julian-前" class="headerlink" title="$2455563(Julian)$ 前"></a>$2455563(Julian)$ 前</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1541">乌龟棋</a></li>
+</ul>
+<p>简单 $dp$ 。</p>
+<p>开四维数组 $dp[i][j][k][l]$ 表示用了 $i$ 个 $1$ ， $j$ 个 $2$ …… 的最大价值。</p>
+<p>从四种情况转移过来即可。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/8ghbxtkm.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1514">引水入城</a></li>
+</ul>
+<p>简单搜索 + 中等问题转化 。</p>
+<p>先搜索出每个蓄水场能灌溉到最底下一行的哪些位置。</p>
+<p>可证各个蓄水场能灌溉的位置必连续。</p>
+<p>将题目转化为最小线段覆盖问题即可。</p>
+<p>问题转化难想。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/szzu2ty8.png" alt=""></p>
+<hr>
+<hr>
+<h3 id="2455928-Julian-前"><a href="#2455928-Julian-前" class="headerlink" title="$2455928(Julian)$ 前"></a>$2455928(Julian)$ 前</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1311">选择客栈</a></li>
+</ul>
+<p>中等数数。</p>
+<p>整前缀和，在 $for$ 循环跑客栈的过程中，实时更新某种颜色出现的次数。</p>
+<p>每出现一个客栈，倘若它之前有过 $pre$ 个同颜色的，就使答案增加 $pre$。</p>
+<p>注意各变量改值的顺序。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/0asja1rm.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1314">聪明的质监员</a></li>
+</ul>
+<p>基础前缀和 + 基础二分。</p>
+<p>二分这个 $W$ 。</p>
+<p>每次 $judge$ 时做前缀和，暴力计算即可。</p>
+<p>水蓝。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/49thtyo6.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1315">观光公交</a></li>
+</ul>
+<p>复杂思维。</p>
+<p>预处理每个时间点上车上的人数。可知装一个加速器会让当时在车上的人受益。</p>
+<p>每次贪心选受益最大的就是了。选完以后记得重新更新。</p>
+<p>正确性可以保证。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/o3udfam3.png" alt=""></p>
+<hr>
+<hr>
+<h3 id="2456294-Julian-前"><a href="#2456294-Julian-前" class="headerlink" title="$2456294(Julian)$ 前"></a>$2456294(Julian)$ 前</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1083">借教室</a></li>
+</ul>
+<p>简单数据结构。</p>
+<p>租用一段时间相当于在这些时间 $-1$ 。</p>
+<p>如果某个时间点被减到 $0$ 以下，则说明不可行。</p>
+<p>敲一棵线段树即可。复杂度：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/2cd66ha7.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1081">开车旅行</a></li>
+</ul>
+<p>复杂 $dp$ + 复杂倍增优化。</p>
+<p>先配合 $set$ 预处理出在 $i$ 点上，某人（0/1）开车时会去哪。记作 $nxt[i][0/1]$ 。</p>
+<p>设计状态 $arr[0/1][i][j]$ 为某人（0/1）从 $i$ 点出发，开车 $2^j$ 次到达的地方，显然有初始化：</p>
+<script type="math/tex; mode=display">arr[0/1][i][0]=nxt[i][0/1]</script><p>设计状态 $dp[0/1][0/1][i][j]$ 为从 $i$ 点出发，某人（第二维0/1）先开车，总开车 $2^j$ 次的过程中，某人（第一维0/1）行驶的路程，显然有初始化：</p>
+<script type="math/tex; mode=display">dp[start][start][i][0]=dis(i,nxt[i][start])</script><script type="math/tex; mode=display">dp[start\oplus 1][start][i][0]=0</script><p>对于这 $2^k$ 的前半段和后半段是否是同一人开车分类讨论，有：</p>
+<p>当 $j=1$ （即前后两段不同人）：</p>
+<script type="math/tex; mode=display">arr[start][i][1] = arr[start\oplus 1][arr[start][i][0]][0];</script><script type="math/tex; mode=display">dp[start][0][i][1] = dp[start][0][i][0] + dp[start\oplus 1][0][arr[start][i][0]][0];</script><script type="math/tex; mode=display">dp[start][1][i][1] = dp[start][1][i][0] + dp[start\oplus 1][1][arr[start][i][0]][0];</script><p>当 $j!=1$ （前后同人）：</p>
+<script type="math/tex; mode=display">arr[start][i][j] = arr[start][arr[start][i][j - 1]][j - 1];</script><script type="math/tex; mode=display">dp[start][0][i][j] = dp[start][0][i][j - 1] + dp[start][0][arr[start][i][j - 1]][j - 1];</script><script type="math/tex; mode=display">dp[start][1][i][j] = dp[start][1][i][j - 1] + dp[start][1][arr[start][i][j - 1]][j - 1];</script><p>这样我们就处理出了所有的开车方法，询问时将 $j$ 从大到小枚举，逐个累加即可。</p>
+<p>要求对算法灵活运用：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/rupkv5ci.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1084">疫情控制</a></li>
+</ul>
+<p>困难图论。</p>
+<p>要最小化用时，就得二分这个时间，重在 $judge$ 函数。</p>
+<p>先贪心地尽量把军队往根上移，因为根结点不能驻扎军队，所以如果一支军队可以移到根结点以上，则先把它停在根结点的一个儿子上，并且存一些剩余的时间。</p>
+<p>我们称这些儿子为已驻军点。</p>
+<p>再从根往下跑 $dfs$ ，求出根结点下属的哪棵子树还未被切断，处理这些子树根结点到全树的根结点的距离。</p>
+<p>我们称这些根结点为未驻军点。</p>
+<p>贪心地让剩余时间少的已驻军点，移向离根结点距离近的未驻军点。</p>
+<p>若未驻军点都可被移到，则可行，尝试更小的时间。</p>
+<p>实现十分困难。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/78m7dw31.png" alt=""></p>
+<hr>
+<hr>
+<h3 id="2457024-Julian-前"><a href="#2457024-Julian-前" class="headerlink" title="$2457024(Julian)$ 前"></a>$2457024(Julian)$ 前</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1351">联合权值</a></li>
+</ul>
+<p>简单图论。</p>
+<p>两点距离为 $2$ ，说明必然只有一个中间点把他们两个连接。</p>
+<p>那么 $O(n)$ 枚举一下这个中间点，取 $\max$ /求和即可。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/pomcav7f.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1941">飞扬的小鸟</a></li>
+</ul>
+<p>中等 $dp$ + 压维优化。</p>
+<p>设置状态 $dp[i][j]$ 表示在二维平面上达到 $(i,j)$ 所需的最小点击次数<br>。</p>
+<p>有转移 </p>
+<script type="math/tex; mode=display">dp[i][max(M,j+k\cdot up)]=dp[i-1][j]+k</script><p>$i$ 只与上一位有关，滚掉即可。</p>
+<p>摸索到正解要较长时间。形象化：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/7wbbxpgv.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2296">寻找道路</a></li>
+</ul>
+<p>中等图论。</p>
+<p>建反图跑 $dfs$ ，求出能抵达终点的点有哪些，染色。</p>
+<p>建正图，跑只通过已染色点的 $dij$ 即可。</p>
+<p>刷大量图论以掌握反图的灵活运用。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/ga82pr1s.png" alt=""></p>
+<p>指刷题量。</p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2312">解方程</a></li>
+</ul>
+<p>简单数学。</p>
+<p>枚举 $x$ 取值，用秦九韶算法求值判断即可。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/8p74ckws.png" alt=""></p>
+<hr>
+<hr>
+<h3 id="2457389-Julian-前"><a href="#2457389-Julian-前" class="headerlink" title="$2457389(Julian)$ 前"></a>$2457389(Julian)$ 前</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2668">斗地主</a></li>
+</ul>
+<p>复杂搜索。</p>
+<p>先搜顺子，数据不大，暴力枚举可能出现的顺子情况，更改状态往下搜（ $dfs1$ ），搜后复原。</p>
+<p>同时在 $dfs1$ 中调用 $dfs2$ ，其作用为搜索最少出牌次数，传4个参数，代表单牌张数，对子张数，三个头张数，炸弹张数即可。</p>
+<p> $dfs2$ 中除了正常出牌策略外，还可有拆牌选项，即“不消耗出牌次数，将XXX牌型（如：一对）拆成几个XXX（如：两张单）。”</p>
+<p>在 $dfs1$ 过程中更新最小值即可。</p>
+<p>应学会把不等价操作转为等价。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/6le1nlrp.png" alt=""></p>
+<p>指题解。</p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2679">子串</a></li>
+</ul>
+<p>中等 $dp$ + 滚动数组优化。</p>
+<p>设置状态： $dp_{i,j,k,l}$ 表示：“决策到原串的第 $i$ 位，匹配串的第 $j$ 位，已用掉 $k$ 次拆分次数，这个第 $i$ 个数是否（1/0）用来匹配”的方案数。</p>
+<p>有 </p>
+<script type="math/tex; mode=display">dp_{i,j,k,0}=dp_{i-1,j,k,0}+dp_{i-1,j,k,1}</script><script type="math/tex; mode=display">dp_{i,j,k,1}=\begin{cases}0\qquad(A[i]\neq B[j])\\dp_{i-1,j,k-1,0}+dp_{i-1,j-1,k,1}+dp_{i-1,j-1,k-1,1}\qquad (A[i]=B[j])\end{cases}</script><p>滚掉第一维。</p>
+<p>应掌握在 $dp$ 数组下标中设置 $0/1$ 维度，对之分类讨论。</p>
+<p>代码很短。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/wgpsc78y.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2680">运输计划</a></li>
+</ul>
+<p>中等图论 + 中等二分。</p>
+<p>题目要求使最长航线最短，故二分最长航线的长度。</p>
+<p>所有超过这个二分出的长度的航线，说明都需要加速，可以用 $LCA$ 求出某条航线长度。</p>
+<p>对每一条超过的航线做树上差分，若某一条边差分出来的值 = 超过航线的数目。说明这条边被所有超过的航线经过，故这是一条可以加速的边。</p>
+<p>取所有可以加速的边中的最大值来加速，若使所有航线中最长的一条也低于了我们二分出的值，则这是一种可行的方案，尝试更小的长度。</p>
+<p>重在思维和马速，细节不多。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/5qvqieqa.png" alt=""></p>
+<hr>
+<hr>
+<h3 id="2457754-Julian-前"><a href="#2457754-Julian-前" class="headerlink" title="$2457754(Julian)$ 前"></a>$2457754(Julian)$ 前</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1850">换教室</a></li>
+</ul>
+<p>简单图论 + 中等 $dp$ + 中等概率期望。</p>
+<p>结点数少，可 $floyed$ 求两点距离。</p>
+<p>设置状态 $dp_{i,j,k}$ 表示决策到第 $i$ 节课，已用掉 $j$ 次申请机会，这节课是否（0/1）申请时，走过路程的期望。</p>
+<p>另设 C1 指上节课本该在的教室， C2 指这节课本该在的教室， D1 指上节课换去的教室， D2 指这节课换去的教室。</p>
+<p>设 $pr[i]$ 为第 $i$ 节课换成功的概率。</p>
+<p>显然有：</p>
+<script type="math/tex; mode=display">dp_{i,j,0}=\min\begin{cases}dp_{i-1,j,0}+dis(C1,C2)\\dp_{i-1,j,1}+pr_{i-1}\cdot dis(D1,C2)+(1-pr_{i-1})\cdot dis(C1,C2)\end{cases}</script><script type="math/tex; mode=display">dp_{i,j,1}=\min\begin{cases}dp_{i-1,j-1,0}+pr_{i}\cdot dis(C1,D2)+(1-pr_{i})\cdot dis(C1,C2)\\\\dp_{i-1,
+j-1,1}+pr_{i-1}\cdot pr_{i}\cdot dis(D1,D2)+pr_{i}\cdot (1-pr_{i-1})\cdot dis(C1,D2)\\+(1-pr_{i})\cdot pr_{i-1}\cdot dis(D1,C2)+ (1-pr_{i-1})\cdot (1-pr_{i})\cdot dis(C1,C2)\end{cases}</script><p>码量不大。公式别抄错了。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/vplyv08y.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2827">蚯蚓</a></li>
+</ul>
+<p>复杂思维。</p>
+<p>手模发现每一次砍的蚯蚓单调递增。</p>
+<p>维护三个队列，分别装原蚯蚓，切后较长的蚯蚓，切后较短的蚯蚓 。</p>
+<p>每次取三个队列中的队首中最长的一条，取出并根据当前天数修改长度值。切后，将都两段减去一些长度值（表示少成长了这么多天），放入相应队列。如此往复即可。</p>
+<p>重在思路的推导，这题看了题解。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/1ki1uao6.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2831">愤怒的小鸟</a></li>
+</ul>
+<p>中等搜索 + 中等状压 。</p>
+<p>跑 $dfs$ ，参数包括：还剩下多少猪要打，决策到第几头猪，已用了多少抛物线。</p>
+<p>对于每一只猪，若它被之前的某条抛物线经过，则跳过，搜索下一只猪。</p>
+<p>若没有，尝试它可以和哪一只还未打的猪串起来一起打，向下搜索。</p>
+<p>用状压记录每一只猪是否被打掉的状态。</p>
+<p>不需要用到 $M$ 。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/a2y95jpc.png" alt=""></p>
+<hr>
+<hr>
+<h3 id="2458119-Julian-前"><a href="#2458119-Julian-前" class="headerlink" title="$2458119(Julian)$ 前"></a>$2458119(Julian)$ 前</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3953">逛公园</a></li>
+</ul>
+<p>中等图论 + 困难 $dp$ 。</p>
+<p>建正反两图。在正图上跑 $dij$ ，求出 $1$ 号点到其他点的最短路 $dis$ 。</p>
+<p>在反图上跑 $dp$ ，设计状态 $dp[u][k]$ 表示决策到第 $u$ 个点，路径比最短路长 $k$ 的方案。</p>
+<p>有： </p>
+<script type="math/tex; mode=display">dp[u][k]=\sum dp[v][k+(dis[u]-dis[v])-w_{u,v}]</script><p>用记搜实现即可。注意先判环，有 $0$ 环在最短路上则为无限解，可用 $Bellman-Ford$ 解决。</p>
+<p>能通过所有 $hack$ 数据。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/tj1nt6he.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3959">宝藏</a></li>
+</ul>
+<p>中等随机化。</p>
+<p>生成开发顺序排列，以代价作为 $\text{calc}$ 函数返回值，若更优或一定概率下更劣，则在原序列基础上随机交换两个元素，否则 $\text{random_shuffle}$ 生成新排列。</p>
+<p>出正解率极高。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/gvolych0.png" alt=""></p>
+<hr>
+<hr>
+<h3 id="2458484-Julian-前"><a href="#2458484-Julian-前" class="headerlink" title="$2458484(Julian)$ 前"></a>$2458484(Julian)$ 前</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5020">货币系统</a></li>
+</ul>
+<p>简单递推。</p>
+<p>设置 $flag$ 数组存三种值： $0$ —— 未能被凑出的面值， $1$ —— 能被凑出的面值 ， $2$ —— 本来就有的面值。</p>
+<p>枚举当前所有 $flag$ 非零的面值，筛一下后面的面值（改一些面值对应的 $flag$ 为 $1$ ）。有时可以将一个 $2$ 覆盖成 $1$ ，表示这种初始面值是不需要的。</p>
+<p>最后扫一遍 $flag$ 数组，有几个 $2$ 就是需要多少初始面值。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/1t80kunm.png" alt=""></p>
+<hr>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5021">赛道修建</a></li>
+</ul>
+<p>中等图论。</p>
+<p>二分最短的赛道长度。以之为标准跑 $dfs$ 获取路径长度。若某条路径长度大于标准，则可行路++，若小于，则丢进 $set$ 等待匹配。</p>
+<p>在 $set$ 里用 $\text{lower_bound}$ 尽可能多地拼路径，若可行路径 &gt; $M$ ，则尝试更大的 $mid$ 。</p>
+<p>$set$ 改 $multiset$ 也可。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/5c989chi.png" alt=""></p>
+<hr>
+<h3 id="咕咕咕！"><a href="#咕咕咕！" class="headerlink" title="咕咕咕！"></a>咕咕咕！</h3>
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年04月17日 16:07</p>
+        <p>原始链接： <a class="post-url" href="/2021/04/17/NOIP-%E8%BF%87%E5%BE%80%E7%9C%9F%E9%A2%98%E6%B3%9B%E5%81%9A/" title="NOIP 过往真题泛做">https://quest233.github.io/2021/04/17/NOIP-%E8%BF%87%E5%BE%80%E7%9C%9F%E9%A2%98%E6%B3%9B%E5%81%9A/</a></p>
+        <footer>
+            <a href="https://quest233.github.io">
+                <img src="/images/150879.png" alt="quest_2">
+                quest_2
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://quest233.github.io/2021/04/17/NOIP-%E8%BF%87%E5%BE%80%E7%9C%9F%E9%A2%98%E6%B3%9B%E5%81%9A/&title=《NOIP 过往真题泛做》 — quest233的博客&pic=https://quest233.github.ioimages/150879.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://quest233.github.io/2021/04/17/NOIP-%E8%BF%87%E5%BE%80%E7%9C%9F%E9%A2%98%E6%B3%9B%E5%81%9A/&title=《NOIP 过往真题泛做》 — quest233的博客&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://quest233.github.io/2021/04/17/NOIP-%E8%BF%87%E5%BE%80%E7%9C%9F%E9%A2%98%E6%B3%9B%E5%81%9A/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《NOIP 过往真题泛做》 — quest233的博客&url=https://quest233.github.io/2021/04/17/NOIP-%E8%BF%87%E5%BE%80%E7%9C%9F%E9%A2%98%E6%B3%9B%E5%81%9A/&via=https://quest233.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://quest233.github.io/2021/04/17/NOIP-%E8%BF%87%E5%BE%80%E7%9C%9F%E9%A2%98%E6%B3%9B%E5%81%9A/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://quest233.github.io/2021/04/17/NOIP-%E8%BF%87%E5%BE%80%E7%9C%9F%E9%A2%98%E6%B3%9B%E5%81%9A/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/“知识”决定命运/" class="color4">“知识”决定命运</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%A3%B0%E6%98%8E%EF%BC%9A%E6%9C%AC%E6%96%87%E4%B8%AD%E6%89%80%E6%9C%89%E5%BC%95%E7%94%A8%E7%9A%86%E4%B8%BA%E6%96%AD%E7%AB%A0%E5%8F%96%E4%B9%89%EF%BC%8C%E8%AF%B7%E5%8B%BF%E6%97%A0%E6%9C%89%E7%AB%AF%E8%81%94%E6%83%B3%EF%BC%81"><span class="post-toc-text">声明：本文中所有引用皆为断章取义，请勿无有端联想！</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2451545-Julian-%E5%89%8D%EF%BC%88fixed-again%EF%BC%89"><span class="post-toc-text">$2451545 (Julian)$ 前（fixed again）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2452276-Julian-%E5%89%8D"><span class="post-toc-text">$2452276(Julian)$ 前</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2453006-Julian-%E5%89%8D"><span class="post-toc-text">$2453006(Julian)$ 前</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2453737-Julian-%E5%89%8D"><span class="post-toc-text">$2453737(Julian)$ 前</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2454467-Julian-%E5%89%8D"><span class="post-toc-text">$2454467(Julian)$ 前</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2455198-Julian-%E5%89%8D"><span class="post-toc-text">$2455198(Julian)$ 前</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2455563-Julian-%E5%89%8D"><span class="post-toc-text">$2455563(Julian)$ 前</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2455928-Julian-%E5%89%8D"><span class="post-toc-text">$2455928(Julian)$ 前</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2456294-Julian-%E5%89%8D"><span class="post-toc-text">$2456294(Julian)$ 前</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2457024-Julian-%E5%89%8D"><span class="post-toc-text">$2457024(Julian)$ 前</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2457389-Julian-%E5%89%8D"><span class="post-toc-text">$2457389(Julian)$ 前</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2457754-Julian-%E5%89%8D"><span class="post-toc-text">$2457754(Julian)$ 前</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2458119-Julian-%E5%89%8D"><span class="post-toc-text">$2458119(Julian)$ 前</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2458484-Julian-%E5%89%8D"><span class="post-toc-text">$2458484(Julian)$ 前</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%92%95%E5%92%95%E5%92%95%EF%BC%81"><span class="post-toc-text">咕咕咕！</span></a>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/04/17/%E6%89%8D%E9%AB%98%E4%B8%80%EF%BC%8C%E5%B0%B1%E5%B7%B2%E7%BB%8F%E8%8E%B7%E5%BE%97%E5%9B%BE%E7%81%B5%E5%A5%96%EF%BC%8C%E4%BB%96%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E5%88%B0%E7%9A%84/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          才高一，就已经获得图灵奖，他是怎么做到的
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/04/17/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%85%AC%E5%BC%8F%E6%9F%A5%E8%AF%A2-%E6%9D%BF%E5%AD%90%E6%95%B4%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">多项式公式查询+板子整理</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+          <div id="uyan_frame"></div>
+  <script src="http://v2.uyan.cc/code/uyan.js?uid=true"></script>
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2021 quest_2<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://quest233.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/solutions/" style="font-size: 20px;">solutions</a> <a href="/tags/water/" style="font-size: 10px;">water</a> <a href="/tags/%E2%80%9C%E7%9F%A5%E8%AF%86%E2%80%9D%E5%86%B3%E5%AE%9A%E5%91%BD%E8%BF%90/" style="font-size: 15px;">“知识”决定命运</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/2021/04/17/About/#more">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/solutions/" style="font-size: 20px;">solutions</a> <a href="/tags/water/" style="font-size: 10px;">water</a> <a href="/tags/%E2%80%9C%E7%9F%A5%E8%AF%86%E2%80%9D%E5%86%B3%E5%AE%9A%E5%91%BD%E8%BF%90/" style="font-size: 15px;">“知识”决定命运</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

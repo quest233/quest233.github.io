@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="referrer" content="no-referrer" />
+  
+  <title>浅谈简单小数学题 | quest233的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="quest_2" />
+  
+  <meta name="description" content="~~数论小白，在线挨打~~ 很难想象笔者在 48h 之前对这些艰涩的数论名词还是一无所知。然而在两天的探（zhua）索（ba）之后，我也不禁感叹数论的美（e）妙（xin）。 扩 展 欧 几 里 得($\mathtt{exgcd}$)诸位读者一定对 $\gcd$ 毫不陌生，这是一种递归（或者不递归？）求最大公约数的方法，其核心在于 $\gcd(a,b)&#x3D;\gcd(b, a\bmod b)$ 而 $\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈简单小数学题">
+<meta property="og:url" content="https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E7%AE%80%E5%8D%95%E6%95%B0%E5%AD%A6/index.html">
+<meta property="og:site_name" content="quest233的博客">
+<meta property="og:description" content="~~数论小白，在线挨打~~ 很难想象笔者在 48h 之前对这些艰涩的数论名词还是一无所知。然而在两天的探（zhua）索（ba）之后，我也不禁感叹数论的美（e）妙（xin）。 扩 展 欧 几 里 得($\mathtt{exgcd}$)诸位读者一定对 $\gcd$ 毫不陌生，这是一种递归（或者不递归？）求最大公约数的方法，其核心在于 $\gcd(a,b)&#x3D;\gcd(b, a\bmod b)$ 而 $\">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-17T05:34:21.000Z">
+<meta property="article:modified_time" content="2021-04-19T03:33:13.388Z">
+<meta property="article:author" content="quest_2">
+<meta property="article:tag" content="“知识”决定命运">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="images/62224.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">quest_2&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/2021/04/17/About/#more">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/150879.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        quest_2&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        “知识”决定命运
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-浅谈简单数学" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      浅谈简单小数学题
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-04-17
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p><strong><del>~~数论小白，在线挨打</del>~~</strong></p>
+<p>很难想象笔者在 48h 之前对这些艰涩的数论名词还是一无所知。然而在两天的探（zhua）索（ba）之后，我也不禁感叹数论的美（e）妙（xin）。</p>
+<h3 id="扩-展-欧-几-里-得-mathtt-exgcd"><a href="#扩-展-欧-几-里-得-mathtt-exgcd" class="headerlink" title="扩 展 欧 几 里 得($\mathtt{exgcd}$)"></a>扩 展 欧 几 里 得($\mathtt{exgcd}$)</h3><p>诸位读者一定对 $\gcd$ 毫不陌生，这是一种递归（或者不递归？）求<strong>最大公约数</strong>的方法，其核心在于 $\gcd(a,b)=\gcd(b, a\bmod b)$ 而 $\mathtt{exgcd}$ 却与之略有提升，它还是用于求解<strong>同余方程</strong> $ax+by=\gcd(a,b)$ 的一种工具。</p>
+<h4 id="实现？-："><a href="#实现？-：" class="headerlink" title="实现？ ："></a>实现？ ：</h4><ol>
+<li>对于我们手上的一个方程，造一个拥有两个参数 $a$ ,$b$ 的函数 $\mathtt{exgcd}$ 层层调用，<del>老千层饼了</del>，递归时参数的改动与 $\gcd$ 相似，都是以 $b$ 成为新 $a$ ，以 $a \bmod b$ 成为新 $b$ 。</li>
+<li>在每一层的递归结束后，还不能结束，我们有一对全局变量 $x,y$ ，它们的存在意义是作为这个方程的最终解。将 $x$ 更改成原来的 $y$ ，将 $y$ 更改成 $x- \left\lfloor\dfrac{a}{b}\right\rfloor * y $ </li>
+</ol>
+<h6 id="（附）有关-2-中-x-y-变量变化的原因？-："><a href="#（附）有关-2-中-x-y-变量变化的原因？-：" class="headerlink" title="（附）有关 2 中 $x,y$ 变量变化的原因？ ："></a>（附）有关 2 中 $x,y$ 变量变化的原因？ ：</h6><p>不妨设新的 $x$ 为 $ x’$ ，新的 $y$ 为 $ y’$ ；</p>
+<p>则有 $ax+by=bx’+(a\bmod b)y’$ ；</p>
+<p>也就是 $ax+by=bx’+(a-b * \left\lfloor\dfrac{a}{b}\right\rfloor)y’$ ；</p>
+<p>一波运算即得 $ax+by=ay’+b(x’-\left\lfloor\dfrac{a}{b}\right\rfloor * y’) $；</p>
+<p>所以 $ x’$ 可以转化成 $y$ ， $ y’$ 可转化为 $x-\left\lfloor\dfrac{a}{b}\right\rfloor * y$。 $\Box$</p>
+<ol>
+<li>我们继续。递归是一定要停下来的，因为只要道路不断延伸…………<del>（雾）</del>。我们要为他设定一个终点，当 $b=0$ 的时候，此时如果再做下去，就会出现 $a \div 0$ 的 RE 情况，观察此时我们手上的方程式 $ax+0 <em> y = \gcd (a,b)$ ，<em>*一定</em></em>有一个极小解 $x=1,y=0$ ，走到这一步，我们马上改变 $x,y$ ，然后 return 走人。</li>
+</ol>
+<h6 id="这里放上我们-mathtt-exgcd-的函数代码～："><a href="#这里放上我们-mathtt-exgcd-的函数代码～：" class="headerlink" title="这里放上我们 $\mathtt{exgcd}$ 的函数代码～："></a>这里放上我们 $\mathtt{exgcd}$ 的函数代码～：</h6><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x, y;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(b==<span class="number">0</span>)</span><br><span class="line">     &#123;</span><br><span class="line">         x = <span class="number">1</span>;</span><br><span class="line">         y = <span class="number">0</span>;</span><br><span class="line">         <span class="keyword">return</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="built_in">exgcd</span>(b, a % b);<span class="comment">//递归</span></span><br><span class="line">     <span class="keyword">int</span> tmp = x;</span><br><span class="line">     x = y;</span><br><span class="line">     y = tmp - (a / b) * y;<span class="comment">//更改x,y的值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="乘-法-逆-元-mathtt-inv-："><a href="#乘-法-逆-元-mathtt-inv-：" class="headerlink" title="乘 法 逆 元($\mathtt{inv}$)："></a>乘 法 逆 元($\mathtt{inv}$)：</h3><p>若有 $ ax \equiv1 \bmod b$（ $\equiv $ ，即同余）（要求 $a,b$ 互质) ， 则称 <strong>$a$ 关于 1 模 $b$ 的乘法逆元为 $x$</strong> 。也可表示为 $ax≡1 \pmod b$ 。对于一个数关于 1 模 $b$ 的乘法逆元，我们还有另一个通俗的名字“倒数”。</p>
+<h4 id="实现？"><a href="#实现？" class="headerlink" title="实现？ :"></a>实现？ :</h4><p>这里给出两种求乘法逆元的方法，分别适用不同的情况：</p>
+<h4 id="mathtt-exgcd-法："><a href="#mathtt-exgcd-法：" class="headerlink" title="$\mathtt{exgcd}$法："></a>$\mathtt{exgcd}$法：</h4><p><strong>适用情形</strong>：不管模数是不是质数，较适用于对单个数的查询（言外之意使用面更广，但复杂度不够优）</p>
+<p>前文提到，$\mathtt{exgcd}$ 其作用是求解<strong>同余方程</strong>，它形如 $ax+by=\gcd(a,b)$ ，可我们怎么把求乘法逆元的式子转化成同余方程的形式呢？我们考虑稍加变换。观察这个式子：</p>
+<script type="math/tex; mode=display">ax≡1\pmod b</script><p>我们可以将同余化为等号，用我们的转化带余除法的传统艺能：</p>
+<script type="math/tex; mode=display">ax=by+1</script><p>再稍加移项～：</p>
+<script type="math/tex; mode=display">ax+(-b)y=1</script><p>啊这，这不是同余方程？那我们对其求解，其答案中的 $x$ 不就是一个满足这个方程的 $a$ 关于 1 模 $f$ 的乘法逆元嘛？</p>
+<h6 id="芜湖，起飞！上代码："><a href="#芜湖，起飞！上代码：" class="headerlink" title="芜湖，起飞！上代码："></a>芜湖，起飞！上代码：</h6><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inv</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!b)</span><br><span class="line">    &#123;</span><br><span class="line">        x = <span class="number">1</span>;</span><br><span class="line">        y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">exgcd</span>(b, a % b);</span><br><span class="line">    <span class="keyword">int</span> tmp = x;</span><br><span class="line">    x = y;</span><br><span class="line">    y = tmp - (a / b) * y;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, k;</span><br><span class="line">    cin &gt;&gt; n  &gt;&gt; k;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        x = y = <span class="number">0</span>;</span><br><span class="line">      	<span class="built_in">inv</span>(i, k);</span><br><span class="line">        cout &lt;&lt; (x%k+k)%k &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="递推法："><a href="#递推法：" class="headerlink" title="递推法："></a>递推法：</h4><p><strong>适用情形</strong>：模数必须是质数，使用于需要求多个数的乘法逆元的情况（换言之就是限制多但是效率快，可以达到<strong>线性</strong>）</p>
+<p>所谓递推，公式求出来，代码就是几行的事，重在公式的推导。来看原式：</p>
+<script type="math/tex; mode=display">ax≡1\pmod b</script><p>我们设这个 $b=k * i+r$ ，也就是设 $k=\left\lfloor\dfrac{b}{i}\right\rfloor$ ， $r=b \bmod i$ 。</p>
+<script type="math/tex; mode=display">k * i+r≡0 \pmod b</script><p>左右同乘 $\dfrac{1}{i * r}$ 得：</p>
+<script type="math/tex; mode=display">\dfrac{k}{r}+\dfrac{1}{i}≡0 \pmod b</script><p>稍加移项即得：</p>
+<script type="math/tex; mode=display">\dfrac{1}{i}≡b-\dfrac{k}{r} \pmod b</script><p>也就是：</p>
+<script type="math/tex; mode=display">i^{-1}≡b-\left\lfloor\dfrac{b}{i}\right\rfloor *  (b\bmod i)^{-1}</script><p>啊这，左边这玩意不就是 $i$ 关于 $1 \bmod b$ 的逆元嘛？有被爽到。而右边那些玩意完全都是已知的。诸位可能疑问的，估计就是最后那个 $(b\bmod i)^{-1}$ 为什么已知，然而 $b\bmod i$ 必然小于 $i$，我们的递推又是从小到大推，所以……</p>
+<h6 id="女少-口阿！上代码："><a href="#女少-口阿！上代码：" class="headerlink" title="女少 口阿！上代码："></a>女少 口阿！上代码：</h6><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n,p;</span><br><span class="line">        cin &gt;&gt; n &gt;&gt; p;</span><br><span class="line">        inv[<span class="number">1</span>]=<span class="number">1</span>;<span class="comment">//inv即为逆元之意</span></span><br><span class="line">        cout&lt;&lt;<span class="number">1</span>&lt;&lt;endl;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">                inv[i] = p - (p / i) * inv[p % i]%p;<span class="comment">//递推公式</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, inv[i]);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="矩-阵-乘-法"><a href="#矩-阵-乘-法" class="headerlink" title="矩 阵 乘 法"></a>矩 阵 乘 法</h3><h4 id="矩阵？乘法？"><a href="#矩阵？乘法？" class="headerlink" title="矩阵？乘法？"></a>矩阵？乘法？</h4><p>定义：我们手上有两个矩阵如下:</p>
+<script type="math/tex; mode=display">\begin{pmatrix}a1&a2\\a3&a4\end{pmatrix} * \begin{pmatrix}b1&b2\\b3&b4\end{pmatrix}</script><p>我们矩阵乘法的规则是“对位相乘”，积矩阵第 $i$ 行第 $j$ 列的值等于第一个乘数矩阵第 $i$ 行第 $k$ 列与第二个乘数矩阵第 $k$ 行第 $j$ 列的乘积的累加（其中$1\le k \le n$）</p>
+<p>所以上边的运算结果就是$\begin{pmatrix}a1 <em> a1+a2 </em> b3&amp;a1 <em> b2+a2 </em> b4\\a3 <em> b1+a4 </em> b3&amp;a3 <em> b2+a4 </em> b4\end{pmatrix}$  ！！</p>
+<h4 id="学这东西有什么用呐？"><a href="#学这东西有什么用呐？" class="headerlink" title="学这东西有什么用呐？"></a>学这东西有什么用呐？</h4><p>一个非常重要的作用就是优化（加速）递推，一般能将线性的递推优化到 $\log(n)$级别，极度实用。</p>
+<p>要发挥这一作用，我们可以定义一种名为 $matrix$ 的结构体，里边存的是个二维数组 $num$ ，这就是矩阵里的值了。我们可以为矩阵乘法重载运算符（笔者觉得很香），代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">matrix <span class="keyword">operator</span>*(matrix x)</span><br><span class="line">        &#123;</span><br><span class="line">                matrix c;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">                &#123;</span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++)</span><br><span class="line">                        &#123;</span><br><span class="line">                                c.num[i][j] = <span class="number">0</span>;</span><br><span class="line">                                <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= n; k++)</span><br><span class="line">                                &#123;</span><br><span class="line">                                        c.num[i][j] = (c.num[i][j] + (num[i][k] * x.num[k][j]) % MOD) % MOD;</span><br><span class="line">                                &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> c;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure><br>不妨参照上方定义略加理解，当板子背亦可。</p>
+<p>但只有子弹没有枪是不行的，我们需要一个高效的方法帮助递推转移。矩阵优化的基本方略是每次将原来的状态存入矩阵，我们称之为 $ORZ$ ，每次转移时，将 $ORZ$ 乘上一个转移矩阵，我们称之为 $RBQ$ <del>（因为他要被用好多次）</del>，使新得的矩阵成为<strong>下一个状态</strong>，以起到转移状态的目的。如下例是一个快速求斐波那契的矩阵加速：</p>
+<p>$\begin{pmatrix}f(n-1)&amp;f(n-2)\\0&amp;0\end{pmatrix}$   这是 $ORZ$ ，初始矩阵。</p>
+<p>$\begin{pmatrix}1&amp;1\\1&amp;0\end{pmatrix}$    这是 $RBQ$ ，转移矩阵。</p>
+<p>$\begin{pmatrix}f(n-1)+f(n-2)&amp;f(n-1)\\0&amp;0\end{pmatrix}$ 这是积，也能作为下一个状态。</p>
+<p>因为矩阵乘法是<strong>满足结合律</strong>的，原因我也不懂 <del>（逃</del> ，所以如果我们要多次乘以这一矩阵，就可以用快速幂优化累乘。矩阵的快速幂如下代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">matrix <span class="title">quick_pow</span><span class="params">(matrix b, <span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (k == <span class="number">1</span>)</span><br><span class="line">                <span class="keyword">return</span> b;</span><br><span class="line">        matrix tmp = <span class="built_in">quick_pow</span>(b, k / <span class="number">2</span>);</span><br><span class="line">	<span class="comment">//笔者尤其喜欢递归快速幂的写法，毕竟出题人不会恶心到要让人爆栈（？）</span></span><br><span class="line">        <span class="keyword">if</span> (k % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">return</span> tmp * tmp;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">                <span class="keyword">return</span> tmp * tmp * b;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//因为我们重载了运算符，所以快速幂变得极为方便</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>可是，斐波那契毕竟是数论弃子，递推中的弟弟，要是状态一复杂，推导转移方法将会极考验思维。</p>
+<h6 id="笔者在此分享自己推导转移矩阵的方法："><a href="#笔者在此分享自己推导转移矩阵的方法：" class="headerlink" title="笔者在此分享自己推导转移矩阵的方法："></a>笔者在此分享自己推导转移矩阵的方法：</h6><p>假设我们已知有一种函数 $A(x)$ ，符合 $A(0) = 1 , A(1) = 1 , A(N) = X <em> A(N - 1) + Y </em> A(N - 2)(N \ge 2)$ ，又有函数 $S(x)$ ，符合 $S(N) = A(0)^2 +A(1)^2+……+A(n)^2$ ，给定一个数 $n$，要求 $S(n)$ 。 </p>
+<ol>
+<li>先将递推过程中需要的量写在初始矩阵 $ORZ$ 的第一行（依据个人喜好和方便确定是那些量），如下<script type="math/tex; mode=display">S(n-1)\quad A(n-1)^2\quad A(n-2)^2\quad A(n-1)A(n-2)</script></li>
+<li>对于每一项，按照递推式决定这一项在转移后需要进行怎样的变换，需要哪些“原材料”（这种变换要求只使用我们写下的那行数里的元素）。我们以第一项 $S(n-1)$ 为例，对于 $S(n-1)$ ，他要成为 $S(n)$ ，变化方法即：<script type="math/tex; mode=display">S(n-1)+(X * A(N-1)+Y * A(N-2))^2</script>需要1个 $S(n-1)$ ，$X^2$ 个 $A(N-1)^2$ ， $Y^2$ 个     $A(N-2)^2$ ， $2XY$ 个 $A(n-1)A(n-2)$。</li>
+</ol>
+<p>后面几项都可如此推出。</p>
+<ol>
+<li>将每一项的变换方法得知后，对于第 $i$ 项，将每一个元素在造下个状态时所需的个数从上向下排在转移矩阵 $RBQ$ 的第 $i$ 列。为什么可以对于一个元素，只讨论他自己是怎么转移，而不用考虑其他项呢？原因显然，毕竟第二个乘数 $RBQ$ 的各列之间互不影响，这一引论可以手推/肉眼观察法得出。对于那些矩阵里空着的位置，我们用 0 补全。得出的矩阵就像这样：</li>
+</ol>
+<script type="math/tex; mode=display">\begin{pmatrix}1&0&0&0\\X^2&X^2&1&x\\Y^2&Y^2&0&0\\2XY&2XY&0&Y\end{pmatrix}</script><ol>
+<li>来看我们的 $ORZ$ ，刚才第 1 行我们仅仅只是填上了几个字母，但他里面的初始状态究竟是什么，还得咱自己去初始化（具体是什么值题干会给），比如这一题，他的初始矩阵就是:<script type="math/tex; mode=display">\begin{pmatrix}2&1&1&1\end{pmatrix}</script></li>
+</ol>
+<h6 id="刚才提到的那道递推题的高清无码代码-avi："><a href="#刚才提到的那道递推题的高清无码代码-avi：" class="headerlink" title="刚才提到的那道递推题的高清无码代码.avi："></a>刚才提到的那道递推题的高清无码代码.avi：</h6><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> M = <span class="number">10007</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> n = <span class="number">4</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">matrix</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> num[<span class="number">17</span>][<span class="number">17</span>];</span><br><span class="line">    matrix <span class="keyword">operator</span> * (<span class="keyword">const</span> matrix x) <span class="keyword">const</span></span><br><span class="line">    &#123;</span><br><span class="line">        matrix c;</span><br><span class="line">        <span class="built_in">memset</span>(c.num, <span class="number">0</span>, <span class="built_in"><span class="keyword">sizeof</span></span>(c.num));</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= n; k++)</span><br><span class="line">                &#123;</span><br><span class="line">                    c.num[i][j] = (c.num[i][j] + (num[i][k] * x.num[k][j]) % M) % M;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;<span class="comment">//重载运算符*</span></span><br><span class="line">&#125; ORZ, RBQ;</span><br><span class="line"><span class="function">matrix <span class="title">quick_pow</span><span class="params">(matrix x, <span class="keyword">int</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (p == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    matrix tmp = <span class="built_in">quick_pow</span>(x, p / <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">if</span> (p % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> tmp * tmp;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> tmp * tmp * x;</span><br><span class="line">&#125;<span class="comment">//矩阵快速幂</span></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N, x, y;</span><br><span class="line">    <span class="keyword">while</span> (~<span class="built_in">scanf</span>(<span class="string">&quot;%lld%lld%lld&quot;</span>, &amp;N, &amp;x, &amp;y))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">memset</span>(RBQ.num, <span class="number">0</span>, <span class="built_in"><span class="keyword">sizeof</span></span>(RBQ.num));</span><br><span class="line">        ORZ.num[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">2</span>;</span><br><span class="line">        ORZ.num[<span class="number">1</span>][<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line">        ORZ.num[<span class="number">1</span>][<span class="number">3</span>] = <span class="number">1</span>;</span><br><span class="line">        ORZ.num[<span class="number">1</span>][<span class="number">4</span>] = <span class="number">1</span>;</span><br><span class="line">        RBQ.num[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        RBQ.num[<span class="number">2</span>][<span class="number">1</span>] = x * x%M;</span><br><span class="line">        RBQ.num[<span class="number">3</span>][<span class="number">1</span>] = y * y%M;</span><br><span class="line">        RBQ.num[<span class="number">4</span>][<span class="number">1</span>] = <span class="number">2</span> * x * y%M;</span><br><span class="line">        RBQ.num[<span class="number">2</span>][<span class="number">2</span>] = x * x%M;</span><br><span class="line">        RBQ.num[<span class="number">3</span>][<span class="number">2</span>] = y * y%M;</span><br><span class="line">        RBQ.num[<span class="number">4</span>][<span class="number">2</span>] = <span class="number">2</span> * x * y%M;</span><br><span class="line">        RBQ.num[<span class="number">2</span>][<span class="number">3</span>] = <span class="number">1</span>;</span><br><span class="line">        RBQ.num[<span class="number">2</span>][<span class="number">4</span>] = x%M;</span><br><span class="line">        RBQ.num[<span class="number">4</span>][<span class="number">4</span>] = y%M;</span><br><span class="line">        <span class="comment">//初始化，有被爽到                             </span></span><br><span class="line">        matrix ans = ORZ * <span class="built_in">quick_pow</span>(RBQ, N<span class="number">-1</span>);</span><br><span class="line">        cout &lt;&lt; ans.num[<span class="number">1</span>][<span class="number">1</span>] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="欧-拉-函-数（-varphi-）"><a href="#欧-拉-函-数（-varphi-）" class="headerlink" title="欧 拉 函 数（ $\varphi$ ）"></a>欧 拉 函 数（ $\varphi$ ）</h3><h4 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h4><p>我们定义 $\varphi(d)$ 代表着 $d$ 以内的与 $d$ 互质的数的个数，例如 $\varphi(6)=2$ ，因为 6 之内有 1,5 两个数与它互质。特别的，我们有 $\varphi(1)=1$ 。</p>
+<h4 id="这玩意有好多好多奇奇怪怪的性质："><a href="#这玩意有好多好多奇奇怪怪的性质：" class="headerlink" title="这玩意有好多好多奇奇怪怪的性质："></a>这玩意有好多好多奇奇怪怪的性质：</h4><h6 id="性质0："><a href="#性质0：" class="headerlink" title="性质0："></a>性质0：</h6><p>对于 $n$ 的每个因数 $i$ ，所有 $\varphi(i)$ 之和等于 $n$<br>（证明？观察归纳法（<del>雾</del>））</p>
+<h6 id="性质0-5："><a href="#性质0-5：" class="headerlink" title="性质0.5："></a>性质0.5：</h6><p>欧拉函数是积性函数，即有 $\varphi(m\cdot n)=\varphi(m)\cdot \varphi(n)$ 。</p>
+<h6 id="性质1：（终于来了个够格的性质）"><a href="#性质1：（终于来了个够格的性质）" class="headerlink" title="性质1：（终于来了个够格的性质）"></a>性质1：（终于来了个够格的性质）</h6><p>对于一个质数 $x$ ，$\varphi(x)=x-1$ （毕竟质数以下的所有数都不得不和他互质/kel）。</p>
+<h6 id="性质2："><a href="#性质2：" class="headerlink" title="性质2："></a>性质2：</h6><p>对于一个次方数 $p^k$ （指一个质数 $p$ 的 $k$ 次方的结果，我自己编的QWQ） ，因为他充其量质因子只有 $p$ 一个，所以与他不互质的数只有 $\left\{p,2p,3p,\dots,p^{k-1}p\right\}$ 这里 $p^{k-1}$  个 $p$ 的倍数，故有 $\varphi(p^k)=p^k-p^{k-1}$ ，提一个 $p^k$ 后稍加变形就有了下面的式子：</p>
+<script type="math/tex; mode=display">\varphi(p^k)=p^k\cdot\dfrac{p-1}{p}</script><p>（可稍加理解，也可以当结论记）</p>
+<h6 id="性质3："><a href="#性质3：" class="headerlink" title="性质3："></a>性质3：</h6><p>对于任意一个数 $a$ ，都能写作 $a=p_1^{k _ 1}\cdot p _ 2^{k _ 2}  \cdot p _ 3^{k _ 3} \cdots $ 的次方数相乘的形式（类比分解质因式的短除法？），也就是 $a= {\textstyle \prod_{i=1}^{n}}p _ i^{k _ i}$ ，又因为性质0.5，欧拉函数是积性函数，所以 $\varphi(a)= {\textstyle \prod_{i=1}^{n}} \varphi(p _ i^{k _ i})$ ，用性质2又可以把 $\varphi(p  _i^{k _ i})$ 变形成 $p_i^{k_i}\cdot\dfrac{p_i-1}{p _ i}$ ，那么我们就有：</p>
+<script type="math/tex; mode=display">\varphi(a)=\prod_{i=1}^{n} p_i^{k_i}\cdot\prod_{i=1}^{n}\dfrac{p_i-1}{p_i}</script><p>还记得我们之前 $a$ 是怎么表示的嘛？是了， $a= {\textstyle \prod_{i=1}^{n}}p_i^{k_i}$ 。发现什么，我们可以把 $a$ 代入我们推出的式子！也就是说！！！</p>
+<script type="math/tex; mode=display">\varphi(a)=a\cdot\prod_{i=1}^{n}\dfrac{p_i-1}{p_i}</script><h4 id="怎么求-varphi"><a href="#怎么求-varphi" class="headerlink" title="怎么求 $\varphi$ :"></a>怎么求 $\varphi$ :</h4><p>和 $\mathtt{exgcd}$ 一样，求 $\varphi$ 也有两种方法，下面分别给出：</p>
+<h6 id="单点求-varphi"><a href="#单点求-varphi" class="headerlink" title="单点求 $\varphi$:"></a>单点求 $\varphi$:</h6><p><strong>适用情形</strong>：所求数较少，对时间要求高（因为这是一个 $O(\sqrt{n})$ 的做法）。</p>
+<p><strong>做法</strong>：依据我们已知的性质3可知，一个数 $a$ 不管他是什么，都满足 $\varphi(a)=a\cdot\textstyle\prod_{i=1}^{n}\dfrac{p_i-1}{p_i}$ ，其中 $p_i$ 是 $a$ 的质因子。那我们就根据这一性质，初始化一个 $ans=a$ ,像线性筛素数一样从1枚举到 $\sqrt{a}$ ，找到每一个质因子，累乘上 $\dfrac{p_i-1}{p_i}$ 。</p>
+<p>为了防止这个 $a$ 本身是质数，导致枚举过程中一次也没更新 $ans$ ，结果返回了错误答案 $ans=a$ ，我们运用性质1，将其修改为 $ans * \dfrac{p_i-1}{p_i}$ ，最后得到 $ans=a-1$ 。</p>
+<h6 id="上代码～："><a href="#上代码～：" class="headerlink" title="上代码～："></a>上代码～：</h6><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">phi</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = n, m = <span class="built_in">sqrt</span>(n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= m; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (n % i == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            ans = ans / i * (i - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">while</span> (n % i == <span class="number">0</span>)</span><br><span class="line">                n /= i;</span><br><span class="line"> <span class="comment">//枚举质因子，之后除去该因子，避免这个因子被多次统计</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (n &gt;= <span class="number">2</span>)</span><br><span class="line">        ans = ans / n * (n - <span class="number">1</span>);</span><br><span class="line">      <span class="comment">//特殊处理</span></span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="线性筛-varphi-："><a href="#线性筛-varphi-：" class="headerlink" title="线性筛 $\varphi$ ："></a>线性筛 $\varphi$ ：</h6><p><strong>适用情形</strong>：所求数较多，多次 $O(\sqrt{n})$ 复杂度不如单次 $O(n)$ 时。</p>
+<p><strong>做法</strong>：从2到 $n$ 跑循环，找到未 $vis$ 的一个数 $i$ ，则他是质数，将其加入质数表 $prime$ ，将 $\varphi(i)$ 标为 $i-1$ （性质1）。</p>
+<p>再枚举倍数 $j$ ，将这个质数 $i$ 的 $j$ 倍标记为合数，也就是把 $vis$ 标记成1，枚举当前质数表内质数，<strong>如果手上这个合数不是一个质数的倍数，那这个合数和这个质数就只能互质</strong>。</p>
+<p>我们干脆多做点事，求一下他们积的 $\varphi$ 。</p>
+<p>已知两个互质数求他们的积的 $\varphi$ ？？？想到了什么，性质0.5！！！ 记得吗？ $\varphi(m\cdot n)=\varphi(m)\cdot \varphi(n)$ ，那么我们就有 $\varphi(i\cdot prime_j)=\varphi(i)\cdot \varphi(prime_j)$ ！！！</p>
+<p>那不互质怎么办？我们提到，不互质，就只能是倍数关系。要是倍数关系的话，手上的这个合数根本没有新质因子增添进来。那么我们可以运用性质3，<br>$a\cdot\textstyle\prod_{i=1}^{n}\dfrac{p_i-1}{p_i}$ 里的 $i$ 取哪些值不会变（因为质因子不变多），只是前面这个 $a$ 乘了 $prime_j$，这个式子在原先 $\varphi(i)$ 的基础上乘上了 $prime_j$ ，这就产生了新的 $\varphi(i\cdot prime_j)=\varphi(i)\cdot prime_j$ ！！！</p>
+<p>注意特判 $\varphi(1)=1$ ！！！！！</p>
+<h6 id="话不多说，上代码～："><a href="#话不多说，上代码～：" class="headerlink" title="话不多说，上代码～："></a>话不多说，上代码～：</h6><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">phi</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    phi[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= <span class="number">1000007</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!vis[i])</span><br><span class="line">        &#123;</span><br><span class="line">            prime[++cntp] = i;</span><br><span class="line">            phi[i] = i - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; prime[j] &amp;&amp; i * prime[j] &lt;= <span class="number">1000007</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            vis[i * prime[j]] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (!(i % prime[j])) <span class="comment">//case 1：倍数关系</span></span><br><span class="line">            &#123;</span><br><span class="line">                phi[i * prime[j]] = phi[i] * prime[j];</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="comment">//case 2:互质关系</span></span><br><span class="line">                phi[i * prime[j]] = phi[i] * phi[prime[j]];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="扩-展-欧-拉-定-理"><a href="#扩-展-欧-拉-定-理" class="headerlink" title="扩 展 欧 拉 定 理"></a>扩 展 欧 拉 定 理</h3><p>在学扩展之前，这里先提一下欧拉定理来引入主题（<del>工具人</del>）。欧拉定理实则无比简洁，内容如下：</p>
+<script type="math/tex; mode=display">a^{\varphi(k)}≡1 \pmod k</script><p>（这里要求 $a,k$ 互质，证明极其麻烦，记结论即可）</p>
+<p>还有个叫费马小定理的，写的是 $a^{k-1}≡1 \pmod k $ ，这里要求的 $k$ 是质数。看出点什么了吗，是呐，费马小定理就是欧拉定理的一种特殊情况，在 $k$ 是质数这种情况下， $\varphi(k)$ 也就成了 $k-1$ 。</p>
+<p>然而这并不是今天的重点，我们还是得请出今天的主角——扩展欧拉定理！</p>
+<p>我们先来看看这个定理长什么样~</p>
+<script type="math/tex; mode=display">a^b≡\begin{cases}a^{b \bmod \varphi(m)}& (\gcd(a,m)=1)\\a^b&(b<\varphi(m))\\a^{(b \bmod \varphi(m))+\varphi(m)}&(b\ge\varphi(m)) \end{cases}\pmod m</script><p>其中第一行的条件是 $a,b$ 互质，第二、三行则无须互质，这里的每个算式都是在 $\mod m$ 意义下的。</p>
+<h4 id="我们这里尝试推导第三个式子（不感兴趣的读者可自行跳过）："><a href="#我们这里尝试推导第三个式子（不感兴趣的读者可自行跳过）：" class="headerlink" title="我们这里尝试推导第三个式子（不感兴趣的读者可自行跳过）："></a>我们这里尝试推导第三个式子（不感兴趣的读者可自行跳过）：</h4><p>先来考虑一个质数 $p$ 。</p>
+<p>我们设有一个 $m=s\cdot p^r$ ，并满足 $\gcd(s,p)=1$ 。（设，都可以设，只要合理）</p>
+<p>就有 $p^{\varphi(s)}≡1\pmod s$ （这是上文提到的欧拉定理），又依据 $m=s\cdot p^r$ 且 $\gcd(s,p)=1$ ，知道了 $m$ 必是 $s$ 的倍数，根据欧拉函数的积性（性质0.5），可知 $\varphi(m)$ 必是 $\varphi(s)$ 的倍数，那让同余方程的左边再乘上若干个 $p^{\varphi(s)}$ ，把 $p$ 的指数补成 $\varphi(m)$ ，右边再乘上若干个1，又有什么影响（有了同余方程的同乘性，说话就是硬气）。那我们手上就变成了：</p>
+<script type="math/tex; mode=display">p^{\varphi(m)}≡1\pmod s</script><p>再来，有了同乘性还有什么做不了的，那两边同乘上 $p^r$ 也是可以的，那就有：</p>
+<script type="math/tex; mode=display">p^{\varphi(m)+r}≡p^r\pmod s</script><p>那么我们再来看这个式子：</p>
+<script type="math/tex; mode=display">p^c≡p^{c-r+r}\pmod m</script><p>有性急的同学要开骂了，你这不是显而易见的式子嘛。不急，看下面的变化，我们有了 $p^{\varphi(m)+r}≡p^r\pmod s$ ，不妨把 $p^r$ 代入这个式子，就有:</p>
+<script type="math/tex; mode=display">p^c≡p^{c-r+\varphi(m)+r}\pmod m</script><script type="math/tex; mode=display">p^c≡p^{\varphi(m)+c}\pmod m (c\ge\varphi(m))</script><p>借助扩展欧拉定理的式子一我们又有了</p>
+<script type="math/tex; mode=display">p^c≡p^{\varphi(m)+c\bmod \varphi(m)}\pmod m (c\ge\varphi(m))</script><p>上面这个式子就可以作为我们的一个半成品了。</p>
+<p>相同的规律也可以用在任何一个次方数上，悟一悟下面这个长长的同余式：</p>
+<script type="math/tex; mode=display">(p^k)^c≡p^{k\cdot c}≡p^{\varphi(m)+k\cdot c }≡p^{k\cdot\varphi(m)+k\cdot c}</script><script type="math/tex; mode=display">≡(p^k)^{\varphi(m)+c}≡(p^k)^{c\bmod \varphi(m)+\varphi(m)}\pmod m</script><p>其实这一波推导实则通篇只是欧拉定理的推论，结合欧拉定理食用更易消化~</p>
+<p>还记得吗，我们之前曾说过任何一个数 $a$ ，他都能表示成 $p_1^{k_1}\cdot p_2^{k_2}  \cdot p_3^{k_3} \cdots $ 的次方数相乘的形式。对于每一个 $p^k$ 都满足上面我们推出的公式，那么就有！！！：</p>
+<script type="math/tex; mode=display">a^c≡a^{c\bmod \varphi(m)+\varphi(m)} \pmod m</script><p>$\Box$</p>
+<h3 id="高-斯-消-元-Gauss"><a href="#高-斯-消-元-Gauss" class="headerlink" title="高 斯 消 元(Gauss)"></a>高 斯 消 元(Gauss)</h3><h4 id="这有什么用："><a href="#这有什么用：" class="headerlink" title="这有什么用："></a>这有什么用：</h4><p>高斯消元，是指一种通过把 $N$ 元一次方程组（下面都以三元一次方程组为例）里的系数，写在一个矩阵里，像下面这样：</p>
+<script type="math/tex; mode=display">\begin{cases}x+2y+3z=11\\2x+2y+z=24\\3x-4y+z=19\end{cases} ---> \begin{vmatrix}1&2&3\ \|&11\\2&2&1\ \|&11\\3&4&1\ \|&19\end{vmatrix}</script><p>其目的是将这个矩阵变换成下面的模样以求解：</p>
+<script type="math/tex; mode=display">\begin{vmatrix}a1&b1&c1\ \|&ans1\\0&b2&c2\ \|&ans2\\0&0&c3\ \|&ans3\end{vmatrix}</script><p>这样我们就可以从矩阵最下面一行逐步推出每一个未知数的解啦！（一行一杀，逐行上推）</p>
+<p>我们的思想是先找到哪一行的第 $i$ 个数绝对值最大，将这一行全部换到第 $i$ 行的位置 （这里的 $i$ 从1到 $N$ 枚举），如下图的变换(这里我们找到了第一项系数最大值在第三行我们将第三行换到了第一行的位置），我们称之为操作一。</p>
+<script type="math/tex; mode=display">\begin{vmatrix}1&2&3\ \|&11\\2&2&1\ \|&11\\3&4&1\ \|&19\end{vmatrix}-opt1->\begin{vmatrix}3&4&1\ \|&19\\2&2&1\ \|&11\\1&2&3\ \|&11\end{vmatrix}</script><p>操作一完成以后，再对于第 $i$ 项进行加减消元，也就是要把他下面的每一行的第 $i$ 项系数全部削成0，称作操作二，如下图：</p>
+<script type="math/tex; mode=display">\begin{vmatrix}3&4&1\ \|&19\\2&2&1\ \|&11\\1&2&3\ \|&11\end{vmatrix}-opt2->\begin{vmatrix}3&4&1\quad\|&19\\0&1&-\dfrac{1}{2}\|&\dfrac{5}{2}\\0&-2&-8\ \|&-14\end{vmatrix}</script><p>两种操作交替运行，这样最后我们就可以从后往前倒推，求出 $z=1,y=3,x=2$ 辣！</p>
+<h4 id="代码来辣："><a href="#代码来辣：" class="headerlink" title="代码来辣："></a>代码来辣：</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">&#123;    <span class="comment">//枚举第i个未知数</span></span><br><span class="line">    <span class="keyword">int</span> maxx = i;                    </span><br><span class="line">    <span class="comment">//绝对值最大的项所在行</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt;= n; j++) </span><br><span class="line">    <span class="comment">//从第i行开始往下搜，因为上面的都已经被处理了</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">fabs</span>(a[j][i]) &gt; <span class="built_in">fabs</span>(a[maxx][i]))</span><br><span class="line">        &#123;</span><br><span class="line">            maxx = j; <span class="comment">//打擂台</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n + <span class="number">1</span>; j++)</span><br><span class="line">        <span class="built_in">swap</span>(a[i][j], a[maxx][j]); <span class="comment">//全体交换</span></span><br><span class="line">    <span class="keyword">if</span> (!a[i][i])  <span class="comment">//换完以后发现这行要求的未知数前面系数是零</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;No Solution\n&quot;</span>); <span class="comment">//无解，没得搞了</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++)<span class="comment">//开消</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (j == i)</span><br><span class="line">            <span class="keyword">continue</span>;                   </span><br><span class="line">       <span class="comment">//不能拿这一列式子消他自己</span></span><br><span class="line">        <span class="keyword">double</span> delta = a[j][i] / a[i][i]; </span><br><span class="line">        <span class="comment">//消元时被削那行需要乘/除上的数</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = i; k &lt;= n + <span class="number">1</span>; k++)</span><br><span class="line">            a[j][k] -= a[i][k] * delta; </span><br><span class="line">       <span class="comment">//将第i元系数消为0并对应的把系数消掉</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样我们就成功得到了最终我们需要的那个矩阵。在主函数里稍加处理即可。笔者这里采取的是在输出时处理出未知数的值。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%.2lf\n&quot;</span>, num[i][n + <span class="number">1</span>] / num[i][i]);</span><br></pre></td></tr></table></figure>
+<h4 id="高斯消元一种妙用——解异或方程组："><a href="#高斯消元一种妙用——解异或方程组：" class="headerlink" title="高斯消元一种妙用——解异或方程组："></a>高斯消元一种妙用——解异或方程组：</h4><p>先咕咕咕~</p>
+<h3 id="中-国-剩-余-定-理-（-mathtt-CRT-）"><a href="#中-国-剩-余-定-理-（-mathtt-CRT-）" class="headerlink" title="中 国 剩 余 定 理 （$\mathtt{CRT}$）"></a>中 国 剩 余 定 理 （$\mathtt{CRT}$）</h3><h4 id="他解决什么问题："><a href="#他解决什么问题：" class="headerlink" title="他解决什么问题："></a>他解决什么问题：</h4><p>举个例子，有一方程组如右： $\begin{cases}x≡2\pmod 3\\x≡3\pmod 5\\x≡2\pmod 7\end{cases}$ 要求求出最小的 $x$ （这里的模数都应该互质）。对于这种问题，我们写成一个通式如下 $\begin{cases}x≡a_1\pmod {m_1}\\x≡a_2\pmod {m_2}\\x≡a_3\pmod {m_3}\end{cases}$</p>
+<h4 id="解决的步骤："><a href="#解决的步骤：" class="headerlink" title="解决的步骤："></a>解决的步骤：</h4><ol>
+<li><p>计算出一个 $M=m_1\cdot m_2\cdots m_n$ 。</p>
+</li>
+<li><p>开一个 $RBQ$ 数组（老数组名了），对于每个 $RBQ_i$ ，有 $RBQ_i=\dfrac{M}{m_i}$ （即除了 $m_i$ 以外的所有 $m$ 的积），再求出每一个 $RBQ$ 的在 $\bmod m_i$ 意义下的逆元 $RBQ_i^{-1}$ （有时并不用开数组， $RBQ$ 也可即造即用(<del>雾</del>））。</p>
+</li>
+<li><p>那么我们所求的 $x$ 就有（不用害怕原数乘逆元等于一，因为一个是在实数域上，一个是在模 $m_i$ 意义下）： </p>
+<script type="math/tex; mode=display">x=a_1\cdot RBQ_1 \cdot RBQ_1^{-1}+a_2\cdot RBQ_2 \cdot RBQ_2^{-1}+\cdots</script></li>
+</ol>
+<h4 id="为什么这么做是对的："><a href="#为什么这么做是对的：" class="headerlink" title="为什么这么做是对的："></a>为什么这么做是对的：</h4><p>对于每一行式子的一个 $m_i$ ，我们有两种情况：</p>
+<p>$Case 1(j\neq i)$</p>
+<script type="math/tex; mode=display">a_j\cdot RBQ_j \cdot RBQ_j^{-1}≡0\pmod {m_i}</script><p>因为 $RBQ_j$ 一定是 $m_i$ 的倍数，它本来就是包括 $m_i$ 在内的几个 $m$ 乘起来的结果。</p>
+<p>$Case 2(j= i)$</p>
+<script type="math/tex; mode=display">a_j\cdot RBQ_j \cdot RBQ_j^{-1}=a_i\cdot RBQ_i \cdot RBQ_i^{-1}</script><p>这不必说。</p>
+<script type="math/tex; mode=display">a_i\cdot RBQ_i \cdot RBQ_i^{-1}≡a_i\pmod {m_i}</script><p>我们都知道的 $RBQ_i \cdot RBQ_i^{-1}\pmod {m_i}$ 他就是1，那这个式子自然成立。</p>
+<p>了解了上面两种情况，那么证明就极其简单了：</p>
+<script type="math/tex; mode=display">\sum\limits_{k=1}^n a_k\cdot RBQ_k \cdot RBQ_k^{-1}≡a_i \pmod {m_i}</script><p>也就是说让 $x=\sum\limits_{k=1}^n a_k\cdot RBQ_k \cdot RBQ_k^{-1}$ 总能完美契合方程组里每一个同余式，对于里面的每一个同余式都能得到相应的余数。 $\Box$</p>
+<h4 id="代码整点康康"><a href="#代码整点康康" class="headerlink" title="代码整点康康:"></a>代码整点康康:</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(b==<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        x = <span class="number">1</span>;</span><br><span class="line">        y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">exgcd</span>(b, a % b);</span><br><span class="line">    <span class="keyword">int</span> tmp = x;</span><br><span class="line">    x = y;</span><br><span class="line">    y = tmp - (a / b) * y;</span><br><span class="line">&#125;<span class="comment">//扩欧求乘法逆元，无需多言 </span></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N;</span><br><span class="line">    cin &gt;&gt; N;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cin &gt;&gt; m[i] &gt;&gt; a[i];</span><br><span class="line">        M *= m[i];<span class="comment">//累乘模数</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=N;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        RBQ= M / m[i];</span><br><span class="line">        <span class="built_in">exgcd</span>(RBQ,m[i]);<span class="comment">//即造即用RBQ </span></span><br><span class="line">        sum_a = (sum_a+a[i] * RBQ * x)%M;<span class="comment">//累加a[i]*RBQ*RBQ的逆元 </span></span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; sum_a  % M &lt;&lt; endl;<span class="comment">//具体输出可按题意修改</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="扩-展-中-国-剩-余-定-理-mathtt-EXCRT"><a href="#扩-展-中-国-剩-余-定-理-mathtt-EXCRT" class="headerlink" title="扩 展 中 国 剩 余 定 理 ($\mathtt{EXCRT}$)"></a>扩 展 中 国 剩 余 定 理 ($\mathtt{EXCRT}$)</h3><p>我们之前提到 $\mathtt{CRT}$ 解决的问题中方程组的各个模数必须是互质的，可有的问题给出的方程组不一定是互质的，难道这种题就不可做了吗？不慌，我们还有 $\mathtt{CRT}$ 的进阶与扩展， $\mathtt{EXCRT}$ ！</p>
+<h4 id="他如何运作："><a href="#他如何运作：" class="headerlink" title="他如何运作："></a>他如何运作：</h4><p>我们举个例子，有一方程组如下：</p>
+<script type="math/tex; mode=display">\begin{cases}x≡a_1\pmod {m_1}\\x≡a_2\pmod {m_2}\\x≡a_3\pmod {m_3}\end{cases}</script><p>我们不妨考虑每次合并第一个方程和第二个方程，而不改变新的方程组求出的解的正确性，最后直至消到只剩一个方程，就可以轻松出结果。那么怎么合并呢，我们挑出两方程来看：</p>
+<script type="math/tex; mode=display">\begin{cases}x≡a_1\pmod {m_1}\\x≡a_2\pmod {m_2}\end{cases}</script><p>把同余式化成等式的做法我们已经轻车熟路了，我们就有了：</p>
+<script type="math/tex; mode=display">x=m_1\cdot k_1+a_1 =m_2\cdot k_2+a_2</script><p>来看右边，我们稍微来一点移项：</p>
+<script type="math/tex; mode=display">m_1\cdot k_1+(-m_2)\cdot k_2=a_2-a_1</script><p>我们会觉得这挺像一个同余方程的，想想办法解一下他，要让他可解我们必须让右边变成 $\gcd (m_1,m_2)$ ，没什么可以阻止我们在等号左右同乘上 $\dfrac {\gcd (m_1,m_2)}{a_2-a_1}$ ，由此一来，我们有：</p>
+<script type="math/tex; mode=display">m_1\cdot \dfrac {\gcd (m_1,m_2)}{a_2-a_1}k_1+m_2\cdot \dfrac {\gcd (m_1,m_2)}{a_2-a_1}k_2=\gcd (m_1,m_2)</script><p>那个大分数也太 $ex$ 了，我们不得不把他换元，分别换成 $K_1,K_2$ 如何：</p>
+<script type="math/tex; mode=display">m_1\cdot K_1+m_2\cdot K_2=\gcd (m_1,m_2)</script><p>漂亮的同余方程， $\mathtt{exgcd}$ 一波，推出符合的一组 $K_1,K_2$ ，但这不是我们需要的小 $k$ ，不妨一波返场，对大 $K$ 再乘回 $\dfrac {a_2-a_1}{\gcd (m_1,m_2)}$ ，那没事了，我们这就知道了 $k_1$ 的一个可以的值，把他代回到 $x=m_1\cdot k_1+a_1$ ，我们就暂时知道了一个 $x$ 。</p>
+<p>别急，我们还没有做完，这个 $x$ 只能算是局部解，我们应该记得我们此行的目的是把前面两个方程合并到一个方程，怎么搞，我们需要知道新 $a_1$ 和新 $m_1$ ，新 $m_1$ 怎么想都应该知道该是旧 $m_1$ 和旧 $m_2$ 的 $\operatorname{lcm}$，我们用 $\dfrac {m_1\cdot m_2}{\gcd(m_1,m_2)}$ 可以算出最小公倍数（我想这个应该都知道的），那么对于新 $a_1$ ，求之前我们需要知道一个有趣的定理：</p>
+<hr>
+<script type="math/tex; mode=display">x_{common}=x_{special}+ i\cdot \dfrac {m_2}{\gcd(m_1,m_2)}</script><p>（这其实不能叫定理了，笔者对其根据本题情况稍加修改， $x_{common}$ 指的是 $x$ 的通解，我们之前用的是 $K$ ， $x_{special}$ 指的是 $x$ 的特解， $i$ 是随意的一个正整数， $m_1,m_2$ 正如先前所设）</p>
+<p>应该会有人还记得，我们要求的 $K$ 的解，也就是这里的 $x$ ，他本该是个什么，是了， $\dfrac {\gcd (m_1,m_2)}{a_2-a_1}k_1$ （<del>是我们嫌他太 $ex$ 才把他换元的）</del> ，那么是时候把他换回来， $x_{special}$ 肯定是不能动了，毕竟我们好不容易才把他求出来，那么 $x_{common}$ 呢，我们尝试变形:</p>
+<script type="math/tex; mode=display">k_1=(x_{special}+ i\cdot \dfrac {m_2}{\gcd(m_1,m_2)})\cdot \dfrac {a_2-a_1}{\gcd (m_1,m_2)}</script><p>这就是 $k_1$ 的通解了，那么再带回 $x=m_1\cdot k_1+a_1$ ？那么我们又有了:</p>
+<script type="math/tex; mode=display">x=m1\cdot (x_{special}+ i\cdot \dfrac {m_2}{\gcd(m_1,m_2)})\cdot \dfrac {a_2-a_1}{\gcd (m_1,m_2)}+a_1</script><p>把 $m_1$ 乘进括号里（分配律），再一波变形如下：</p>
+<script type="math/tex; mode=display">x=m_1\cdot x_{special}\cdot \dfrac {a_2-a_1}{\gcd (m_1,m_2)}+ i\cdot  \dfrac {m_1\cdot m_2}{\gcd(m_1,m_2)}\cdot \dfrac {a_2-a_1}{\gcd (m_1,m_2)}+a_1</script><script type="math/tex; mode=display">x=m_1\cdot x_{special}\cdot \dfrac {a_2-a_1}{\gcd (m_1,m_2)}+ i\cdot \operatorname{lcm}(m_1,m_2)\cdot \dfrac {a_2-a_1}{\gcd (m_1,m_2)}+a_1</script><p>别的显然都不能动了，我们手上的棋子只有 $i$ 这一颗 ，只能说 $x$ 的大小取决于 $\operatorname{lcm}(m_1,m_2)$ 前面的系数，等等，$\operatorname{lcm}(m_1,m_2)$ 是什么，这不是我们定下来的新 $m_1$ 嘛。看来我们已经离胜利只差一步了。什么时候让 $x$ 有最小解，简单， $i=0$ ，那我们就有：</p>
+<script type="math/tex; mode=display">x=m_1\cdot x_{special}\cdot \dfrac {a_2-a_1}{\gcd (m_1,m_2)}+a_1</script><p>噫，好了，这个形式怎么看怎么爽，是呢，我们之前不管不顾地让 $i=0$<br>，可 $i$ 的值是不定的，他的背后就是那个模数 $\operatorname{lcm}(m_1,m_2)$ ，那么最终的式子已经呼之欲出了！</p>
+<script type="math/tex; mode=display">x≡m_1\cdot x_{special}\cdot \dfrac {a_2-a_1}{\gcd (m_1,m_2)}+a_1 (\bmod\operatorname{lcm}(m_1,m_2))</script><p>这，就是合并了第一第二式的最终式子（呼～）。</p>
+<h4 id="不妨对着代码格物致知？："><a href="#不妨对着代码格物致知？：" class="headerlink" title="不妨对着代码格物致知？："></a>不妨对着代码格物致知？：</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">EXCRT</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	__int128 A1,A2,MOD1,MOD2;</span><br><span class="line">    <span class="comment">//用int128是因为被毒瘤数据爆了long long，千万小心</span></span><br><span class="line">	A1=A[<span class="number">1</span>],MOD1=MOD[<span class="number">1</span>];</span><br><span class="line">    <span class="comment">//a1,m1整来</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=N;i++)</span><br><span class="line">	</span><br><span class="line">		A2=A[i],MOD2=MOD[i];</span><br><span class="line">        <span class="comment">//a2,m2整来</span></span><br><span class="line">		__int128 C=A2-A1,GCD=__gcd(MOD1,MOD2);</span><br><span class="line">        <span class="comment">//换个a2-a1,gcd免得式子太ex</span></span><br><span class="line">		<span class="built_in">exgcd</span>(MOD1,MOD2);</span><br><span class="line">        <span class="comment">//解同余方程</span></span><br><span class="line">		x=((x*C/GCD)%(MOD2/GCD)+(MOD2/GCD))%(MOD2/GCD);</span><br><span class="line">        <span class="comment">//处理一下x，帮助a1出新值</span></span><br><span class="line">		A1=x*MOD1+A1;</span><br><span class="line">		MOD1=MOD1*MOD2/GCD;</span><br><span class="line">        <span class="comment">//a1,m1各更新</span></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> A1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="我NOIp之前再碰数论我就吃奥利给！"><a href="#我NOIp之前再碰数论我就吃奥利给！" class="headerlink" title="我NOIp之前再碰数论我就吃奥利给！"></a>我NOIp之前再碰数论我就吃奥利给！</h2><h3 id="完结撒花～"><a href="#完结撒花～" class="headerlink" title="完结撒花～"></a>完结撒花～</h3><hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年04月19日 11:33</p>
+        <p>原始链接： <a class="post-url" href="/2021/04/17/%E6%B5%85%E8%B0%88%E7%AE%80%E5%8D%95%E6%95%B0%E5%AD%A6/" title="浅谈简单小数学题">https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E7%AE%80%E5%8D%95%E6%95%B0%E5%AD%A6/</a></p>
+        <footer>
+            <a href="https://quest233.github.io">
+                <img src="/images/150879.png" alt="quest_2">
+                quest_2
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E7%AE%80%E5%8D%95%E6%95%B0%E5%AD%A6/&title=《浅谈简单小数学题》 — quest233的博客&pic=https://quest233.github.ioimages/150879.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E7%AE%80%E5%8D%95%E6%95%B0%E5%AD%A6/&title=《浅谈简单小数学题》 — quest233的博客&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E7%AE%80%E5%8D%95%E6%95%B0%E5%AD%A6/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《浅谈简单小数学题》 — quest233的博客&url=https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E7%AE%80%E5%8D%95%E6%95%B0%E5%AD%A6/&via=https://quest233.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E7%AE%80%E5%8D%95%E6%95%B0%E5%AD%A6/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://quest233.github.io/2021/04/17/%E6%B5%85%E8%B0%88%E7%AE%80%E5%8D%95%E6%95%B0%E5%AD%A6/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/“知识”决定命运/" class="color4">“知识”决定命运</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%89%A9-%E5%B1%95-%E6%AC%A7-%E5%87%A0-%E9%87%8C-%E5%BE%97-mathtt-exgcd"><span class="post-toc-text">扩 展 欧 几 里 得($\mathtt{exgcd}$)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%AE%9E%E7%8E%B0%EF%BC%9F-%EF%BC%9A"><span class="post-toc-text">实现？ ：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%EF%BC%88%E9%99%84%EF%BC%89%E6%9C%89%E5%85%B3-2-%E4%B8%AD-x-y-%E5%8F%98%E9%87%8F%E5%8F%98%E5%8C%96%E7%9A%84%E5%8E%9F%E5%9B%A0%EF%BC%9F-%EF%BC%9A"><span class="post-toc-text">（附）有关 2 中 $x,y$ 变量变化的原因？ ：</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E8%BF%99%E9%87%8C%E6%94%BE%E4%B8%8A%E6%88%91%E4%BB%AC-mathtt-exgcd-%E7%9A%84%E5%87%BD%E6%95%B0%E4%BB%A3%E7%A0%81%EF%BD%9E%EF%BC%9A"><span class="post-toc-text">这里放上我们 $\mathtt{exgcd}$ 的函数代码～：</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B9%98-%E6%B3%95-%E9%80%86-%E5%85%83-mathtt-inv-%EF%BC%9A"><span class="post-toc-text">乘 法 逆 元($\mathtt{inv}$)：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%AE%9E%E7%8E%B0%EF%BC%9F"><span class="post-toc-text">实现？ :</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#mathtt-exgcd-%E6%B3%95%EF%BC%9A"><span class="post-toc-text">$\mathtt{exgcd}$法：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E8%8A%9C%E6%B9%96%EF%BC%8C%E8%B5%B7%E9%A3%9E%EF%BC%81%E4%B8%8A%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="post-toc-text">芜湖，起飞！上代码：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E9%80%92%E6%8E%A8%E6%B3%95%EF%BC%9A"><span class="post-toc-text">递推法：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E5%A5%B3%E5%B0%91-%E5%8F%A3%E9%98%BF%EF%BC%81%E4%B8%8A%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="post-toc-text">女少 口阿！上代码：</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E7%9F%A9-%E9%98%B5-%E4%B9%98-%E6%B3%95"><span class="post-toc-text">矩 阵 乘 法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E7%9F%A9%E9%98%B5%EF%BC%9F%E4%B9%98%E6%B3%95%EF%BC%9F"><span class="post-toc-text">矩阵？乘法？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%AD%A6%E8%BF%99%E4%B8%9C%E8%A5%BF%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%E5%91%90%EF%BC%9F"><span class="post-toc-text">学这东西有什么用呐？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E7%AC%94%E8%80%85%E5%9C%A8%E6%AD%A4%E5%88%86%E4%BA%AB%E8%87%AA%E5%B7%B1%E6%8E%A8%E5%AF%BC%E8%BD%AC%E7%A7%BB%E7%9F%A9%E9%98%B5%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="post-toc-text">笔者在此分享自己推导转移矩阵的方法：</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E5%88%9A%E6%89%8D%E6%8F%90%E5%88%B0%E7%9A%84%E9%82%A3%E9%81%93%E9%80%92%E6%8E%A8%E9%A2%98%E7%9A%84%E9%AB%98%E6%B8%85%E6%97%A0%E7%A0%81%E4%BB%A3%E7%A0%81-avi%EF%BC%9A"><span class="post-toc-text">刚才提到的那道递推题的高清无码代码.avi：</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%AC%A7-%E6%8B%89-%E5%87%BD-%E6%95%B0%EF%BC%88-varphi-%EF%BC%89"><span class="post-toc-text">欧 拉 函 数（ $\varphi$ ）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A"><span class="post-toc-text">定义：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E8%BF%99%E7%8E%A9%E6%84%8F%E6%9C%89%E5%A5%BD%E5%A4%9A%E5%A5%BD%E5%A4%9A%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA%E7%9A%84%E6%80%A7%E8%B4%A8%EF%BC%9A"><span class="post-toc-text">这玩意有好多好多奇奇怪怪的性质：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E6%80%A7%E8%B4%A80%EF%BC%9A"><span class="post-toc-text">性质0：</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E6%80%A7%E8%B4%A80-5%EF%BC%9A"><span class="post-toc-text">性质0.5：</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E6%80%A7%E8%B4%A81%EF%BC%9A%EF%BC%88%E7%BB%88%E4%BA%8E%E6%9D%A5%E4%BA%86%E4%B8%AA%E5%A4%9F%E6%A0%BC%E7%9A%84%E6%80%A7%E8%B4%A8%EF%BC%89"><span class="post-toc-text">性质1：（终于来了个够格的性质）</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E6%80%A7%E8%B4%A82%EF%BC%9A"><span class="post-toc-text">性质2：</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E6%80%A7%E8%B4%A83%EF%BC%9A"><span class="post-toc-text">性质3：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E6%80%8E%E4%B9%88%E6%B1%82-varphi"><span class="post-toc-text">怎么求 $\varphi$ :</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E5%8D%95%E7%82%B9%E6%B1%82-varphi"><span class="post-toc-text">单点求 $\varphi$:</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E4%B8%8A%E4%BB%A3%E7%A0%81%EF%BD%9E%EF%BC%9A"><span class="post-toc-text">上代码～：</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E7%BA%BF%E6%80%A7%E7%AD%9B-varphi-%EF%BC%9A"><span class="post-toc-text">线性筛 $\varphi$ ：</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E8%AF%9D%E4%B8%8D%E5%A4%9A%E8%AF%B4%EF%BC%8C%E4%B8%8A%E4%BB%A3%E7%A0%81%EF%BD%9E%EF%BC%9A"><span class="post-toc-text">话不多说，上代码～：</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%89%A9-%E5%B1%95-%E6%AC%A7-%E6%8B%89-%E5%AE%9A-%E7%90%86"><span class="post-toc-text">扩 展 欧 拉 定 理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E6%88%91%E4%BB%AC%E8%BF%99%E9%87%8C%E5%B0%9D%E8%AF%95%E6%8E%A8%E5%AF%BC%E7%AC%AC%E4%B8%89%E4%B8%AA%E5%BC%8F%E5%AD%90%EF%BC%88%E4%B8%8D%E6%84%9F%E5%85%B4%E8%B6%A3%E7%9A%84%E8%AF%BB%E8%80%85%E5%8F%AF%E8%87%AA%E8%A1%8C%E8%B7%B3%E8%BF%87%EF%BC%89%EF%BC%9A"><span class="post-toc-text">我们这里尝试推导第三个式子（不感兴趣的读者可自行跳过）：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E9%AB%98-%E6%96%AF-%E6%B6%88-%E5%85%83-Gauss"><span class="post-toc-text">高 斯 消 元(Gauss)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E8%BF%99%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%EF%BC%9A"><span class="post-toc-text">这有什么用：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E4%BB%A3%E7%A0%81%E6%9D%A5%E8%BE%A3%EF%BC%9A"><span class="post-toc-text">代码来辣：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E4%B8%80%E7%A7%8D%E5%A6%99%E7%94%A8%E2%80%94%E2%80%94%E8%A7%A3%E5%BC%82%E6%88%96%E6%96%B9%E7%A8%8B%E7%BB%84%EF%BC%9A"><span class="post-toc-text">高斯消元一种妙用——解异或方程组：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%AD-%E5%9B%BD-%E5%89%A9-%E4%BD%99-%E5%AE%9A-%E7%90%86-%EF%BC%88-mathtt-CRT-%EF%BC%89"><span class="post-toc-text">中 国 剩 余 定 理 （$\mathtt{CRT}$）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E4%BB%96%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="post-toc-text">他解决什么问题：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E8%A7%A3%E5%86%B3%E7%9A%84%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="post-toc-text">解决的步骤：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%81%9A%E6%98%AF%E5%AF%B9%E7%9A%84%EF%BC%9A"><span class="post-toc-text">为什么这么做是对的：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E4%BB%A3%E7%A0%81%E6%95%B4%E7%82%B9%E5%BA%B7%E5%BA%B7"><span class="post-toc-text">代码整点康康:</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%89%A9-%E5%B1%95-%E4%B8%AD-%E5%9B%BD-%E5%89%A9-%E4%BD%99-%E5%AE%9A-%E7%90%86-mathtt-EXCRT"><span class="post-toc-text">扩 展 中 国 剩 余 定 理 ($\mathtt{EXCRT}$)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E4%BB%96%E5%A6%82%E4%BD%95%E8%BF%90%E4%BD%9C%EF%BC%9A"><span class="post-toc-text">他如何运作：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E4%B8%8D%E5%A6%A8%E5%AF%B9%E7%9D%80%E4%BB%A3%E7%A0%81%E6%A0%BC%E7%89%A9%E8%87%B4%E7%9F%A5%EF%BC%9F%EF%BC%9A"><span class="post-toc-text">不妨对着代码格物致知？：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%88%91NOIp%E4%B9%8B%E5%89%8D%E5%86%8D%E7%A2%B0%E6%95%B0%E8%AE%BA%E6%88%91%E5%B0%B1%E5%90%83%E5%A5%A5%E5%88%A9%E7%BB%99%EF%BC%81"><span class="post-toc-text">我NOIp之前再碰数论我就吃奥利给！</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%AE%8C%E7%BB%93%E6%92%92%E8%8A%B1%EF%BD%9E"><span class="post-toc-text">完结撒花～</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/04/17/XJ2021%E6%98%A5%E6%B8%B8%E6%B8%B8%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          XJ2021春游游记
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/04/17/%E6%B5%85%E8%B0%88%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">浅谈简单数据结构</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+          <div id="uyan_frame"></div>
+  <script src="http://v2.uyan.cc/code/uyan.js?uid=true"></script>
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2021 quest_2<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://quest233.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/solutions/" style="font-size: 20px;">solutions</a> <a href="/tags/water/" style="font-size: 10px;">water</a> <a href="/tags/%E2%80%9C%E7%9F%A5%E8%AF%86%E2%80%9D%E5%86%B3%E5%AE%9A%E5%91%BD%E8%BF%90/" style="font-size: 15px;">“知识”决定命运</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/2021/04/17/About/#more">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/solutions/" style="font-size: 20px;">solutions</a> <a href="/tags/water/" style="font-size: 10px;">water</a> <a href="/tags/%E2%80%9C%E7%9F%A5%E8%AF%86%E2%80%9D%E5%86%B3%E5%AE%9A%E5%91%BD%E8%BF%90/" style="font-size: 15px;">“知识”决定命运</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
